@@ -1,0 +1,10 @@
+{
+  "version": 2,
+  "dgSpecHash": "Jbzo9aThtaR7xemefGedBkhI/DPWFbeLLBvFBgXheJcULgxtv+0MfPt7HFZaG4FdGyAobMSWuaI6Cw4dqSuigw==",
+  "success": true,
+  "projectFilePath": "D:\\PUCRS\\3rd semester\\Source\\imongodb\\imdb-to-json\\imdb-to-json\\imdb-to-json.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\Santi\\.nuget\\packages\\csvhelper\\30.0.1\\csvhelper.30.0.1.nupkg.sha512"
+  ],
+  "logs": []
+}
