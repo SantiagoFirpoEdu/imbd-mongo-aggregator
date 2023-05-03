@@ -47,6 +47,14 @@
             "CsvHelper": {
               "target": "Package",
               "version": "[30.0.1, )"
+            },
+            "MongoDB.Analyzer": {
+              "target": "Package",
+              "version": "[1.2.0, )"
+            },
+            "MongoDB.Driver": {
+              "target": "Package",
+              "version": "[2.19.1, )"
             }
           },
           "imports": [
