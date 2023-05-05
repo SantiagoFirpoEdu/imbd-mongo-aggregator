@@ -1,4 +1,5 @@
 ﻿using IMongoDb.Collections;
+using IMongoDb.Model.Collections;
 
 namespace IMongoDb.Model;
 

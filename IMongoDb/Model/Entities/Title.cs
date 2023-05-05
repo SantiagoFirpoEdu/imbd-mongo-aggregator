@@ -5,11 +5,11 @@ using IMongoDb.TsvRecords;
 namespace IMongoDb.Model.Entities;
 public class Title
 {
-	public Title(TitleBasics titleBasics)
+	public static Result<Title, ETitleConversionError> FromTitleBasics(TitleBasics titleBasics)
 	{
-		throw new NotImplementedException();
+		var a = Result<int, int>.Error(1);
 	}
-
+	
 	private class TitleRating
 	{
 		private double averageRating;
@@ -31,14 +31,5 @@ public class Title
 	private Episode[] episode;
 	private Movie[] movie;
 	private Show[] show;
-	private TitleGenre[] titleGenre;
-	
-	public static Result<Title, ETitleConversionError> FromTitleBasics(TitleBasics titleBasics)
-	{
-	}
-}
-
-public enum ETitleConversionError
-{
-	Placeholder,
+	private List<TitleGenre> titleGenre;
 }
