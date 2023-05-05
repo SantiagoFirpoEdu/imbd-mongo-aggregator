@@ -1,6 +1,11 @@
 ﻿using System.Globalization;
 using CsvHelper;
 using CsvHelper.Configuration;
+using IMongoDb;
+using IMongoDb.Model;
+using IMongoDb.TsvRecords;
+
+DbRepository mongoDbRepository = new();
 
 CsvConfiguration tsvConfig = new(CultureInfo.InvariantCulture)
 {
@@ -8,5 +13,25 @@ CsvConfiguration tsvConfig = new(CultureInfo.InvariantCulture)
     HasHeaderRecord = true
 };
 
-using StreamReader fileReader = new("");
-using CsvReader csvReader = new(fileReader, tsvConfig);
+ParseTitleBasics(tsvConfig);
+
+void ParseTitleBasics(IReaderConfiguration csvConfiguration)
+{
+    using StreamReader fileReader = new(FilePaths.TitleBasics);
+    using CsvReader csvReader = new(fileReader, csvConfiguration);
+
+    csvReader.Read();
+    csvReader.ReadHeader();
+
+    var titles = csvReader.GetRecords<TitleBasics>();
+
+    foreach (TitleBasics? title in titles)
+    {
+        if (title is null)
+        {
+            continue;
+        }
+        
+        mongoDbRepository.Titles.Add(title);
+    }
+}
