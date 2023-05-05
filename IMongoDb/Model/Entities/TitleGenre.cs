@@ -1,3 +1,5 @@
+using IMongoDb.Model.Entities;
+
 namespace IMongoDb.Entities;
 
 public class TitleGenre

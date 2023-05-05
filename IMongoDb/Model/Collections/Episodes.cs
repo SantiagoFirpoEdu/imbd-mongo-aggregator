@@ -4,5 +4,5 @@ namespace IMongoDb.Collections;
 
 public class Episodes
 {
-	private Episode[] episode;
+	private IDictionary<string, Episode> episode;
 }

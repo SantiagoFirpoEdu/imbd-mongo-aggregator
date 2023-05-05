@@ -4,5 +4,5 @@ namespace IMongoDb.Collections;
 
 public class Characters
 {
-	private Character[] character;
+	private IDictionary<string, Character> character;
 }

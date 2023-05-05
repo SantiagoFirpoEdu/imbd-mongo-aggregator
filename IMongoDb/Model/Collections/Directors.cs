@@ -4,6 +4,5 @@ namespace IMongoDb.Collections;
 
 public class Directors
 {
-	private Director[] director;
-
+	private IDictionary<string, Director> director;
 }

@@ -4,7 +4,6 @@ namespace IMongoDb.Collections;
 
 public class Actors
 {
-	private Actor[] actor;
-
+	private IDictionary<string, Actor> actor;
 }
 

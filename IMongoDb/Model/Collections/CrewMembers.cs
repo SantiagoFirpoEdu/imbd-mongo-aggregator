@@ -4,5 +4,5 @@ namespace IMongoDb.Collections;
 
 public class CrewMembers
 {
-	private CrewMember[] crewMember;
+	private IDictionary<string, CrewMember> crewMember;
 }
