@@ -1,5 +1,7 @@
 namespace IMongoDb.Entities;
 
-public class Director : Principal
+public class Director
 {
+	private string principalId;
+	private string _id;
 }
