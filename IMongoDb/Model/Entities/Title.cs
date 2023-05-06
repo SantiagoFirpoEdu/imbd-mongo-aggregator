@@ -9,7 +9,7 @@ public class Title
 	{
 		Title result = new()
 		{
-			_id = titleBasics.tconst,
+			Id = titleBasics.tconst,
 			type = titleBasics.titleType,
 			primaryTitle = titleBasics.primaryTitle,
 			originalTitle = titleBasics.originalTitle,
@@ -27,8 +27,8 @@ public class Title
 		private int numVotes;
 		private Title titleRated;
 	}
-	
-	private string _id;
+
+	public string Id { get; private set; }
 	private string type;
 	private string primaryTitle;
 	private string originalTitle;
