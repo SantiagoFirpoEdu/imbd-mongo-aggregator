@@ -1,8 +1,8 @@
-using IMongoDb.Entities;
+using IMongoDb.Model.Entities;
 
-namespace IMongoDb.Collections;
+namespace IMongoDb.Model.Collections;
 
 public class Episodes
 {
-	private IDictionary<string, Episode> episode;
+	private IDictionary<string, Episode> episodes;
 }

@@ -1,8 +1,8 @@
-using IMongoDb.Entities;
+using IMongoDb.Model.Entities;
 
-namespace IMongoDb.Collections;
+namespace IMongoDb.Model.Collections;
 
 public class Principals
 {
-	private Principal[] principal;
+	private IDictionary<string, Principal> principals;
 }

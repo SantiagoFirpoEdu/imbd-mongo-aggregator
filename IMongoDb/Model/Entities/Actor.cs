@@ -1,11 +1,7 @@
-using IMongoDb.Collections;
+namespace IMongoDb.Model.Entities;
 
-namespace IMongoDb.Entities;
-
-public class Actor
+public record Actor
 {
 	private string _id;
-	private Principal principal;
-	private Actors actors;
-	private Role[] role;
+	private List<DBRef<string>> charactersPlayedIds;
 }

@@ -1,9 +1,8 @@
-using IMongoDb.Model.Entities;
-
-namespace IMongoDb.Entities;
+namespace IMongoDb.Model.Entities;
 
 public class Movie
 {
-	private Title title;
+	private string _id;
 	private int runtimeMinutes;
+	private List<DBRef<string>> charactersIds;
 }

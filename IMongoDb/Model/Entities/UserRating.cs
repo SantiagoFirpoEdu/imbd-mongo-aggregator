@@ -1,15 +1,8 @@
-using IMongoDb.Collections;
-using IMongoDb.Model.Entities;
-
-namespace IMongoDb.Entities;
+namespace IMongoDb.Model.Entities;
 
 public class UserRating
 {
 	private int score;
-
-	private Title ratedTitles;
-
-	private User ratedBy;
-
-	private UserRatings userRatings;
+	private DBRef<string> ratedTitle;
+	private DBRef<string> ratedBy;
 }

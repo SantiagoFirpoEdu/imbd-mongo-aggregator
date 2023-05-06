@@ -1,4 +1,5 @@
-using IMongoDb.Entities;
+using System.Text.Json.Serialization;
+using IMongoDb.Converters;
 using IMongoDb.Monads;
 using IMongoDb.TsvRecords;
 
@@ -15,7 +16,6 @@ public class Title
 			originalTitle = titleBasics.originalTitle,
 			isAdult = titleBasics.isAdult == "1",
 			releaseYear = DateOnly.ParseExact(titleBasics.startYear, "yyyy"),
-			genre = Genre.FromCsv(titleBasics.genres),
 		};
 
 		return Result<Title, ETitleConversionError>.Ok(result);
@@ -28,13 +28,14 @@ public class Title
 		private Title titleRated;
 	}
 
+	[JsonPropertyName("_id")]
 	public string Id { get; private set; }
 	private string type;
 	private string primaryTitle;
 	private string originalTitle;
 	private bool isAdult;
 	private DateOnly releaseYear;
-	private Genre[] genre;
+	private List<DBRef<string>> genresIds;
 	private TitleRating rating;
 	private AlternativeTitle[] alternativeTitles;
 	private UserRating[] userRating;
@@ -43,5 +44,4 @@ public class Title
 	private Episode[] episode;
 	private Movie[] movie;
 	private Show[] show;
-	private List<TitleGenre> titleGenre;
 }

@@ -1,17 +1,10 @@
-using System.Collections.ObjectModel;
-using IMongoDb.Model.Entities;
-
-namespace IMongoDb.Entities;
+namespace IMongoDb.Model.Entities;
 
 public class Job
 {
 	private string _id;
-
 	private string name;
-
-	private Collection<Title> workedOn;
-
-	private CrewMember crewMember;
-
-	private JobCategory jobCategory;
+	private List<DBRef<string>> workedOnTitlesIds;
+	private List<DBRef<string>> crewMembersIds;
+	private string? jobCategory;
 }

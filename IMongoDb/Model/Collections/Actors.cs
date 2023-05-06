@@ -1,9 +1,9 @@
-using IMongoDb.Entities;
+using IMongoDb.Model.Entities;
 
-namespace IMongoDb.Collections;
+namespace IMongoDb.Model.Collections;
 
 public class Actors
 {
-	private IDictionary<string, Actor> actor;
+	private IDictionary<string, Actor> actors;
 }
 

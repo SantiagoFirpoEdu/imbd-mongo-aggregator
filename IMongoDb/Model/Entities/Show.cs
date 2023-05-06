@@ -1,10 +1,8 @@
-using IMongoDb.Model.Entities;
-
-namespace IMongoDb.Entities;
+namespace IMongoDb.Model.Entities;
 
 public class Show
 {
-	private Title title;
+	private string titleId;
 	private DateOnly endYear;
-	private Episode[] episode;
+	private List<DBRef<string>> episodesIds;
 }

@@ -1,10 +1,9 @@
-using IMongoDb.Entities;
 using IMongoDb.Model.Entities;
 
-namespace IMongoDb.Collections;
+namespace IMongoDb.Model.Collections;
 
 public class Genres
 {
-	private Genre[] genre;
+	private IDictionary<string, Genre> genres;
 
 }

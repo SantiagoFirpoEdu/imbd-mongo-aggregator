@@ -1,8 +1,8 @@
-using IMongoDb.Entities;
+using IMongoDb.Model.Entities;
 
-namespace IMongoDb.Collections;
+namespace IMongoDb.Model.Collections;
 
 public class Directors
 {
-	private IDictionary<string, Director> director;
+	private IDictionary<string, Director> directors;
 }

@@ -1,5 +1,3 @@
-using IMongoDb.Entities;
-
 namespace IMongoDb.Model.Entities;
 
 public class Genre
@@ -18,8 +16,5 @@ public class Genre
 	
 	private string _id;
 	private string name;
-	private Title title;
-	private Genre parent;
-	private Genre[] children;
-	private TitleGenre[] titleGenre;
+	private DBRef<string> parentGenreId;
 }

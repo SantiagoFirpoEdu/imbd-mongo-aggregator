@@ -1,10 +1,7 @@
-namespace IMongoDb.Entities;
+namespace IMongoDb.Model.Entities;
 
-public class Principal : CrewMember
+public class Principal
 {
 	private string _id;
 	private int ordering;
-	private Writer[] writer;
-	private Director[] director;
-	private Actor[] actor;
 }

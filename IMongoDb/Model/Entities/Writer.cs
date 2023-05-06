@@ -1,15 +1,8 @@
-using System.Text.Json.Serialization;
-using IMongoDb.Collections;
-
-namespace IMongoDb.Entities
+namespace IMongoDb.Model.Entities
 {
-	public class Writer : Principal
+	public class Writer
 	{
-		private Principal principal;
-
-		[JsonIgnore]
-		private Writers writers;
-
+		private string _id;
 	}
 
 }

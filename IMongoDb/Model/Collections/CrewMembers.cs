@@ -1,8 +1,8 @@
-using IMongoDb.Entities;
+using IMongoDb.Model.Entities;
 
-namespace IMongoDb.Collections;
+namespace IMongoDb.Model.Collections;
 
 public class CrewMembers
 {
-	private IDictionary<string, CrewMember> crewMember;
+	private IDictionary<string, CrewMember> crewMembers;
 }

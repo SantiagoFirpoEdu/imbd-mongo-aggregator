@@ -1,8 +1,8 @@
-using IMongoDb.Entities;
+using IMongoDb.Model.Entities;
 
-namespace IMongoDb.Collections;
+namespace IMongoDb.Model.Collections;
 
 public class Characters
 {
-	private IDictionary<string, Character> character;
+	private IDictionary<string, Character> characters;
 }

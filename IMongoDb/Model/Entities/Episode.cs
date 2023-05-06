@@ -1,12 +1,10 @@
-using IMongoDb.Model.Entities;
-
-namespace IMongoDb.Entities;
+namespace IMongoDb.Model.Entities;
 
 public class Episode
 {
-	private Title title;
+	private string _id;
 	private int seasonNumber;
 	private int number;
 	private int runtimeMinutes;
-	private Show show;
+	private DBRef<string> showId;
 }
