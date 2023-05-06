@@ -2,7 +2,6 @@
 
 public readonly record struct UserRatingId
 {
-
     public override int GetHashCode()
     {
         return HashCode.Combine(userEmail, titleId);

@@ -28,9 +28,8 @@ void ParseTitleBasics()
     LoadTitleRatings();
 }
 
-string GetRelativePath(string path)
+static string GetRelativePath(string path)
 {
-
     return Path.Combine(Environment.CurrentDirectory, path);
 }
 
@@ -59,9 +58,9 @@ void LoadTitleAkas()
     csvReader.Read();
     csvReader.ReadHeader();
 
-    var titleAkas = csvReader.GetRecords<TitleAkas>().ToImmutableList();
+    var titleAkas = csvReader.GetRecords<TitleAka>().ToImmutableList();
 
-    foreach (TitleAkas? titleAka in titleAkas.Where(titleAka => titleAka is not null))
+    foreach (TitleAka? titleAka in titleAkas.Where(titleAka => titleAka is not null))
     {
         tsvRepository.TitleAkas.Add(new TitleAkaId(titleAka.titleId, titleAka.ordering), titleAka);
     }
@@ -123,9 +122,9 @@ void LoadTitlePrincipals()
     csvReader.Read();
     csvReader.ReadHeader();
 
-    var titlePrincipals = csvReader.GetRecords<TitlePrincipals>().ToImmutableList();
+    var titlePrincipals = csvReader.GetRecords<TitlePrincipal>().ToImmutableList();
 
-    foreach (TitlePrincipals? titlePrincipal in titlePrincipals.Where(titlePrincipal => titlePrincipal is not null))
+    foreach (TitlePrincipal? titlePrincipal in titlePrincipals.Where(titlePrincipal => titlePrincipal is not null))
     {
         tsvRepository.TitlePrincipals.Add(new TitlePrincipalId(titlePrincipal.tconst, titlePrincipal.ordering), titlePrincipal);
     }

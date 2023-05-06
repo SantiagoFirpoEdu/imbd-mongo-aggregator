@@ -1,9 +1,9 @@
 ﻿namespace IMongoDb;
 
-public record TitlePrincipalId(string TitlePrincipalTconst, int TitlePrincipalOrdering)
+public readonly record struct TitlePrincipalId(string TitlePrincipalTconst, int TitlePrincipalOrdering)
 {
     public override int GetHashCode()
     {
-        return TitlePrincipalTconst.GetHashCode() + TitlePrincipalOrdering.GetHashCode();
+        return HashCode.Combine(TitlePrincipalTconst, TitlePrincipalOrdering);
     }
 }

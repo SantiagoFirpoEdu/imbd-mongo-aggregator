@@ -4,5 +4,5 @@ public class Movie
 {
 	private string _id;
 	private int runtimeMinutes;
-	private List<DBRef<string>> charactersIds;
+	private IList<DBRef<string>> charactersIds;
 }

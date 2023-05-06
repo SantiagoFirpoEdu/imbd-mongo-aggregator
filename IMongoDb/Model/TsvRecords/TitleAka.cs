@@ -3,7 +3,7 @@
 namespace IMongoDb.TsvRecords;
 
 /** Stores localized titles tsv records */
-public record TitleAkas()
+public record TitleAka()
 {
     [Name("titleId")]
     public string titleId { get; init; }

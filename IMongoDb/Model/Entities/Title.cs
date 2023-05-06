@@ -11,37 +11,35 @@ public class Title
 		Title result = new()
 		{
 			Id = titleBasics.tconst,
-			type = titleBasics.titleType,
-			primaryTitle = titleBasics.primaryTitle,
-			originalTitle = titleBasics.originalTitle,
-			isAdult = titleBasics.isAdult == "1",
-			releaseYear = DateOnly.ParseExact(titleBasics.startYear, "yyyy"),
+			Type = titleBasics.titleType,
+			PrimaryTitle = titleBasics.primaryTitle,
+			OriginalTitle = titleBasics.originalTitle,
+			IsAdult = titleBasics.isAdult == "1",
+			ReleaseYear = DateOnly.ParseExact(titleBasics.startYear, "yyyy"),
 		};
 
 		return Result<Title, ETitleConversionError>.Ok(result);
 	}
 	
-	private class TitleRating
+	private record struct TitleRating
 	{
 		private double averageRating;
 		private int numVotes;
-		private Title titleRated;
 	}
 
 	[JsonPropertyName("_id")]
 	public string Id { get; private set; }
-	private string type;
-	private string primaryTitle;
-	private string originalTitle;
-	private bool isAdult;
-	private DateOnly releaseYear;
-	private List<DBRef<string>> genresIds;
+
+	public string Type { get; private set; }
+	public string PrimaryTitle { get; private set; }
+	public string OriginalTitle { get; private set; }
+	public bool IsAdult { get; private set; }
+	public DateOnly ReleaseYear { get; private set; }
+	
+	[JsonPropertyName("genres")]
+	public IList<DBRef<string>> GenresIds { get; } = new List<DBRef<string>>();
+
 	private TitleRating rating;
-	private AlternativeTitle[] alternativeTitles;
-	private UserRating[] userRating;
-	private CrewMember crewMember;
-	private Job[] job;
-	private Episode[] episode;
-	private Movie[] movie;
-	private Show[] show;
+	private IList<AlternativeTitle> alternativeTitles;
+	private IList<DBRef<string>> charactersIds;
 }

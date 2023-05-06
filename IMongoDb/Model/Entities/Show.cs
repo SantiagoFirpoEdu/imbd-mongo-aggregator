@@ -4,5 +4,5 @@ public class Show
 {
 	private string titleId;
 	private DateOnly endYear;
-	private List<DBRef<string>> episodesIds;
+	private IList<DBRef<string>> episodesIds;
 }

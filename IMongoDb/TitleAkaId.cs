@@ -1,9 +1,9 @@
 ﻿namespace IMongoDb;
 
-public record TitleAkaId(string TitleAkaTconst, int TitleAkaOrdering)
+public readonly record struct TitleAkaId(string TitleAkaTconst, int TitleAkaOrdering)
 {
     public override int GetHashCode()
     {
-        return TitleAkaTconst.GetHashCode() + TitleAkaOrdering.GetHashCode();
+        return HashCode.Combine(TitleAkaTconst, TitleAkaOrdering);
     }
 }
