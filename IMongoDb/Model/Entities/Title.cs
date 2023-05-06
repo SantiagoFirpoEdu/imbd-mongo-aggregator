@@ -7,7 +7,18 @@ public class Title
 {
 	public static Result<Title, ETitleConversionError> FromTitleBasics(TitleBasics titleBasics)
 	{
-		var a = Result<int, int>.Error(1);
+		Title result = new()
+		{
+			_id = titleBasics.tconst,
+			type = titleBasics.titleType,
+			primaryTitle = titleBasics.primaryTitle,
+			originalTitle = titleBasics.originalTitle,
+			isAdult = titleBasics.isAdult == "1",
+			releaseYear = DateOnly.ParseExact(titleBasics.startYear, "yyyy"),
+			genre = Genre.FromCsv(titleBasics.genres),
+		};
+
+		return Result<Title, ETitleConversionError>.Ok(result);
 	}
 	
 	private class TitleRating
@@ -18,11 +29,12 @@ public class Title
 	}
 	
 	private string _id;
+	private string type;
 	private string primaryTitle;
 	private string originalTitle;
 	private bool isAdult;
 	private DateOnly releaseYear;
-	private Genre genre;
+	private Genre[] genre;
 	private TitleRating rating;
 	private AlternativeTitle[] alternativeTitles;
 	private UserRating[] userRating;

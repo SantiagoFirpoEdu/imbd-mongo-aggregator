@@ -4,12 +4,12 @@ namespace IMongoDb.TsvRecords;
 
 public record TitleRatings()
 {
-    [Name("tcost")]
+    [Name("tconst")]
     public string tconst { get; init; }
     
     [Name("averageRating")]
-    public string averageRating { get; init; }
+    public double averageRating { get; init; }
     
     [Name("numVotes")]
-    public string numVotes { get; init; }
+    public int numVotes { get; init; }
 }

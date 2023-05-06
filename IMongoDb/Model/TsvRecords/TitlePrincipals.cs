@@ -10,7 +10,7 @@ public record TitlePrincipals()
     public string tconst { get; init; }
     
     [Name("ordering")]
-    public string ordering { get; init; }
+    public int ordering { get; init; }
     
     [Name("nconst")]
     public string nconst { get; init; }

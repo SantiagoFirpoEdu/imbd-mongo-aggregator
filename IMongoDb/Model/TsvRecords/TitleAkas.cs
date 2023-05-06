@@ -5,30 +5,27 @@ namespace IMongoDb.TsvRecords;
 /** Stores localized titles tsv records */
 public record TitleAkas()
 {
-    [Name("tconst")]
-    public string tconst { get; init; }
+    [Name("titleId")]
+    public string titleId { get; init; }
     
-    [Name("titleType")]
-    public string titleType { get; init; }
+    [Name("ordering")]
+    public int ordering { get; init; }
     
-    [Name("primaryTitle")]
-    public string primaryTitle { get; init; }
+    [Name("title")]
+    public string title { get; init; }
     
-    [Name("originalTitle")]
-    public string originalTitle { get; init; }
+    [Name("region")]
+    public string region { get; init; }
     
-    [Name("isAdult")]
-    public string isAdult { get; init; }
+    [Name("language")]
+    public string language { get; init; }
     
-    [Name("startYear")]
-    public string startYear { get; init; }
+    [Name("types")]
+    public string types { get; init; }
     
-    [Name("endYear")]
-    public string endYear { get; init; }
+    [Name("attributes")]
+    public string attributes { get; init; }
     
-    [Name("runtimeMinutes")]
-    public string runtimeMinutes { get; init; }
-    
-    [Name("genres")]
-    public string genres { get; init; }
+    [Name("isOriginalTitle")]
+    public string isOriginalTitle { get; init; }
 }
