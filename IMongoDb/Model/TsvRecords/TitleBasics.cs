@@ -1,4 +1,7 @@
-﻿using CsvHelper.Configuration.Attributes;
+﻿using CsvHelper;
+using CsvHelper.Configuration;
+using CsvHelper.Configuration.Attributes;
+using CsvHelper.TypeConversion;
 
 namespace IMongoDb.Model.TsvRecords;
 
@@ -26,8 +29,22 @@ public record TitleBasics()
     public string endYear { get; init; }
 
     [Name("runtimeMinutes")]
-    public int runtimeMinutes { get; init; }
+    [NullValues("null")]
+    public int? runtimeMinutes { get; init; }
      
     [Name("genres")]
     public string genres { get; init; }
+}
+
+public class NullableIntConverter : Int32Converter
+{
+    public override object? ConvertFromString(string? text, IReaderRow row, MemberMapData memberMapData)
+    {
+        if (int.TryParse(text, out int value))
+        {
+            return value;
+        }
+
+        return null;
+    }
 }

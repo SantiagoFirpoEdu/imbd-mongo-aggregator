@@ -6,7 +6,7 @@ public class ActorCollection
 {
 	public void Add(Actor actor)
 	{
-		actors.Add(actor.Id, actor);
+		actors.TryAdd(actor.Id, actor);
 	}
 
 	private readonly IDictionary<string, Actor> actors = new Dictionary<string, Actor>();

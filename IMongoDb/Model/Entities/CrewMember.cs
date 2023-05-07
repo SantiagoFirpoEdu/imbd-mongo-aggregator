@@ -19,7 +19,8 @@ public record CrewMember
 	private BsonDateTime birthYear;
 	
 	[BsonElement("deathYear")]
-	private BsonDateTime deathYear;
+	[BsonIgnoreIfNull]
+	private BsonDateTime? deathYear;
 
 	[BsonElement("knownForTitles")]
 	public List<MongoDBRef> KnownForTitlesIds { get; } = new();
@@ -30,9 +31,17 @@ public record CrewMember
 		{
 			Id = nameBasics.Nconst,
 			primaryName = nameBasics.PrimaryName,
-			birthYear = DateConversions.ToBsonDateTime(nameBasics.BirthYear),
-			deathYear = DateConversions.ToBsonDateTime(nameBasics.DeathYear),
 		};
+
+		if (nameBasics.BirthYear is not null)
+		{
+			crewMember.birthYear = DateConversions.ToBsonDateTime(nameBasics.BirthYear);
+		}
+		
+		if (nameBasics.DeathYear is not null)
+		{
+			crewMember.deathYear = DateConversions.ToBsonDateTime(nameBasics.DeathYear);
+		}
 
 		return crewMember;
 	}

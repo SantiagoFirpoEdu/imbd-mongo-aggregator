@@ -11,8 +11,10 @@ public record TitleEpisode
     public string parentTconst { get; init; }
     
     [Name("seasonNumber")]
-    public int seasonNumber { get; init; }
+    [NullValues("null")]
+    public int? seasonNumber { get; init; }
     
     [Name("episodeNumber")]
-    public int episodeNumber { get; init; }
+    [NullValues("null")]
+    public int? episodeNumber { get; init; }
 }

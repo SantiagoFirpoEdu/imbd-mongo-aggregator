@@ -26,13 +26,16 @@ public class Episode
 	private string _id;
 	
 	[BsonElement]
-	private int seasonNumber;
+	[BsonIgnoreIfNull]
+	private int? seasonNumber;
 	
 	[BsonElement]
-	private int number;
+	[BsonIgnoreIfNull]
+	private int? number;
 	
 	[BsonElement]
-	private int runtimeMinutes;
+	[BsonIgnoreIfNull]
+	private int? runtimeMinutes;
 	
 	[BsonElement("show")]
 	private MongoDBRef showId;

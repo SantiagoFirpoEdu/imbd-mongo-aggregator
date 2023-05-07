@@ -8,7 +8,7 @@ namespace IMongoDb.Model.Entities;
 [BsonDiscriminator("Movie")]
 public class Movie
 {
-	public Movie(string id, int runtimeMinutes)
+	public Movie(string id, int? runtimeMinutes)
 	{
 		Id = id;
 		this.runtimeMinutes = runtimeMinutes;
@@ -28,7 +28,7 @@ public class Movie
 	[field: BsonId] public string Id { get; }
 
 	[BsonElement]
-	private int runtimeMinutes;
+	private int? runtimeMinutes;
 	
 	[BsonElement("characters")]
 	private IList<MongoDBRef> charactersIds = new List<MongoDBRef>();

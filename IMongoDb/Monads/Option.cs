@@ -7,7 +7,7 @@ public class Option<TSomeValueType>
 		value = default;
 	}
 
-	public static Option<TSomeValueType> Some<TSomeValueType>(TSomeValueType value)
+	public static Option<TSomeValueType> Some(TSomeValueType value)
 	{
 		return new Option<TSomeValueType>(value);
 	}
