@@ -71,13 +71,13 @@ public class Option<TSomeValueType>
 		}
 	}
 
-	public TSomeValueType GetValue()
+	public ref TSomeValueType GetValue()
 	{
 		if (value is null)
 		{
 			throw new NullReferenceException("Tried to access a Option's value while it was empty");
 		}
-		return value;
+		return ref value!;
 	}
 
 	public bool IsSet()
@@ -100,5 +100,5 @@ public class Option<TSomeValueType>
 		this.value = value;
 	}
 
-	private readonly TSomeValueType? value;
+	private TSomeValueType? value;
 }

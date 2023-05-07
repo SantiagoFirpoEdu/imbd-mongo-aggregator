@@ -85,14 +85,14 @@ public class Either<TLeftType, TRightType>
             : Either<TOutLeftValue, TRightType>.OfRightType(rightValue.GetValue());
     }
 
-    public Option<TLeftType> GetLeft()
+    public ref Option<TLeftType> GetLeft()
     {
-        return leftValue;
+        return ref leftValue;
     }
 
-    public Option<TRightType> GetRight()
+    public ref Option<TRightType> GetRight()
     {
-        return rightValue;
+        return ref rightValue;
     }
     
     private Either(TLeftType leftValue)
@@ -109,7 +109,7 @@ public class Either<TLeftType, TRightType>
         isLeft = false;
     }
 
-    private readonly Option<TLeftType> leftValue;
-    private readonly Option<TRightType> rightValue;
+    private Option<TLeftType> leftValue;
+    private Option<TRightType> rightValue;
     private readonly bool isLeft;
 }

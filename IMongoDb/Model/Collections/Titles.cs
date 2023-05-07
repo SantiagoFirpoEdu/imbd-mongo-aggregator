@@ -65,13 +65,7 @@ public class Titles : IDbCollection
 
 	public string GetRandomTitleId()
 	{
-		var titleIds = titles.Keys.ToList();
-		if (titleIds.Count == 0)
-		{
-			throw new InvalidOperationException("No titles loaded");
-		}
-
-		return titleIds[Faker.RandomNumber.Next(0, titleIds.Count - 1)];
+		return titles.ElementAt(Faker.RandomNumber.Next(0, titles.Count - 1)).Key;
 	}
 
 	public BsonArray ToBsonArray()

@@ -115,9 +115,9 @@ public class Result<TOkType, TErrorType>
 
 	}
 
-	public Option<TOkType> GetOk()
+	public ref Option<TOkType> GetOk()
 	{
-		return data.GetLeft();
+		return ref data.GetLeft();
 	}
 
 	public Option<TErrorType> GetError()

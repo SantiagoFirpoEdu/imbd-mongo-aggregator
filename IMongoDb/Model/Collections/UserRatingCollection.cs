@@ -26,4 +26,9 @@ public class UserRatingCollection : IDbCollection
 	}
 
 	private readonly IDictionary<UserRatingId, UserRating> userRatings = new Dictionary<UserRatingId, UserRating>();
+
+	public bool TryAdd(UserRating userRating)
+	{
+		return userRatings.TryAdd(userRating.Id, userRating);
+	}
 }

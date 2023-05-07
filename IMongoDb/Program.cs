@@ -1,5 +1,6 @@
 ﻿using IMongoDb;
 using IMongoDb.Model;
+using System.Windows.Forms;
 
 DbRepository mongoDbRepository = new();
 TsvRepository tsvRepository = new();
@@ -8,24 +9,24 @@ TsvLoader.LoadTsvs(tsvRepository);
 
 mongoDbRepository.LoadFromTsvs(tsvRepository);
 
-string? input = null;
+string? collectionName = null;
 
 do
 {
     Console.WriteLine("Enter a collection name to get the inserts for:");
-    input = Console.ReadLine();
+    collectionName = Console.ReadLine();
 
-    if (input is not null)
+    if (collectionName is not null)
     {
-        var insertsResult = mongoDbRepository.GetInserts(input);
+        var insertsResult = mongoDbRepository.GetInserts(collectionName);
 
         if (insertsResult.WasSuccessful())
         {
-            string inserts = insertsResult.GetOk().GetValue();
-            Console.WriteLine(inserts);
+            ref string insertsArray = ref insertsResult.GetOk().GetValue();
+            string inserts = $"db.{collectionName}.insertMany{insertsArray}";
             Console.WriteLine("Inserts generated successfully. Copied to clipboard.");
             Clipboard.SetText(inserts);
         }
     }
 }
-while (input is not null && input != "exit");
+while (collectionName is not null && collectionName != "exit");

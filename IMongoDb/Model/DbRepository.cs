@@ -91,7 +91,7 @@ public class DbRepository
             {
                 string randomTitleId = Titles.GetRandomTitleId();
                 UserRating userRating = UserRating.GetFakeUserRating(randomTitleId, user.Email);
-                UserRatingCollection.Add(userRating);
+                UserRatingCollection.TryAdd(userRating);
             }
         }
     }
