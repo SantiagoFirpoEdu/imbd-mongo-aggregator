@@ -1,13 +1,15 @@
-using System.Text.Json.Serialization;
 using IMongoDb.Model.Collections;
 using IMongoDb.Monads;
 using IMongoDb.TsvRecords;
+using MongoDB.Bson.Serialization.Attributes;
+using MongoDB.Driver;
 
 namespace IMongoDb.Model.Entities;
 
+[BsonDiscriminator("AlternativeTitle")]
 public record AlternativeTitle
 {
-	public Result<AlternativeTitle, EAlternativeTitleConversionError> FromTitleAka(TitleAka titleAka)
+	public static Result<AlternativeTitle, EAlternativeTitleConversionError> FromTitleAka(TitleAka titleAka)
 	{
 		string[] titleTypes = titleAka.types == "null" ? Array.Empty<string>() : titleAka.types.Split(',');
 		string[] titleAttributes = titleAka.attributes == "null" ? Array.Empty<string>() : titleAka.attributes.Split(',');
@@ -18,7 +20,7 @@ public record AlternativeTitle
 			titleAka.language,
 			titleAka.title,
 			titleAka.isOriginalTitle == "1",
-			new DBRef<string>(titleAka.titleId, CollectionNames.TitlesCollectionName),
+			new MongoDBRef(CollectionNames.TitlesCollectionName, titleAka.titleId),
 			titleTypes.ToList(),
 			titleAttributes.ToList()
 		);
@@ -26,7 +28,7 @@ public record AlternativeTitle
 		return Result<AlternativeTitle, EAlternativeTitleConversionError>.Ok(alternativeTitle);
 	}
 	
-	private AlternativeTitle(int ordering, string region, string language, string title, bool isOriginalTitle, DBRef<string> originalTitleId, IList<string> types, IList<string> attributes)
+	private AlternativeTitle(int ordering, string region, string language, string title, bool isOriginalTitle, MongoDBRef originalTitleId, IList<string> types, IList<string> attributes)
 	{
 		this.ordering = ordering;
 		this.region = region;
@@ -38,18 +40,29 @@ public record AlternativeTitle
 		this.attributes = attributes;
 	}
 
+	[BsonElement]
 	private int ordering;
+	
+	[BsonElement]
 	private string region;
+	
+	[BsonElement]
 	private string language;
+	
+	[BsonElement]
 	private string title;
+	
+	[BsonElement]
 	private bool isOriginalTitle;
 	
-	[JsonPropertyName("originalTitle")]
-	private DBRef<string> originalTitleId;
+	[BsonElement("originalTitle")]
+	private MongoDBRef originalTitleId;
 
+	[BsonElement]
 	private IList<string> types;
+	
+	[BsonElement]
 	private IList<string> attributes;
-
 }
 
 public enum EAlternativeTitleConversionError

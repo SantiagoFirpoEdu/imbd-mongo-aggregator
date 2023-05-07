@@ -1,12 +1,17 @@
-using System.Text.Json.Serialization;
 using IMongoDb.Converters;
+using IMongoDb.Model.Collections;
 using IMongoDb.Monads;
 using IMongoDb.TsvRecords;
+using MongoDB.Bson;
+using MongoDB.Bson.Serialization.Attributes;
+using MongoDB.Driver;
 
 namespace IMongoDb.Model.Entities;
+
+[BsonDiscriminator("Title")]
 public class Title
 {
-	public static Result<Title, ETitleConversionError> FromTitleBasics(TitleBasics titleBasics)
+	public static Result<Title, ETitleConversionError> FromTitleBasics(TitleBasics titleBasics, Genres genres)
 	{
 		Title result = new()
 		{
@@ -15,31 +20,62 @@ public class Title
 			PrimaryTitle = titleBasics.primaryTitle,
 			OriginalTitle = titleBasics.originalTitle,
 			IsAdult = titleBasics.isAdult == "1",
-			ReleaseYear = DateOnly.ParseExact(titleBasics.startYear, "yyyy"),
+			ReleaseYear = new BsonDateTime(DateOnly.ParseExact(titleBasics.startYear, "yyyy").ToDateTime(TimeOnly.MinValue)),
 		};
+		
+		result.GenresIds.AddRange(PopulateGenres(titleBasics, genres));
 
 		return Result<Title, ETitleConversionError>.Ok(result);
 	}
-	
+
+	private static IEnumerable<MongoDBRef> PopulateGenres(TitleBasics titleBasics, Genres genres)
+	{
+		string[] splitGenreNames = titleBasics.genres.Split(",");
+		
+		foreach (string genreName in splitGenreNames)
+		{
+			Genre genre = genres.FindOrAddByName(genreName);
+			yield return new MongoDBRef("genres", genre.Id);
+		}
+	}
+
+	[BsonDiscriminator("TitleRating")]
 	private record struct TitleRating
 	{
+		[BsonElement]
 		private double averageRating;
+		
+		[BsonElement]
 		private int numVotes;
 	}
 
-	[JsonPropertyName("_id")]
+	[BsonId]
 	public string Id { get; private set; }
 
+	[BsonElement]
 	public string Type { get; private set; }
-	public string PrimaryTitle { get; private set; }
-	public string OriginalTitle { get; private set; }
-	public bool IsAdult { get; private set; }
-	public DateOnly ReleaseYear { get; private set; }
 	
-	[JsonPropertyName("genres")]
-	public IList<DBRef<string>> GenresIds { get; } = new List<DBRef<string>>();
+	[BsonElement]
+	public string PrimaryTitle { get; private set; }
+	
+	[BsonElement]
+	public string OriginalTitle { get; private set; }
+	
+	[BsonElement]
+	public bool IsAdult { get; private set; }
+	
+	[BsonElement]
+	public BsonDateTime ReleaseYear { get; private set; }
+	
+	[BsonElement("genres")]
+	public List<MongoDBRef> GenresIds { get; } = new();
 
+	[BsonElement]
 	private TitleRating rating;
-	private IList<AlternativeTitle> alternativeTitles;
-	private IList<DBRef<string>> charactersIds;
+	
+	[BsonElement]
+	private IList<AlternativeTitle> alternativeTitles = new List<AlternativeTitle>();
+	
+	[BsonElement]
+	private IList<MongoDBRef> charactersIds = new List<MongoDBRef>();
 }

@@ -1,20 +1,24 @@
+using MongoDB.Bson.Serialization.Attributes;
+using MongoDB.Driver;
+
 namespace IMongoDb.Model.Entities;
 
+[BsonDiscriminator("Genre")]
 public class Genre
 {
-	public static Genre[] FromCsv(string titleBasicsGenres)
+	public Genre(string id, string name)
 	{
-		return titleBasicsGenres.Split(",")
-								.Select(GenreNameMapper)
-								.ToArray();
+		Id = id;
+		Name = name;
 	}
 
-	private static Genre GenreNameMapper(string genreString)
-	{
-		return new Genre {name = genreString};
-	}
-	
-	private string _id;
-	private string name;
-	private DBRef<string> parentGenreId;
+	[BsonId]
+	public string Id { get; }
+
+	[BsonElement]
+	public string Name { get; private set; }
+
+	[BsonElement]
+	[BsonIgnoreIfNull]
+	private MongoDBRef? parentGenreId;
 }

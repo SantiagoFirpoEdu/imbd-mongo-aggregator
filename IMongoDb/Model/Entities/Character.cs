@@ -1,20 +1,18 @@
-using System.Text.Json.Serialization;
+using MongoDB.Bson.Serialization.Attributes;
+using MongoDB.Driver;
 
 namespace IMongoDb.Model.Entities;
 
+[BsonDiscriminator("Character")]
 public record Character
+	(
+		[property: BsonId] string Id,
+		[property: BsonElement] string Name
+	)
 {
-
-	public Character(string id, string name)
-	{
-		Id = id;
-		Name = name;
-	}
-
-	public string Name { get; }
-
-	[JsonPropertyName("_id")]
-	public string Id { get; }
-	private IList<DBRef<string>> playedByActorsIds = new List<DBRef<string>>();
-	private IList<DBRef<string>> titlesIds = new List<DBRef<string>>();
+	[BsonElement("playedByActors")]
+	private IList<MongoDBRef> playedByActorsIds = new List<MongoDBRef>();
+	
+	[BsonElement("titles")]
+	private IList<MongoDBRef> titlesIds = new List<MongoDBRef>();
 }

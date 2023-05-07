@@ -1,8 +1,17 @@
+using MongoDB.Bson.Serialization.Attributes;
+using MongoDB.Driver;
+
 namespace IMongoDb.Model.Entities;
 
+[BsonDiscriminator("UserRating")]
 public class UserRating
 {
+	[BsonElement]
 	private int score;
-	private DBRef<string> ratedTitle;
-	private DBRef<string> ratedBy;
+	
+	[BsonElement]
+	private MongoDBRef ratedTitle;
+	
+	[BsonElement]
+	private MongoDBRef ratedBy;
 }
