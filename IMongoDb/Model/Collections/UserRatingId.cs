@@ -1,4 +1,6 @@
-﻿namespace IMongoDb.Model.Collections;
+﻿using MongoDB.Bson.Serialization.Attributes;
+
+namespace IMongoDb.Model.Collections;
 
 public readonly record struct UserRatingId
 {
@@ -7,7 +9,10 @@ public readonly record struct UserRatingId
         return HashCode.Combine(userEmail, titleId);
     }
 
+    [BsonElement]
     private readonly string userEmail;
+    
+    [BsonElement]
     private readonly string titleId;
 
     public UserRatingId(string userEmail, string titleId)

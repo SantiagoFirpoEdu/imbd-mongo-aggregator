@@ -3,7 +3,7 @@ using MongoDB.Bson;
 
 namespace IMongoDb.Model.Collections;
 
-public class Genres
+public class Genres : IDbCollection
 {
 	public Genre FindOrAddByName(string genreName)
 	{
@@ -23,4 +23,17 @@ public class Genres
 	}
 
 	private readonly IDictionary<ObjectId, Genre> genres = new Dictionary<ObjectId, Genre>();
+
+	public BsonArray ToBsonArray()
+	{
+		BsonArray genresArray = new();
+		var bsonDocuments = genres.Select(BsonDocumentConverter);
+		genresArray.AddRange(bsonDocuments);
+		return genresArray;
+	}
+	
+	private static BsonDocument BsonDocumentConverter(KeyValuePair<ObjectId, Genre> kv)
+	{
+		return kv.Value.ToBsonDocument();
+	}
 }

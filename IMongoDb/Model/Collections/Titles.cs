@@ -1,9 +1,10 @@
 using IMongoDb.Model.Entities;
 using IMongoDb.Model.TsvRecords;
+using MongoDB.Bson;
 
 namespace IMongoDb.Model.Collections;
 
-public class Titles
+public class Titles : IDbCollection
 {
 	public bool Add(Title title)
 	{
@@ -61,4 +62,28 @@ public class Titles
 	}
 	
 	private readonly IDictionary<string, Title> titles = new Dictionary<string, Title>();
+
+	public string GetRandomTitleId()
+	{
+		var titleIds = titles.Keys.ToList();
+		if (titleIds.Count == 0)
+		{
+			throw new InvalidOperationException("No titles loaded");
+		}
+
+		return titleIds[Faker.RandomNumber.Next(0, titleIds.Count - 1)];
+	}
+
+	public BsonArray ToBsonArray()
+	{
+		BsonArray titleArray = new();
+		var converted = titles.Select(BsonDocumentConverter);
+		titleArray.AddRange(converted);
+		return titleArray;
+	}
+	
+	private static BsonDocument BsonDocumentConverter(KeyValuePair<string, Title> kv)
+	{
+		return kv.Value.ToBsonDocument();
+	}
 }

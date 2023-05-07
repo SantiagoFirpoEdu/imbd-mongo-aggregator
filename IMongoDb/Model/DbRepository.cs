@@ -1,6 +1,8 @@
 ﻿using IMongoDb.Model.Collections;
 using IMongoDb.Model.Entities;
 using IMongoDb.Model.TsvRecords;
+using IMongoDb.Monads;
+using MongoDB.Bson;
 using MongoDB.Driver;
 
 namespace IMongoDb.Model;
@@ -16,10 +18,32 @@ public class DbRepository
     public Genres Genres { get; } = new();
     public Jobs Jobs { get; } = new();
     public Movies Movies { get; } = new();
-    public TVSeriesCollection TvSeriesCollection { get; } = new();
+    public TvSeriesCollection TvSeriesCollection { get; } = new();
     public Titles Titles { get; } = new();
     public UserRatingCollection UserRatingCollection { get; } = new();
     public Users Users { get; } = new();
+
+    public DbRepository()
+    {
+        InitializeDbCollections();
+    }
+
+    private void InitializeDbCollections()
+    {
+        dbCollections.Add(CollectionNames.WritersCollectionName, Writers);
+        dbCollections.Add(CollectionNames.ActorsCollectionName, Actors);
+        dbCollections.Add(CollectionNames.CharactersCollectionName, Characters);
+        dbCollections.Add(CollectionNames.CrewMembersCollectionName, CrewMembers);
+        dbCollections.Add(CollectionNames.DirectorsCollectionName, Directors);
+        dbCollections.Add(CollectionNames.EpisodesCollectionName, EpisodeCollection);
+        dbCollections.Add(CollectionNames.GenresCollectionName, Genres);
+        dbCollections.Add(CollectionNames.JobsCollectionName, Jobs);
+        dbCollections.Add(CollectionNames.MoviesCollectionName, Movies);
+        dbCollections.Add(CollectionNames.TvSeriesCollectionName, TvSeriesCollection);
+        dbCollections.Add(CollectionNames.TitlesCollectionName, Titles);
+        dbCollections.Add(CollectionNames.UserRatingsCollectionName, UserRatingCollection);
+        dbCollections.Add(CollectionNames.UsersCollectionName, Users);
+    }
 
     public void LoadFromTsvs(TsvRepository tsvRepository)
     {
@@ -30,8 +54,46 @@ public class DbRepository
         LoadTitleEpisode(tsvRepository);
         LoadTitlePrincipals(tsvRepository);
         LoadTitleRatings(tsvRepository);
-        
-        //TODO: sanitize nconst and tconst references, as some have been deleted.
+
+        GenerateFakeUsersAndRatings();
+    }
+
+    public Result<string, EGetInsertsError> GetInserts(string collectionName)
+    {
+        return dbCollections.TryGetValue(collectionName, out IDbCollection? dbCollection)
+            ? Result<string, EGetInsertsError>.Ok(dbCollection.ToBsonArray().ToString())
+            : Result<string, EGetInsertsError>.Error(EGetInsertsError.CollectionNotFound);
+
+    }
+
+    private void GenerateFakeUsersAndRatings()
+    {
+        GenerateFakeUsers();
+        GenerateFakeRatings();
+    }
+
+    private void GenerateFakeUsers()
+    {
+        int maxUsers = Faker.RandomNumber.Next(5, 250);
+        for (int i = 0; i <= maxUsers; i++)
+        {
+            Users.Add(User.GetFakeUser());
+        }
+    }
+
+    private void GenerateFakeRatings()
+    {
+        foreach (var kv in Users)
+        {
+            User user = kv.Value;
+            int maxRatings = Faker.RandomNumber.Next(0, 120);
+            for (int i = 0; i <= maxRatings; i++)
+            {
+                string randomTitleId = Titles.GetRandomTitleId();
+                UserRating userRating = UserRating.GetFakeUserRating(randomTitleId, user.Email);
+                UserRatingCollection.Add(userRating);
+            }
+        }
     }
 
     private void LoadTitleRatings(TsvRepository tsvRepository)
@@ -257,4 +319,11 @@ public class DbRepository
             Console.Error.WriteLine($"Failed to convert title basics: {conversionResult.GetError().GetValue()}");
         }
     }
+
+    private IDictionary<string, IDbCollection> dbCollections = new Dictionary<string, IDbCollection>();
+}
+
+public enum EGetInsertsError
+{
+    CollectionNotFound
 }
