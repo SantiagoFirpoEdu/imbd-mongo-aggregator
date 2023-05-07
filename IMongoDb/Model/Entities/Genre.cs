@@ -20,7 +20,7 @@ public class Genre
 	[BsonElement]
 	public string Name { get; private set; }
 
-	[field: BsonElement("titles")]
+	[BsonElement("titles")]
 	public IDictionary<string, MongoDBRef> TitlesIds { get; } = new Dictionary<string, MongoDBRef>();
 
 	[BsonElement]

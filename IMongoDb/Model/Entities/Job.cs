@@ -8,7 +8,8 @@ namespace IMongoDb.Model.Entities;
 [BsonDiscriminator("Job")]
 public class Job
 {
-	[field: BsonId] public ObjectId Id { get; }
+	[BsonId]
+	public ObjectId Id { get; }
 
 	[BsonElement]
 	private int ordering;

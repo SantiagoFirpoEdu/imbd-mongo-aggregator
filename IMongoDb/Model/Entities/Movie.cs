@@ -25,7 +25,8 @@ public class Movie
 		return Result<Movie, EMovieConversionError>.Ok(movie);
 	}
 
-	[field: BsonId] public string Id { get; }
+	[BsonId]
+	public string Id { get; }
 
 	[BsonElement]
 	private int? runtimeMinutes;

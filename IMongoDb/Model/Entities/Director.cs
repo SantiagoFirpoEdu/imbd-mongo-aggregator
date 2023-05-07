@@ -23,7 +23,8 @@ public class Director
 		Id = id;
 	}
 
-	[field: BsonId] public string Id { get; }
+	[BsonId]
+	public string Id { get; }
 }
 
 public enum EDirectorConversionError

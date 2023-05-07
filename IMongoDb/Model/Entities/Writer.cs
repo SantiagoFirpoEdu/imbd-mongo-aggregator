@@ -24,7 +24,8 @@ namespace IMongoDb.Model.Entities
 			Id = id;
 		}
 
-		[field: BsonId] public string Id { get; }
+		[BsonId]
+		public string Id { get; }
 	}
 
 	public enum EWriterConversionError

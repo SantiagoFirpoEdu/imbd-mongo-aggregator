@@ -7,7 +7,7 @@ using MongoDB.Driver;
 namespace IMongoDb.Model.Entities;
 
 [BsonDiscriminator("Actor")]
-public record Actor([field: BsonId] string Id)
+public record Actor([property: BsonId] string Id)
 {
 	public static Result<Actor, EActorConversionError> FromPrincipal(TitlePrincipal principal, CharacterCollection characters)
 	{
