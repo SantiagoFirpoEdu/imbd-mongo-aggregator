@@ -30,6 +30,8 @@ public class DbRepository
         LoadTitleEpisode(tsvRepository);
         LoadTitlePrincipals(tsvRepository);
         LoadTitleRatings(tsvRepository);
+        
+        //TODO: sanitize nconst and tconst references, as some have been deleted.
     }
 
     private void LoadTitleRatings(TsvRepository tsvRepository)
