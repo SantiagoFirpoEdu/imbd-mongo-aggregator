@@ -1,8 +1,8 @@
 ﻿using CsvHelper.Configuration.Attributes;
 
-namespace IMongoDb.TsvRecords;
+namespace IMongoDb.Model.TsvRecords;
 
-public record TitleRatings()
+public record TitleRatings
 {
     [Name("tconst")]
     public string tconst { get; init; }

@@ -1,4 +1,4 @@
-﻿using IMongoDb.TsvRecords;
+﻿using IMongoDb.Model.TsvRecords;
 
 namespace IMongoDb.Model;
 

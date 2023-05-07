@@ -1,9 +1,7 @@
 ﻿using CsvHelper.Configuration.Attributes;
 
-namespace IMongoDb.TsvRecords;
+namespace IMongoDb.Model.TsvRecords;
 
-//tconst	directors	writers
-//tt0000017	nm1587194,nm0804434	\N
 public record TitleCrew()
 {
     [Name("tconst")]

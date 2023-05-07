@@ -23,22 +23,44 @@ public class DbRepository
 
     public void LoadFromTsvs(TsvRepository tsvRepository)
     {
+        LoadNameBasics(tsvRepository);
+        LoadTitleBasics(tsvRepository);
+    }
+
+    private void LoadNameBasics(TsvRepository tsvRepository)
+    {
+        var nameBasics = tsvRepository.NameBasics;
+        foreach (var nameBasics in nameBasics)
+        {
+            var conversionResult = CrewMember.FromNameBasics(nameBasics.Value, Genres);
+
+            if (conversionResult.WasSuccessful())
+            {
+                Title title = conversionResult.GetOk().GetValue();
+                Titles.Add(title);
+            }
+            else
+            {
+                Console.Error.WriteLine($"Failed to convert title basics: {conversionResult.GetError().GetValue()}");
+            }
+        }
+    }
+
+    private void LoadTitleBasics(TsvRepository tsvRepository)
+    {
         var titleBasics = tsvRepository.TitleBasics;
         foreach (var titleBasic in titleBasics)
         {
             var conversionResult = Title.FromTitleBasics(titleBasic.Value, Genres);
 
-            var title = conversionResult.GetOk();
-            if (title.IsSet())
+            if (conversionResult.WasSuccessful())
             {
-                Title value = title.GetValue();
-                Titles.Add(value);
-                BsonDocument bsonDocument = value.ToBsonDocument();
-                JsonWriterSettings jsonWriterSettings = new();
-                jsonWriterSettings.Indent = true;
-                jsonWriterSettings.NewLineChars = "\n";
-                string json = bsonDocument.ToJson(writerSettings: jsonWriterSettings);
-                Console.WriteLine(json);
+                Title title = conversionResult.GetOk().GetValue();
+                Titles.Add(title);
+            }
+            else
+            {
+                Console.Error.WriteLine($"Failed to convert title basics: {conversionResult.GetError().GetValue()}");
             }
         }
     }

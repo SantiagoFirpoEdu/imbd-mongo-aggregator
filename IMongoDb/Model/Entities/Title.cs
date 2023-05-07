@@ -1,7 +1,7 @@
 using IMongoDb.Converters;
 using IMongoDb.Model.Collections;
+using IMongoDb.Model.TsvRecords;
 using IMongoDb.Monads;
-using IMongoDb.TsvRecords;
 using MongoDB.Bson;
 using MongoDB.Bson.Serialization.Attributes;
 using MongoDB.Driver;
@@ -35,13 +35,19 @@ public class Title
 		foreach (string genreName in splitGenreNames)
 		{
 			Genre genre = genres.FindOrAddByName(genreName);
-			yield return new MongoDBRef("genres", genre.Id);
+			yield return new MongoDBRef(CollectionNames.GenresCollectionName, genre.Id);
 		}
 	}
 
 	[BsonDiscriminator("TitleRating")]
 	private record struct TitleRating
 	{
+		public TitleRating(double averageRating, int numVotes)
+		{
+			this.averageRating = averageRating;
+			this.numVotes = numVotes;
+		}
+
 		[BsonElement]
 		private double averageRating;
 		

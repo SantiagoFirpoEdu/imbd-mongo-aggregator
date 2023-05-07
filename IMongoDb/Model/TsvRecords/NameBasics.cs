@@ -1,6 +1,6 @@
 ﻿using CsvHelper.Configuration.Attributes;
 
-namespace IMongoDb.TsvRecords;
+namespace IMongoDb.Model.TsvRecords;
 
 public record NameBasics
 {

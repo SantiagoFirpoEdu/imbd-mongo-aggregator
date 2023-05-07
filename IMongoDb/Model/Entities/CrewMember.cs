@@ -1,3 +1,6 @@
+using IMongoDb.Converters;
+using IMongoDb.Model.Collections;
+using IMongoDb.Model.TsvRecords;
 using MongoDB.Bson;
 using MongoDB.Bson.Serialization.Attributes;
 using MongoDB.Driver;
@@ -20,5 +23,18 @@ public record CrewMember
 	private BsonDateTime deathYear;
 	
 	[BsonElement("WorkedOn")]
-	private List<MongoDBRef> workedOnJobIds;
+	private List<MongoDBRef> workedOnJobIds = new();
+
+	public static CrewMember FromNameBasics(NameBasics nameBasics)
+	{
+		CrewMember crewMember = new()
+		{
+			_id = nameBasics.Nconst,
+			primaryName = nameBasics.PrimaryName,
+			birthYear = DateConversions.ToBsonDateTime(nameBasics.BirthYear),
+			deathYear = DateConversions.ToBsonDateTime(nameBasics.DeathYear),
+		};
+
+		return crewMember;
+	}
 }

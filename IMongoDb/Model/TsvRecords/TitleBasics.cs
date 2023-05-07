@@ -1,8 +1,7 @@
 ﻿using CsvHelper.Configuration.Attributes;
 
-namespace IMongoDb.TsvRecords;
+namespace IMongoDb.Model.TsvRecords;
 
-//tconst	titleType	primaryTitle	originalTitle	isAdult	startYear	endYear	runtimeMinutes	genres
 public record TitleBasics()
 {
     [Name("tconst")]

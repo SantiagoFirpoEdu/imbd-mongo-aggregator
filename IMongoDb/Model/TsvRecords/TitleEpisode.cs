@@ -1,9 +1,8 @@
 ﻿using CsvHelper.Configuration.Attributes;
 
-namespace IMongoDb.TsvRecords;
+namespace IMongoDb.Model.TsvRecords;
 
-//tconst	parentTconst	seasonNumber	episodeNumber
-public record TitleEpisode()
+public record TitleEpisode
 {
     [Name("tconst")]
     public string tconst { get; init; }
@@ -12,8 +11,8 @@ public record TitleEpisode()
     public string parentTconst { get; init; }
     
     [Name("seasonNumber")]
-    public string seasonNumber { get; init; }
+    public int seasonNumber { get; init; }
     
     [Name("episodeNumber")]
-    public string episodeNumber { get; init; }
+    public int episodeNumber { get; init; }
 }

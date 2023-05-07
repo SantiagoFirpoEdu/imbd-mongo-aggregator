@@ -1,10 +1,8 @@
 ﻿using CsvHelper.Configuration.Attributes;
 
-namespace IMongoDb.TsvRecords;
+namespace IMongoDb.Model.TsvRecords;
 
-//tconst	ordering	nconst	category	job	characters
-//tt0000001	1	nm1588970	self	\N	["Self"]
-public record TitlePrincipal()
+public record TitlePrincipal
 {
     [Name("tconst")]
     public string tconst { get; init; }
