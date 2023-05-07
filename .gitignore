@@ -1,3 +1,5 @@
 ﻿.idea
 IMongoDb/obj
 IMongoDb/bin
+
+*.gz
