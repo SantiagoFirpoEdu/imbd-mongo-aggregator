@@ -3,7 +3,7 @@ using MongoDB.Bson;
 
 namespace IMongoDb.Model.Collections;
 
-public class Characters
+public class CharacterCollection
 {
 	public Character FindOrAddByName(string characterName)
 	{
@@ -23,5 +23,5 @@ public class Characters
 			return character;
 		}
 	}
-	private IDictionary<string, Character> characters;
+	private readonly IDictionary<string, Character> characters = new Dictionary<string, Character>();
 }

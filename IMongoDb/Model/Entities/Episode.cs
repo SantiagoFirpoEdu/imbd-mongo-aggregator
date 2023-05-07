@@ -8,20 +8,20 @@ namespace IMongoDb.Model.Entities;
 [BsonDiscriminator("Episode")]
 public class Episode
 {
-	public static Episode FromTitleEpisode(TitleEpisode titleEpisode)
+	public void FromTitleEpisode(TitleEpisode titleEpisode)
 	{
-		Episode episode = new()
-		{
-			_id = titleEpisode.tconst,
-			seasonNumber = titleEpisode.seasonNumber,
-			number = titleEpisode.episodeNumber,
-			//TODO get runtime minutes from title
-			runtimeMinutes = titleEpisode.runtimeMinutes,
-			showId = new MongoDBRef(CollectionNames.TitlesCollectionName, titleEpisode.parentTconst)
-		};
-
-		return episode;
+		_id = titleEpisode.tconst;
+		seasonNumber = titleEpisode.seasonNumber;
+		number = titleEpisode.episodeNumber;
+		showId = new MongoDBRef(CollectionNames.TitlesCollectionName, titleEpisode.parentTconst);
 	}
+	
+	public void FromTitleBasics(TitleBasics titleBasicValue)
+	{
+		_id = titleBasicValue.tconst;
+		runtimeMinutes = titleBasicValue.runtimeMinutes;
+	}
+
 	[BsonId]
 	private string _id;
 	

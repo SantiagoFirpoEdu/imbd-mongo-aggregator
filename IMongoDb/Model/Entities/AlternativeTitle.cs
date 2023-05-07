@@ -9,7 +9,7 @@ namespace IMongoDb.Model.Entities;
 [BsonDiscriminator("AlternativeTitle")]
 public record AlternativeTitle
 {
-	public static Result<AlternativeTitle, EAlternativeTitleConversionError> FromTitleAka(TitleAka titleAka)
+	public static AlternativeTitle FromTitleAka(TitleAka titleAka)
 	{
 		string[] titleTypes = titleAka.types == "null" ? Array.Empty<string>() : titleAka.types.Split(',');
 		string[] titleAttributes = titleAka.attributes == "null" ? Array.Empty<string>() : titleAka.attributes.Split(',');
@@ -20,22 +20,22 @@ public record AlternativeTitle
 			titleAka.language,
 			titleAka.title,
 			titleAka.isOriginalTitle == "1",
-			new MongoDBRef(CollectionNames.TitlesCollectionName, titleAka.titleId),
+			titleAka.titleId,
 			titleTypes.ToList(),
 			titleAttributes.ToList()
 		);
 		
-		return Result<AlternativeTitle, EAlternativeTitleConversionError>.Ok(alternativeTitle);
+		return alternativeTitle;
 	}
 	
-	private AlternativeTitle(int ordering, string region, string language, string title, bool isOriginalTitle, MongoDBRef originalTitleId, IList<string> types, IList<string> attributes)
+	private AlternativeTitle(int ordering, string region, string language, string title, bool isOriginalTitle, string originalTitleId, IList<string> types, IList<string> attributes)
 	{
 		this.ordering = ordering;
 		this.region = region;
 		this.language = language;
 		this.title = title;
 		this.isOriginalTitle = isOriginalTitle;
-		this.originalTitleId = originalTitleId;
+		this.OriginalTitleId = originalTitleId;
 		this.types = types;
 		this.attributes = attributes;
 	}
@@ -54,17 +54,13 @@ public record AlternativeTitle
 	
 	[BsonElement]
 	private bool isOriginalTitle;
-	
-	[BsonElement("originalTitle")]
-	private MongoDBRef originalTitleId;
+
+	[BsonIgnore]
+	public string OriginalTitleId { get; }
 
 	[BsonElement]
 	private IList<string> types;
 	
 	[BsonElement]
 	private IList<string> attributes;
-}
-
-public enum EAlternativeTitleConversionError
-{
 }

@@ -1,3 +1,5 @@
+using IMongoDb.Model.TsvRecords;
+using IMongoDb.Monads;
 using MongoDB.Bson.Serialization.Attributes;
 
 namespace IMongoDb.Model.Entities
@@ -5,9 +7,29 @@ namespace IMongoDb.Model.Entities
 	[BsonDiscriminator("Writer")]
 	public class Writer
 	{
-		[BsonId]
-		private string _id;
+		public static Result<Writer, EWriterConversionError> FromPrincipal(TitlePrincipal principal)
+		{
+			if (principal.category is not "writer")
+			{
+				return Result<Writer, EWriterConversionError>.Error(EWriterConversionError.NotAWriter);
+			}
+
+			Writer result = new(principal.tconst);
+			return Result<Writer, EWriterConversionError>.Ok(result);
+
+		}
+
+		private Writer(string id)
+		{
+			Id = id;
+		}
+
+		[field: BsonId] public string Id { get; }
 	}
 
+	public enum EWriterConversionError
+	{
+		NotAWriter
+	}
 }
 

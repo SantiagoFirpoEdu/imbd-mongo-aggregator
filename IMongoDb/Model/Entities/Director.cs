@@ -9,9 +9,9 @@ public class Director
 {
 	public static Result<Director, EDirectorConversionError> FromPrincipal(TitlePrincipal principal)
 	{
-		if (principal.category is not ("actor" or "actress" or "self"))
+		if (principal.category is not "director")
 		{
-			return Result<Director, EDirectorConversionError>.Error(EDirectorConversionError.NotAnActor);
+			return Result<Director, EDirectorConversionError>.Error(EDirectorConversionError.NotADirector);
 		}
 
 		Director result = new(principal.tconst);
@@ -20,14 +20,13 @@ public class Director
 
 	public Director(string id)
 	{
-		_id = id;
+		Id = id;
 	}
 
-	[BsonId]
-	private string _id;
+	[field: BsonId] public string Id { get; }
 }
 
 public enum EDirectorConversionError
 {
-	NotAnActor
+	NotADirector
 }

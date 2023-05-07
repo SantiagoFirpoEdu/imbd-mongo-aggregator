@@ -2,7 +2,7 @@
 
 namespace IMongoDb.Model.TsvRecords;
 
-public record TitleCrew()
+public record TitleCrew
 {
     [Name("tconst")]
     public string tconst { get; init; }

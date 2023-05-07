@@ -26,7 +26,7 @@ public record TitleBasics()
     public string endYear { get; init; }
 
     [Name("runtimeMinutes")]
-    public string runtimeMinutes { get; init; }
+    public int runtimeMinutes { get; init; }
      
     [Name("genres")]
     public string genres { get; init; }

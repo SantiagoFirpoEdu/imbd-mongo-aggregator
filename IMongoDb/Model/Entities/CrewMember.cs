@@ -10,26 +10,25 @@ namespace IMongoDb.Model.Entities;
 [BsonDiscriminator("CrewMember")]
 public record CrewMember
 {
-	[BsonElement]
-	private string _id;
-	
+	[field: BsonElement] public string Id { get; private set; }
+
 	[BsonElement]
 	private string primaryName;
 	
 	[BsonElement]
 	private BsonDateTime birthYear;
 	
-	[BsonElement("WorkedOn")]
+	[BsonElement("deathYear")]
 	private BsonDateTime deathYear;
-	
-	[BsonElement("WorkedOn")]
-	private List<MongoDBRef> workedOnJobIds = new();
+
+	[BsonElement("knownForTitles")]
+	public List<MongoDBRef> KnownForTitlesIds { get; } = new();
 
 	public static CrewMember FromNameBasics(NameBasics nameBasics)
 	{
 		CrewMember crewMember = new()
 		{
-			_id = nameBasics.Nconst,
+			Id = nameBasics.Nconst,
 			primaryName = nameBasics.PrimaryName,
 			birthYear = DateConversions.ToBsonDateTime(nameBasics.BirthYear),
 			deathYear = DateConversions.ToBsonDateTime(nameBasics.DeathYear),

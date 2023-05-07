@@ -9,4 +9,10 @@ public readonly record struct UserRatingId
 
     private readonly string userEmail;
     private readonly string titleId;
+
+    public UserRatingId(string userEmail, string titleId)
+    {
+        this.userEmail = userEmail;
+        this.titleId = titleId;
+    }
 }

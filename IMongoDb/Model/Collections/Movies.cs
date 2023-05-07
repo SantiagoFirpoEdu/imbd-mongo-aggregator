@@ -4,5 +4,10 @@ namespace IMongoDb.Model.Collections;
 
 public class Movies
 {
-	private IDictionary<string, Movie> movies;
+	public void Add(Movie movie)
+	{
+		movies.TryAdd(movie.Id, movie);
+	}
+	
+	private readonly IDictionary<string, Movie> movies = new Dictionary<string, Movie>();
 }

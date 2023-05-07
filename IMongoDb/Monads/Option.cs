@@ -1,3 +1,5 @@
+namespace IMongoDb.Monads;
+
 public class Option<TSomeValueType>
 {
 	public Option()
@@ -15,22 +17,22 @@ public class Option<TSomeValueType>
 		return new Option<TSomeValueType>();
 	}
 
-    public  Option<TReturnType> Map<TReturnType>(Func<TSomeValueType, TReturnType> optionMapper)
+	public  Option<TReturnType> Map<TReturnType>(Func<TSomeValueType, TReturnType> optionMapper)
 	{
 		return value is not null ? new Option<TReturnType>(optionMapper.Invoke(value))
-			         : new Option<TReturnType>();
+			: new Option<TReturnType>();
 	}
 
 	public TOutType MapExpression<TOutType>(Func<TOutType> someMapper, Func<TOutType> noneMapper)
 	{
 		return value is not null ? someMapper.Invoke()
-					 : noneMapper.Invoke();
+			: noneMapper.Invoke();
 	}
 
 	public OutType MapExpression<OutType>(Func<TSomeValueType, OutType> someMapper, Func<OutType> noneMapper)
 	{
 		return value is not null ? someMapper.Invoke(value)
-				: noneMapper.Invoke();
+			: noneMapper.Invoke();
 	}
 
 	public Option<OutOptionalType> AndThen<OutOptionalType>(Func<TSomeValueType, Option<OutOptionalType>> optionMapper)
@@ -38,7 +40,7 @@ public class Option<TSomeValueType>
 		var nestedOption = Map(optionMapper);
 
 		return nestedOption.IsSet() && (nestedOption.GetValue().IsSet()) ? Option<OutOptionalType>.Some(nestedOption.GetValue().GetValue())
-		                                       : Option<OutOptionalType>.None();
+			: Option<OutOptionalType>.None();
 	}
 
 	public void MatchSome(Action<TSomeValueType> someFunctor)

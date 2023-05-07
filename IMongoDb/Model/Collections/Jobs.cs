@@ -1,8 +1,14 @@
 using IMongoDb.Model.Entities;
+using MongoDB.Bson;
 
 namespace IMongoDb.Model.Collections;
 
 public class Jobs
 {
-	private IDictionary<string, Job> jobs;
+	public void Add(Job job)
+	{
+		jobs.TryAdd(job.Id, job);
+	}
+
+	private readonly IDictionary<ObjectId, Job> jobs = new Dictionary<ObjectId, Job>();
 }

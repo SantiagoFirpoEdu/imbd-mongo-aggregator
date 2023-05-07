@@ -1,3 +1,4 @@
+using MongoDB.Bson;
 using MongoDB.Bson.Serialization.Attributes;
 using MongoDB.Driver;
 
@@ -6,17 +7,21 @@ namespace IMongoDb.Model.Entities;
 [BsonDiscriminator("Genre")]
 public class Genre
 {
-	public Genre(string id, string name)
+	public Genre(string name, MongoDBRef? parentGenreId)
 	{
-		Id = id;
+		Id = ObjectId.GenerateNewId();
 		Name = name;
+		this.parentGenreId = parentGenreId;
 	}
 
 	[BsonId]
-	public string Id { get; }
+	public ObjectId Id { get; }
 
 	[BsonElement]
 	public string Name { get; private set; }
+
+	[field: BsonElement("titles")]
+	public IDictionary<string, MongoDBRef> TitlesIds { get; } = new Dictionary<string, MongoDBRef>();
 
 	[BsonElement]
 	[BsonIgnoreIfNull]

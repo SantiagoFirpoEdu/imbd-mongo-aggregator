@@ -3,7 +3,7 @@ using System.Globalization;
 using CsvHelper;
 using CsvHelper.Configuration;
 using IMongoDb.Model;
-using IMongoDb.TsvRecords;
+using IMongoDb.Model.TsvRecords;
 
 namespace IMongoDb;
 
@@ -91,7 +91,7 @@ public static class TsvLoader
 
             foreach (TitleCrew? titleCrewMember in titleCrew.Where(titleCrewMember => titleCrewMember is not null))
             {
-                tsvRepository.TitleCrew.Add(titleCrewMember.tconst, titleCrewMember);
+                tsvRepository.TitlesCrews.Add(titleCrewMember.tconst, titleCrewMember);
             }
         }
 
