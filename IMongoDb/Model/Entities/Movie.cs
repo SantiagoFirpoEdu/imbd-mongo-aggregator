@@ -16,13 +16,14 @@ public class Movie
 
 	public static Result<Movie, EMovieConversionError> FromTitleBasics(TitleBasics titleBasicValue)
 	{
-		if (titleBasicValue.titleType != "movie")
+		if (!titleBasicValue.IsMovie())
 		{
 			return Result<Movie, EMovieConversionError>.Error(EMovieConversionError.NotAMovie);
 		}
 
 		Movie movie = new(titleBasicValue.tconst, titleBasicValue.runtimeMinutes);
 		return Result<Movie, EMovieConversionError>.Ok(movie);
+
 	}
 
 	[BsonId]

@@ -17,6 +17,10 @@ public class Titles
 		{
 			title?.AddAlternativeTitle(alternativeTitle);
 		}
+		else
+		{
+			Console.Error.WriteLine("Alternative title {0} not found", originalTitleId);
+		}
 	}
 
 	public void AddCrew(TitleCrew crewRecord)
@@ -28,6 +32,10 @@ public class Titles
 		{
 			title?.AddCrew(writers, directors);
 		}
+		else
+		{
+			Console.Error.WriteLine("Title tconst {0} not found when adding its crew", crewRecord.tconst);
+		}
 	}
 
 	public void AddRatings(TitleRatings titleRating)
@@ -36,6 +44,15 @@ public class Titles
 		{
 			title?.SetRatings(titleRating);
 		}
+		else
+		{
+			Console.Error.WriteLine("Title tconst {0} not found when adding its ratings", titleRating.tconst);
+		}
+	}
+	
+	public bool ContainsTitle(string titleId)
+	{
+		return titles.ContainsKey(titleId);
 	}
 
 	private bool TryGetTitle(string originalTitleId, out Title? title)

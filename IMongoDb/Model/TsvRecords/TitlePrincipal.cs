@@ -1,4 +1,5 @@
-﻿using CsvHelper.Configuration.Attributes;
+﻿using System.Diagnostics.Contracts;
+using CsvHelper.Configuration.Attributes;
 
 namespace IMongoDb.Model.TsvRecords;
 
@@ -21,4 +22,20 @@ public record TitlePrincipal
     
     [Name("characters")]
     public string characters { get; init; }
+    
+    [Pure]
+	public bool IsActor()
+	{
+		return category is "actor" or "actress" or "self";
+	}
+
+	public bool IsWriter()
+	{
+		return category is "writer";
+	}
+	
+	public bool IsDirector()
+	{
+		return category is "director";
+	}
 }

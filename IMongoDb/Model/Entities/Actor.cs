@@ -11,7 +11,7 @@ public record Actor([property: BsonId] string Id)
 {
 	public static Result<Actor, EActorConversionError> FromPrincipal(TitlePrincipal principal, CharacterCollection characters)
 	{
-		if (principal.category is not ("actor" or "actress" or "self"))
+		if (!principal.IsActor())
 		{
 			return Result<Actor, EActorConversionError>.Error(EActorConversionError.NotAnActor);
 		}
@@ -19,6 +19,7 @@ public record Actor([property: BsonId] string Id)
 		Actor result = new(principal.tconst);
 		result.charactersPlayedIds.AddRange(CharactersCsvToList(principal, characters));
 		return Result<Actor, EActorConversionError>.Ok(result);
+
 	}
 
 	private static IEnumerable<MongoDBRef> CharactersCsvToList(TitlePrincipal principal, CharacterCollection characters)

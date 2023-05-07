@@ -9,13 +9,14 @@ public class Director
 {
 	public static Result<Director, EDirectorConversionError> FromPrincipal(TitlePrincipal principal)
 	{
-		if (principal.category is not "director")
+		if (!principal.IsDirector())
 		{
 			return Result<Director, EDirectorConversionError>.Error(EDirectorConversionError.NotADirector);
 		}
 
 		Director result = new(principal.tconst);
 		return Result<Director, EDirectorConversionError>.Ok(result);
+
 	}
 
 	public Director(string id)

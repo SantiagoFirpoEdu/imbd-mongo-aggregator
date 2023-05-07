@@ -23,9 +23,9 @@ public class DbRepository
 
     public void LoadFromTsvs(TsvRepository tsvRepository)
     {
+        LoadTitleBasics(tsvRepository);
         LoadNameBasics(tsvRepository);
         LoadTitleAkas(tsvRepository);
-        LoadTitleBasics(tsvRepository);
         LoadTitleCrew(tsvRepository);
         LoadTitleEpisode(tsvRepository);
         LoadTitlePrincipals(tsvRepository);
@@ -73,7 +73,22 @@ public class DbRepository
         foreach (var titleEpisode in titleEpisodes)
         {
             TitleEpisode episode = titleEpisode.Value;
-            Episode existingEpisode = EpisodeCollection.FindOrAdd(episode.tconst);
+
+            string episodeTitleId = episode.tconst;
+            if (!Titles.ContainsTitle(episodeTitleId))
+            {
+                Console.Error.WriteLine($"Failed to find tconst {episodeTitleId} for episode");
+                continue;
+            }
+
+            string episodeParentTvSeriesId = episode.parentTconst;
+            if (!Titles.ContainsTitle(episodeParentTvSeriesId))
+            {
+                Console.Error.WriteLine($"Failed to find parent tv series tconst {episodeParentTvSeriesId} for episode");
+                continue;
+            }
+            
+            Episode existingEpisode = EpisodeCollection.FindOrAdd(episodeTitleId);
             existingEpisode.FromTitleEpisode(episode);
         }
     }
@@ -87,47 +102,49 @@ public class DbRepository
             string titleId = titlePrincipal.tconst;
             string crewMemberId = titlePrincipal.nconst;
 
+            if (!CrewMembers.TryGet(crewMemberId, out CrewMember? crewMember))
+            {
+                Console.Error.WriteLine($"Failed to find crew member with nconst {crewMemberId}");
+                continue;
+            }
+
+            MongoDBRef crewMemberTitleRef = new(CollectionNames.TitlesCollectionName, titleId);
+            crewMember?.KnownForTitlesIds.Add(crewMemberTitleRef);
+
+            if (!Titles.ContainsTitle(titleId))
+            {
+                Console.Error.WriteLine($"Failed to find tconst {titleId} for crew member with nconst {crewMemberId}");
+                continue;
+            }
+
             MongoDBRef titleRef = new(CollectionNames.TitlesCollectionName, titleId);
             MongoDBRef crewMemberRef = new(CollectionNames.CrewMembersCollectionName, crewMemberId);
-            Job job = new(titlePrincipal.job, titlePrincipal.category, titlePrincipal.ordering, titleRef, crewMemberRef);
-            Jobs.Add(job);
+            Job job = new(
+                titlePrincipal.job,
+                titlePrincipal.category,
+                titlePrincipal.ordering,
+                titleRef,
+                crewMemberRef
+            );
 
+            Jobs.Add(job);
             LoadAsSubclass(titlePrincipal);
-            
-            if (CrewMembers.TryGet(crewMemberId, out CrewMember? crewMember))
-            {
-                MongoDBRef crewMemberTitleRef = new(CollectionNames.TitlesCollectionName, titleId);
-                crewMember?.KnownForTitlesIds.Add(crewMemberTitleRef);
-            }
-            else
-            {
-                Console.Error.WriteLine($"Failed to find crew member with id {crewMemberId}");
-            }
         }
     }
 
     private void LoadAsSubclass(TitlePrincipal titlePrincipal)
     {
-
-        switch (titlePrincipal.category)
+        if (titlePrincipal.IsDirector())
         {
-            case "director":
-            {
-                LoadPrincipalAsDirector(titlePrincipal);
-                break;
-            }
-            case "writer":
-            {
-                LoadPrincipalAsWriter(titlePrincipal);
-                break;
-            }
-            case "self":
-            case "actress":
-            case "actor":
-            {
-                LoadPrincipalAsActor(titlePrincipal);
-                break;
-            }
+            LoadPrincipalAsDirector(titlePrincipal);
+        }
+        else if (titlePrincipal.IsWriter())
+        {
+            LoadPrincipalAsWriter(titlePrincipal);
+        }
+        else if (titlePrincipal.IsActor())
+        {
+            LoadPrincipalAsActor(titlePrincipal);
         }
     }
 
@@ -143,7 +160,6 @@ public class DbRepository
 
     private void LoadPrincipalAsWriter(TitlePrincipal titlePrincipal)
     {
-
         var conversionResult = Writer.FromPrincipal(titlePrincipal);
         if (conversionResult.WasSuccessful())
         {
@@ -153,7 +169,6 @@ public class DbRepository
 
     private void LoadPrincipalAsDirector(TitlePrincipal titlePrincipal)
     {
-
         var conversionResult = Director.FromPrincipal(titlePrincipal);
         if (conversionResult.WasSuccessful())
         {
@@ -184,28 +199,22 @@ public class DbRepository
         {
             TitleBasics titleBasicValue = titleBasic.Value;
             LoadAsTitle(titleBasicValue);
-            switch (titleBasicValue.titleType)
+            if (titleBasicValue.IsMovie())
             {
-                case "movie":
-                {
-                    LoadAsMovie(titleBasicValue);
-                    break;
-                }
-                case "tvepisode":
-                {
-                    LoadAsEpisode(titleBasicValue);
-                    break;
-                }
-                case "tvseries":
-                {
-                    LoadAsShow(titleBasicValue);
-                    break;
-                }
+                LoadAsMovie(titleBasicValue);
+            }
+            else if (titleBasicValue.IsEpisode())
+            {
+                LoadAsEpisode(titleBasicValue);
+            }
+            else if (titleBasicValue.IsTvSeries())
+            {
+                LoadAsTvSeries(titleBasicValue);
             }
         }
     }
 
-    private void LoadAsShow(TitleBasics titleBasicValue)
+    private void LoadAsTvSeries(TitleBasics titleBasicValue)
     {
         var conversionResult = TvSeries.FromTitleBasics(titleBasicValue);
 

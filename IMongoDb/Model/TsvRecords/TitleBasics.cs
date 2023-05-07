@@ -1,11 +1,9 @@
-﻿using CsvHelper;
-using CsvHelper.Configuration;
+﻿using System.Diagnostics.Contracts;
 using CsvHelper.Configuration.Attributes;
-using CsvHelper.TypeConversion;
 
 namespace IMongoDb.Model.TsvRecords;
 
-public record TitleBasics()
+public record TitleBasics
 {
     [Name("tconst")]
     public string tconst { get; init; }
@@ -23,10 +21,12 @@ public record TitleBasics()
     public string isAdult { get; init; }
     
     [Name("startYear")]
-    public string startYear { get; init; }
+    [NullValues("null")]
+    public string? startYear { get; init; }
     
     [Name("endYear")]
-    public string endYear { get; init; }
+    [NullValues("null")]
+    public string? endYear { get; init; }
 
     [Name("runtimeMinutes")]
     [NullValues("null")]
@@ -34,17 +34,23 @@ public record TitleBasics()
      
     [Name("genres")]
     public string genres { get; init; }
-}
-
-public class NullableIntConverter : Int32Converter
-{
-    public override object? ConvertFromString(string? text, IReaderRow row, MemberMapData memberMapData)
+    
+    [Pure]
+    public bool IsMovie()
     {
-        if (int.TryParse(text, out int value))
-        {
-            return value;
-        }
-
-        return null;
+        return titleType is "movie" or "tvMovie";
     }
+    
+    [Pure]
+    public bool IsEpisode()
+    {
+        return titleType is "tvEpisode" or "tvSpecial";
+    }
+
+    [Pure]
+    public bool IsTvSeries()
+    {
+        return titleType is "tvSeries" or "tvMiniSeries";
+    }
+
 }

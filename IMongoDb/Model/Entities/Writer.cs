@@ -9,7 +9,7 @@ namespace IMongoDb.Model.Entities
 	{
 		public static Result<Writer, EWriterConversionError> FromPrincipal(TitlePrincipal principal)
 		{
-			if (principal.category is not "writer")
+			if (!principal.IsWriter())
 			{
 				return Result<Writer, EWriterConversionError>.Error(EWriterConversionError.NotAWriter);
 			}

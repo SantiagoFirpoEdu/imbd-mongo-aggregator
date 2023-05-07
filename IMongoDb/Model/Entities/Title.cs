@@ -12,18 +12,19 @@ namespace IMongoDb.Model.Entities;
 public class Title
 {
 	public Title(string id, string type, string primaryTitle, string originalTitle, bool isAdult,
-		BsonDateTime releaseYear)
+		BsonDateTime? releaseYear)
 	{
 		Id = id ?? throw new ArgumentNullException(nameof(id));
 		Type = type ?? throw new ArgumentNullException(nameof(type));
 		PrimaryTitle = primaryTitle ?? throw new ArgumentNullException(nameof(primaryTitle));
 		OriginalTitle = originalTitle ?? throw new ArgumentNullException(nameof(originalTitle));
 		IsAdult = isAdult;
-		ReleaseYear = releaseYear ?? throw new ArgumentNullException(nameof(releaseYear));
+		ReleaseYear = releaseYear;
 	}
 
 	public static Result<Title, ETitleConversionError> FromTitleBasics(TitleBasics titleBasics, Genres genres)
 	{
+		string titleBasicsStartYear = titleBasics.startYear;
 		Title result = new
 		(
 			titleBasics.tconst,
@@ -31,12 +32,24 @@ public class Title
 			titleBasics.primaryTitle,
 			titleBasics.originalTitle,
 			titleBasics.isAdult == "1",
-			new BsonDateTime(DateOnly.ParseExact(titleBasics.startYear, "yyyy").ToDateTime(TimeOnly.MinValue))
+			ToNullableBsonDateTime(titleBasicsStartYear)
 		);
+
+		if (titleBasicsStartYear is not null)
+		{
+		}
 		
 		result.GenresIds.AddRange(PopulateGenres(titleBasics, genres));
 
 		return Result<Title, ETitleConversionError>.Ok(result);
+	}
+
+	public static BsonDateTime? ToNullableBsonDateTime(string? yearString)
+	{
+
+		return yearString != null
+			? new BsonDateTime(DateOnly.ParseExact(yearString, "yyyy").ToDateTime(TimeOnly.MinValue))
+			: null;
 	}
 
 	public void PopulateRatings(double averageRating, int numVotes)
@@ -62,6 +75,7 @@ public class Title
 			yield return new MongoDBRef(CollectionNames.GenresCollectionName, genre.Id);
 		}
 	}
+
 
 	[BsonDiscriminator("TitleRating")]
 	private record struct TitleRating
@@ -95,7 +109,8 @@ public class Title
 	public bool IsAdult { get; private set; }
 	
 	[BsonElement]
-	public BsonDateTime ReleaseYear { get; private set; }
+	[BsonIgnoreIfNull]
+	public BsonDateTime? ReleaseYear { get; private set; }
 	
 	[BsonElement("genres")]
 	public List<MongoDBRef> GenresIds { get; } = new();
@@ -124,7 +139,7 @@ public class Title
 		
 		foreach (string directorId in directorsIds)
 		{
-			writers.Add(new MongoDBRef(CollectionNames.DirectorsCollectionName, directorId));
+			directors.Add(new MongoDBRef(CollectionNames.DirectorsCollectionName, directorId));
 		}
 	}
 

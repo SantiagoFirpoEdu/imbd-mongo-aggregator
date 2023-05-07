@@ -1,3 +1,4 @@
+using IMongoDb.Converters;
 using IMongoDb.Model.TsvRecords;
 using IMongoDb.Monads;
 using MongoDB.Bson;
@@ -13,12 +14,13 @@ public class TvSeries
 	public string Id { get; }
 
 	[BsonElement]
-	private BsonDateTime endYear;
+	[BsonIgnoreIfNull]
+	private BsonDateTime? endYear;
 	
 	[BsonElement("episodes")]
 	private IList<MongoDBRef> episodesIds = new List<MongoDBRef>();
 
-	public TvSeries(string id, BsonDateTime endYear)
+	public TvSeries(string id, BsonDateTime? endYear)
 	{
 		this.Id = id;
 		this.endYear = endYear;
@@ -26,7 +28,13 @@ public class TvSeries
 
 	public static Result<TvSeries, EShowConversionError> FromTitleBasics(TitleBasics titleBasicValue)
 	{
-		throw new NotImplementedException();
+		if (titleBasicValue.IsTvSeries())
+		{
+			return Result<TvSeries, EShowConversionError>.Ok(new TvSeries(titleBasicValue.tconst,
+				DateConversions.ToNullableBsonDateTime(titleBasicValue.endYear)));
+		}
+
+		return Result<TvSeries, EShowConversionError>.Error(EShowConversionError.NotAShow);
 	}
 }
 
