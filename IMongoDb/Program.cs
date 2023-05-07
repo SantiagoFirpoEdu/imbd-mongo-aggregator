@@ -1,6 +1,5 @@
 ﻿using IMongoDb;
 using IMongoDb.Model;
-using System.Windows.Forms;
 
 DbRepository mongoDbRepository = new();
 TsvRepository tsvRepository = new();
@@ -13,6 +12,7 @@ string? collectionName = null;
 
 do
 {
+    Console.Clear();
     Console.WriteLine("Enter a collection name to get the inserts for:");
     collectionName = Console.ReadLine();
 
@@ -24,8 +24,9 @@ do
         {
             ref string insertsArray = ref insertsResult.GetOk().GetValue();
             string inserts = $"db.{collectionName}.insertMany{insertsArray}";
-            Console.WriteLine("Inserts generated successfully. Copied to clipboard.");
-            Clipboard.SetText(inserts);
+            Console.WriteLine(inserts);
+            string combine = Path.Combine(Environment.CurrentDirectory, $"/file-output/{collectionName}.txt");
+            using (var fileWriter = File.Create(combine))
         }
     }
 }

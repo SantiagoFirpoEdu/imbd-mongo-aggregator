@@ -59,7 +59,10 @@ public class Title
 
 	public void AddAlternativeTitle(AlternativeTitle alternativeTitle)
 	{
-		alternativeTitles.Add(alternativeTitle);
+		if (alternativeTitles.Count < MaxAlternativeTitleAmount)
+		{
+			alternativeTitles.Add(alternativeTitle);
+		}
 	}
 
 	private static IEnumerable<MongoDBRef> PopulateGenres(TitleBasics titleBasics, Genres genres)
@@ -147,4 +150,6 @@ public class Title
 	{
 		rating = new TitleRating(titleRating.averageRating, titleRating.numVotes);
 	}
+	
+	private const int MaxAlternativeTitleAmount = 10;
 }
