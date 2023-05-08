@@ -7,6 +7,11 @@ public class CrewMemberCollection : IDbCollection
 {
 	public void Add(CrewMember conversionResult)
 	{
+		if (MaxCount is not null && crewMembers.Count >= MaxCount)
+		{
+			return;
+		}
+
 		crewMembers.Add(conversionResult.Id, conversionResult);
 	}
 
@@ -30,4 +35,6 @@ public class CrewMemberCollection : IDbCollection
 	}
 
 	private readonly IDictionary<string, CrewMember> crewMembers = new Dictionary<string, CrewMember>();
+	
+	private static readonly int? MaxCount = 1000;
 }

@@ -1,4 +1,5 @@
-﻿using IMongoDb;
+﻿using System.Text;
+using IMongoDb;
 using IMongoDb.Model;
 
 DbRepository mongoDbRepository = new();
@@ -10,11 +11,15 @@ mongoDbRepository.LoadFromTsvs(tsvRepository);
 
 string? collectionName = null;
 
+Console.Clear();
 do
 {
-    Console.Clear();
     Console.WriteLine("Enter a collection name to get the inserts for:");
     collectionName = Console.ReadLine();
+    
+    Console.WriteLine("Do you wish to write it as a shell insertMany command? Type 'yes' or 'no'");
+    string? writeAsShell = Console.ReadLine();
+    bool shouldWriteAsShell = writeAsShell is not null && writeAsShell == "yes";
 
     if (collectionName is not null)
     {
@@ -23,10 +28,25 @@ do
         if (insertsResult.WasSuccessful())
         {
             ref string insertsArray = ref insertsResult.GetOk().GetValue();
-            string inserts = $"db.{collectionName}.insertMany{insertsArray}";
-            Console.WriteLine(inserts);
-            string combine = Path.Combine(Environment.CurrentDirectory, $"/file-output/{collectionName}.txt");
-            using (var fileWriter = File.Create(combine))
+            const string fileOutput = "./file-output";
+            string output = shouldWriteAsShell
+                ? $"{fileOutput}/{collectionName}-inserts.txt"
+                : $"{fileOutput}/{collectionName}.json";
+
+            Directory.CreateDirectory(fileOutput);
+            using (StreamWriter fileWriter = new(File.Create(output), Encoding.UTF8))
+            {
+                fileWriter.Write(shouldWriteAsShell ? $"db.{collectionName}.insertMany({insertsArray})" : insertsArray);
+            }
+
+            Console.WriteLine($"Inserts for {collectionName} written to {output}");
+            Console.WriteLine("Do you wish to exit? Type 'exit'");
+        }
+        else
+        {
+            EGetInsertsError error = insertsResult.GetError().GetValue();
+            Console.Error.WriteLine($"Error while getting inserts for {collectionName}: {error}");
+            Console.WriteLine("Do you wish to exit? Type 'exit'");
         }
     }
 }
