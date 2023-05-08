@@ -125,11 +125,12 @@ public class Title
 	private readonly IList<AlternativeTitle> alternativeTitles = new List<AlternativeTitle>();
 	
 	[BsonElement]
-	private IList<MongoDBRef> charactersIds = new List<MongoDBRef>();
-	
-	[BsonElement]
 	private IList<MongoDBRef> writers = new List<MongoDBRef>();
-	
+
+	[BsonElement("actors")]
+
+	private readonly HashSet<string> actorsSet = new();
+
 	[BsonElement]
 	private IList<MongoDBRef> directors = new List<MongoDBRef>();
 
@@ -160,4 +161,9 @@ public class Title
 	}
 
 	private static readonly int? MaxAlternativeTitleAmount = null;
+
+	public void AddActor(string actorId)
+	{
+		actorsSet.Add(actorId);
+	}
 }

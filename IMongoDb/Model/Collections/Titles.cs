@@ -89,4 +89,12 @@ public class Titles : IDbCollection
 	}
 
 	private static readonly int? MaxCount = 50000;
+
+	public void AddActor(string titleId, Actor actor)
+	{
+		if (titles.TryGetValue(titleId, out Title? title))
+		{
+			title.AddActor(actor.Id);
+		}
+	}
 }

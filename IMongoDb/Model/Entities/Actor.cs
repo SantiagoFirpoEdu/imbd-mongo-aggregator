@@ -16,7 +16,7 @@ public record Actor([property: BsonId] string Id)
 			return Result<Actor, EActorConversionError>.Error(EActorConversionError.NotAnActor);
 		}
 
-		Actor result = new(principal.tconst);
+		Actor result = new(principal.nconst);
 		result.charactersPlayedIds.AddRange(CharactersCsvToList(principal, characters));
 		return Result<Actor, EActorConversionError>.Ok(result);
 

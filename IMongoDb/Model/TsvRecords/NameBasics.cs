@@ -22,5 +22,6 @@ public record NameBasics
     public string PrimaryProfession { get; init;  }
     
     [Name("knownForTitles")]
-    public string KnownForTitles { get; init;  }
+    [NullValues("null")]
+    public string? KnownForTitles { get; init;  }
 }

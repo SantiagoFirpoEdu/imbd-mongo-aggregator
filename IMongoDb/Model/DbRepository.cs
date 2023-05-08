@@ -176,7 +176,7 @@ public class DbRepository
             }
 
             MongoDBRef crewMemberTitleRef = new(CollectionNames.TitlesCollectionName, titleId);
-            crewMember?.KnownForTitlesIds.Add(crewMemberTitleRef);
+            crewMember?.KnownForTitleIdsSet.Add(crewMemberTitleRef);
 
             if (!Titles.ContainsTitle(titleId))
             {
@@ -211,18 +211,21 @@ public class DbRepository
         }
         else if (titlePrincipal.IsActor())
         {
-            LoadPrincipalAsActor(titlePrincipal);
+            LoadPrincipalAsActor(titlePrincipal, Titles);
         }
     }
 
-    private void LoadPrincipalAsActor(TitlePrincipal titlePrincipal)
+    private void LoadPrincipalAsActor(TitlePrincipal titlePrincipal, Titles titles)
     {
-
         var conversionResult = Actor.FromPrincipal(titlePrincipal, Characters);
-        if (conversionResult.WasSuccessful())
+        if (!conversionResult.WasSuccessful())
         {
-            Actors.Add(conversionResult.GetOk().GetValue());
+            return;
         }
+
+        Actor actor = conversionResult.GetOk().GetValue();
+        Actors.Add(actor);
+        titles.AddActor(titlePrincipal.tconst, actor);
     }
 
     private void LoadPrincipalAsWriter(TitlePrincipal titlePrincipal)
