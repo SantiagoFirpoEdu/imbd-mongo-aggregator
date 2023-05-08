@@ -327,11 +327,9 @@ public class DbRepository
             Title title = conversionResult.GetOk().GetValue();
             return Titles.Add(title);
         }
-        else
-        {
-            Console.Error.WriteLine($"Failed to convert title basics: {conversionResult.GetError().GetValue()}");
-            return false;
-        }
+
+        Console.Error.WriteLine($"Failed to convert title basics: {conversionResult.GetError().GetValue()}");
+        return false;
     }
 
     public IDictionary<string, IDbCollection> DbCollections { get; } = new Dictionary<string, IDbCollection>();
