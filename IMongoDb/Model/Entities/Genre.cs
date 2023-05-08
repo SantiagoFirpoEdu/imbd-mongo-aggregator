@@ -21,7 +21,7 @@ public class Genre
 	public string Name { get; private set; }
 
 	[BsonElement("titles")]
-	public IDictionary<string, MongoDBRef> TitlesIds { get; } = new Dictionary<string, MongoDBRef>();
+	public List<MongoDBRef> TitlesIds { get; } = new();
 
 	[BsonElement]
 	[BsonIgnoreIfNull]

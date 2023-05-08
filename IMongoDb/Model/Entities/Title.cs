@@ -74,7 +74,7 @@ public class Title
 			Genre genre = genres.FindOrAddByName(genreName);
 			string titleId = titleBasics.tconst;
 			MongoDBRef titleRef = new(CollectionNames.TitlesCollectionName, titleId);
-			genre.TitlesIds.TryAdd(titleId, titleRef);
+			genre.TitlesIds.Add(titleRef);
 			yield return new MongoDBRef(CollectionNames.GenresCollectionName, genre.Id);
 		}
 	}
