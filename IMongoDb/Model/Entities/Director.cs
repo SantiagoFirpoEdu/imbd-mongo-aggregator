@@ -14,7 +14,7 @@ public class Director
 			return Result<Director, EDirectorConversionError>.Error(EDirectorConversionError.NotADirector);
 		}
 
-		Director result = new(principal.tconst);
+		Director result = new(principal.nconst);
 		return Result<Director, EDirectorConversionError>.Ok(result);
 	}
 

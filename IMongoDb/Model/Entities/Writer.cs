@@ -14,7 +14,7 @@ namespace IMongoDb.Model.Entities
 				return Result<Writer, EWriterConversionError>.Error(EWriterConversionError.NotAWriter);
 			}
 
-			Writer result = new(principal.tconst);
+			Writer result = new(principal.nconst);
 			return Result<Writer, EWriterConversionError>.Ok(result);
 
 		}
