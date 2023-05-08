@@ -32,8 +32,9 @@ public class Titles : IDbCollection
 
 	public void AddCrew(TitleCrew crewRecord)
 	{
-		string[] writers = crewRecord.writers.Split(",");
-		string[] directors = crewRecord.directors.Split(",");
+		string? writersRecord = crewRecord.writers;
+		string[]? writers = writersRecord?.Split(",");
+		string[]? directors = crewRecord.directors?.Split(",");
 		
 		if (TryGetTitle(crewRecord.tconst, out Title? title))
 		{

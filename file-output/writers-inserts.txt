@@ -1,1 +1,0 @@
-﻿db.writers.insertMany([{ "_id" : "tt0000247" }, { "_id" : "tt0000306" }, { "_id" : "tt0000370" }])

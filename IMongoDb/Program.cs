@@ -38,10 +38,12 @@ void WriteInsertsBothFiles(DbRepository mongoDbRepository1, string collectionNam
     if (insertsResult.WasSuccessful())
     {
         ref string insertsArray = ref insertsResult.GetOk().GetValue();
-        const string fileOutput = "./file-output";
+        string baseOutputDirectory = "./file-output";
+        string insertsOutputDirectory = $"{baseOutputDirectory}/inserts";
+        string jsonOutoputDirectory = $"{baseOutputDirectory}/jsons";
 
-        Directory.CreateDirectory(fileOutput);
-        string insertsOutput = $"{fileOutput}/{collectionNameToWrite}-inserts.txt";
+        Directory.CreateDirectory(insertsOutputDirectory);
+        string insertsOutput = $"{insertsOutputDirectory}/{collectionNameToWrite}-inserts.txt";
         using (StreamWriter fileWriter = new(File.Create(insertsOutput), Encoding.UTF8))
         {
             string insertMany = $"db.{collectionNameToWrite}.insertMany({insertsArray})";
@@ -49,7 +51,7 @@ void WriteInsertsBothFiles(DbRepository mongoDbRepository1, string collectionNam
             Console.WriteLine($"Inserts for {collectionNameToWrite} written to {insertsOutput}");
         }
 
-        string jsonOutput = $"{fileOutput}/{collectionNameToWrite}.json";
+        string jsonOutput = $"{jsonOutoputDirectory}/{collectionNameToWrite}.json";
         using (StreamWriter fileWriter = new(File.Create(jsonOutput), Encoding.UTF8))
         {
             fileWriter.Write(insertsArray);

@@ -133,13 +133,21 @@ public class Title
 	[BsonElement]
 	private IList<MongoDBRef> directors = new List<MongoDBRef>();
 
-	public void AddCrew(IEnumerable<string> writersIds, IEnumerable<string> directorsIds)
+	public void AddCrew(IEnumerable<string>? writersIds, IEnumerable<string>? directorsIds)
 	{
-		foreach (string writerId in writersIds)
+		if (writersIds is not null)
 		{
-			writers.Add(new MongoDBRef(CollectionNames.WritersCollectionName, writerId));
+			foreach (string writerId in writersIds)
+			{
+				writers.Add(new MongoDBRef(CollectionNames.WritersCollectionName, writerId));
+			}
 		}
-		
+
+		if (directorsIds is null)
+		{
+			return;
+		}
+
 		foreach (string directorId in directorsIds)
 		{
 			directors.Add(new MongoDBRef(CollectionNames.DirectorsCollectionName, directorId));
