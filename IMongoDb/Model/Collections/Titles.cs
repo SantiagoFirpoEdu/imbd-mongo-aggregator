@@ -8,14 +8,12 @@ public class Titles : IDbCollection
 {
 	public bool Add(Title title)
 	{
-
 		if (MaxCount is not null && titles.Count >= MaxCount)
 		{
 			return false;
 		}
 
 		return titles.TryAdd(title.Id, title);
-
 	}
 
 
@@ -89,5 +87,5 @@ public class Titles : IDbCollection
 		return kv.Value.ToBsonDocument();
 	}
 
-	private static readonly int? MaxCount = 1000;
+	private static readonly int? MaxCount = 50000;
 }

@@ -59,7 +59,7 @@ public class Title
 
 	public void AddAlternativeTitle(AlternativeTitle alternativeTitle)
 	{
-		if (alternativeTitles.Count < MaxAlternativeTitleAmount)
+		if (MaxAlternativeTitleAmount is not null && alternativeTitles.Count < MaxAlternativeTitleAmount)
 		{
 			alternativeTitles.Add(alternativeTitle);
 		}
@@ -122,7 +122,7 @@ public class Title
 	private TitleRating rating;
 	
 	[BsonElement]
-	private IList<AlternativeTitle> alternativeTitles = new List<AlternativeTitle>();
+	private readonly IList<AlternativeTitle> alternativeTitles = new List<AlternativeTitle>();
 	
 	[BsonElement]
 	private IList<MongoDBRef> charactersIds = new List<MongoDBRef>();
@@ -150,6 +150,6 @@ public class Title
 	{
 		rating = new TitleRating(titleRating.averageRating, titleRating.numVotes);
 	}
-	
-	private const int MaxAlternativeTitleAmount = 10;
+
+	private static readonly int? MaxAlternativeTitleAmount = null;
 }

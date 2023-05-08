@@ -1,5 +1,4 @@
 using IMongoDb.Converters;
-using IMongoDb.Model.Collections;
 using IMongoDb.Model.TsvRecords;
 using MongoDB.Bson;
 using MongoDB.Bson.Serialization.Attributes;

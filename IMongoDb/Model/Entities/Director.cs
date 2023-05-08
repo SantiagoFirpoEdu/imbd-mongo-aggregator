@@ -16,7 +16,6 @@ public class Director
 
 		Director result = new(principal.tconst);
 		return Result<Director, EDirectorConversionError>.Ok(result);
-
 	}
 
 	public Director(string id)

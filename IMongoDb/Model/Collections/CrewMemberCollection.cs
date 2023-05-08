@@ -36,5 +36,5 @@ public class CrewMemberCollection : IDbCollection
 
 	private readonly IDictionary<string, CrewMember> crewMembers = new Dictionary<string, CrewMember>();
 	
-	private static readonly int? MaxCount = 1000;
+	private static readonly int? MaxCount = 50000;
 }

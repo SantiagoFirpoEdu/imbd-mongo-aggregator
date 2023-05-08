@@ -3,6 +3,7 @@ using IMongoDb.Model.Entities;
 using IMongoDb.Model.TsvRecords;
 using IMongoDb.Monads;
 using MongoDB.Bson;
+using MongoDB.Bson.IO;
 using MongoDB.Driver;
 
 namespace IMongoDb.Model;
@@ -30,19 +31,19 @@ public class DbRepository
 
     private void InitializeDbCollections()
     {
-        dbCollections.Add(CollectionNames.WritersCollectionName, Writers);
-        dbCollections.Add(CollectionNames.ActorsCollectionName, Actors);
-        dbCollections.Add(CollectionNames.CharactersCollectionName, Characters);
-        dbCollections.Add(CollectionNames.CrewMembersCollectionName, CrewMembers);
-        dbCollections.Add(CollectionNames.DirectorsCollectionName, Directors);
-        dbCollections.Add(CollectionNames.EpisodesCollectionName, EpisodeCollection);
-        dbCollections.Add(CollectionNames.GenresCollectionName, Genres);
-        dbCollections.Add(CollectionNames.JobsCollectionName, Jobs);
-        dbCollections.Add(CollectionNames.MoviesCollectionName, Movies);
-        dbCollections.Add(CollectionNames.TvSeriesCollectionName, TvSeriesCollection);
-        dbCollections.Add(CollectionNames.TitlesCollectionName, Titles);
-        dbCollections.Add(CollectionNames.UserRatingsCollectionName, UserRatingCollection);
-        dbCollections.Add(CollectionNames.UsersCollectionName, Users);
+        DbCollections.Add(CollectionNames.WritersCollectionName, Writers);
+        DbCollections.Add(CollectionNames.ActorsCollectionName, Actors);
+        DbCollections.Add(CollectionNames.CharactersCollectionName, Characters);
+        DbCollections.Add(CollectionNames.CrewMembersCollectionName, CrewMembers);
+        DbCollections.Add(CollectionNames.DirectorsCollectionName, Directors);
+        DbCollections.Add(CollectionNames.EpisodesCollectionName, EpisodeCollection);
+        DbCollections.Add(CollectionNames.GenresCollectionName, Genres);
+        DbCollections.Add(CollectionNames.JobsCollectionName, Jobs);
+        DbCollections.Add(CollectionNames.MoviesCollectionName, Movies);
+        DbCollections.Add(CollectionNames.TvSeriesCollectionName, TvSeriesCollection);
+        DbCollections.Add(CollectionNames.TitlesCollectionName, Titles);
+        DbCollections.Add(CollectionNames.UserRatingsCollectionName, UserRatingCollection);
+        DbCollections.Add(CollectionNames.UsersCollectionName, Users);
     }
 
     public void LoadFromTsvs(TsvRepository tsvRepository)
@@ -60,10 +61,14 @@ public class DbRepository
 
     public Result<string, EGetInsertsError> GetInserts(string collectionName)
     {
-        return dbCollections.TryGetValue(collectionName, out IDbCollection? dbCollection)
-            ? Result<string, EGetInsertsError>.Ok(dbCollection.ToBsonArray().ToString())
-            : Result<string, EGetInsertsError>.Error(EGetInsertsError.CollectionNotFound);
+        JsonWriterSettings writerSettings = new()
+        {
+            OutputMode = JsonOutputMode.CanonicalExtendedJson
+        };
 
+        return DbCollections.TryGetValue(collectionName, out IDbCollection? dbCollection)
+            ? Result<string, EGetInsertsError>.Ok(dbCollection.ToBsonArray().ToJson(writerSettings))
+            : Result<string, EGetInsertsError>.Error(EGetInsertsError.CollectionNotFound);
     }
 
     private void GenerateFakeUsersAndRatings()
@@ -260,7 +265,12 @@ public class DbRepository
         foreach (var titleBasic in titleBasics)
         {
             TitleBasics titleBasicValue = titleBasic.Value;
-            LoadAsTitle(titleBasicValue);
+            bool loadResult = LoadAsTitle(titleBasicValue);
+            if (!loadResult)
+            {
+                continue;
+            }
+
             if (titleBasicValue.IsMovie())
             {
                 LoadAsMovie(titleBasicValue);
@@ -305,22 +315,23 @@ public class DbRepository
         Movies.Add(title);
     }
 
-    private void LoadAsTitle(TitleBasics titleBasic)
+    private bool LoadAsTitle(TitleBasics titleBasic)
     {
         var conversionResult = Title.FromTitleBasics(titleBasic, Genres);
 
         if (conversionResult.WasSuccessful())
         {
             Title title = conversionResult.GetOk().GetValue();
-            Titles.Add(title);
+            return Titles.Add(title);
         }
         else
         {
             Console.Error.WriteLine($"Failed to convert title basics: {conversionResult.GetError().GetValue()}");
+            return false;
         }
     }
 
-    private IDictionary<string, IDbCollection> dbCollections = new Dictionary<string, IDbCollection>();
+    public IDictionary<string, IDbCollection> DbCollections { get; } = new Dictionary<string, IDbCollection>();
 }
 
 public enum EGetInsertsError

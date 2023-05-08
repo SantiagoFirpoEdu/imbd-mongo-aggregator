@@ -1,4 +1,3 @@
-using IMongoDb.Model.TsvRecords;
 using MongoDB.Bson;
 using MongoDB.Bson.Serialization.Attributes;
 using MongoDB.Driver;
@@ -18,23 +17,23 @@ public class Job
 	[BsonIgnoreIfNull]
 	private string? name;
 
-	[BsonElement("workedOnTitles")]
+	[BsonElement("workedOnTitle")]
 	private MongoDBRef titleWorkedOnId;
 
-	[BsonElement("crewMembers")]
-	private MongoDBRef crewMemberIds;
+	[BsonElement("crewMember")]
+	private MongoDBRef crewMemberId;
 	
 	[BsonElement]
 	[BsonIgnoreIfNull]
 	private string? jobCategory;
 
-	public Job(string? name, string? jobCategory, int ordering, MongoDBRef titleWorkedOnId, MongoDBRef crewMemberIds)
+	public Job(string? name, string? jobCategory, int ordering, MongoDBRef titleWorkedOnId, MongoDBRef crewMemberId)
 	{
 		Id = ObjectId.GenerateNewId();
 		this.name = name;
 		this.jobCategory = jobCategory;
 		this.ordering = ordering;
 		this.titleWorkedOnId = titleWorkedOnId;
-		this.crewMemberIds = crewMemberIds;
+		this.crewMemberId = crewMemberId;
 	}
 }

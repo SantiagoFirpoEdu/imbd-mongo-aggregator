@@ -2,6 +2,68 @@
 using IMongoDb;
 using IMongoDb.Model;
 
+void WriteInserts(DbRepository mongoDbRepository1, string collectionNameToWrite, bool shouldWriteAsShellCommand)
+{
+
+    var insertsResult = mongoDbRepository1.GetInserts(collectionNameToWrite);
+
+    if (insertsResult.WasSuccessful())
+    {
+        ref string insertsArray = ref insertsResult.GetOk().GetValue();
+        const string fileOutput = "./file-output";
+        string output = shouldWriteAsShellCommand
+            ? $"{fileOutput}/{collectionNameToWrite}-inserts.txt"
+            : $"{fileOutput}/{collectionNameToWrite}.json";
+        string buffer = shouldWriteAsShellCommand ? $"db.{collectionNameToWrite}.insertMany({insertsArray})" : insertsArray;
+
+        Directory.CreateDirectory(fileOutput);
+        using (StreamWriter fileWriter = new(File.Create(output), Encoding.UTF8))
+        {
+            fileWriter.Write(buffer);
+        }
+
+        Console.WriteLine($"Inserts for {collectionNameToWrite} written to {output}");
+    }
+    else
+    {
+        EGetInsertsError error = insertsResult.GetError().GetValue();
+        Console.Error.WriteLine($"Error while getting inserts for {collectionNameToWrite}: {error}");
+    }
+}
+
+void WriteInsertsBothFiles(DbRepository mongoDbRepository1, string collectionNameToWrite)
+{
+    var insertsResult = mongoDbRepository1.GetInserts(collectionNameToWrite);
+
+    if (insertsResult.WasSuccessful())
+    {
+        ref string insertsArray = ref insertsResult.GetOk().GetValue();
+        const string fileOutput = "./file-output";
+
+        Directory.CreateDirectory(fileOutput);
+        string insertsOutput = $"{fileOutput}/{collectionNameToWrite}-inserts.txt";
+        using (StreamWriter fileWriter = new(File.Create(insertsOutput), Encoding.UTF8))
+        {
+            string insertMany = $"db.{collectionNameToWrite}.insertMany({insertsArray})";
+            fileWriter.Write(insertMany);
+            Console.WriteLine($"Inserts for {collectionNameToWrite} written to {insertsOutput}");
+        }
+
+        string jsonOutput = $"{fileOutput}/{collectionNameToWrite}.json";
+        using (StreamWriter fileWriter = new(File.Create(jsonOutput), Encoding.UTF8))
+        {
+            fileWriter.Write(insertsArray);
+            Console.WriteLine($"Inserts for {collectionNameToWrite} written to {jsonOutput}");
+        }
+    }
+    else
+    {
+        EGetInsertsError error = insertsResult.GetError().GetValue();
+        Console.Error.WriteLine($"Error while getting inserts for {collectionNameToWrite}: {error}");
+    }
+}
+
+
 DbRepository mongoDbRepository = new();
 TsvRepository tsvRepository = new();
 
@@ -9,45 +71,15 @@ TsvLoader.LoadTsvs(tsvRepository);
 
 mongoDbRepository.LoadFromTsvs(tsvRepository);
 
-string? collectionName = null;
-
 Console.Clear();
-do
+
+InsertAllCollections(mongoDbRepository);
+
+void InsertAllCollections(DbRepository dbRepository)
 {
-    Console.WriteLine("Enter a collection name to get the inserts for:");
-    collectionName = Console.ReadLine();
-    
-    Console.WriteLine("Do you wish to write it as a shell insertMany command? Type 'yes' or 'no'");
-    string? writeAsShell = Console.ReadLine();
-    bool shouldWriteAsShell = writeAsShell is not null && writeAsShell == "yes";
-
-    if (collectionName is not null)
+    var collections = dbRepository.DbCollections;
+    foreach (var kv in collections)
     {
-        var insertsResult = mongoDbRepository.GetInserts(collectionName);
-
-        if (insertsResult.WasSuccessful())
-        {
-            ref string insertsArray = ref insertsResult.GetOk().GetValue();
-            const string fileOutput = "./file-output";
-            string output = shouldWriteAsShell
-                ? $"{fileOutput}/{collectionName}-inserts.txt"
-                : $"{fileOutput}/{collectionName}.json";
-
-            Directory.CreateDirectory(fileOutput);
-            using (StreamWriter fileWriter = new(File.Create(output), Encoding.UTF8))
-            {
-                fileWriter.Write(shouldWriteAsShell ? $"db.{collectionName}.insertMany({insertsArray})" : insertsArray);
-            }
-
-            Console.WriteLine($"Inserts for {collectionName} written to {output}");
-            Console.WriteLine("Do you wish to exit? Type 'exit'");
-        }
-        else
-        {
-            EGetInsertsError error = insertsResult.GetError().GetValue();
-            Console.Error.WriteLine($"Error while getting inserts for {collectionName}: {error}");
-            Console.WriteLine("Do you wish to exit? Type 'exit'");
-        }
+        WriteInsertsBothFiles(dbRepository, kv.Key);
     }
 }
-while (collectionName is not null && collectionName != "exit");

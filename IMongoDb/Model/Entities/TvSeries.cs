@@ -17,9 +17,6 @@ public class TvSeries
 	[BsonIgnoreIfNull]
 	private BsonDateTime? endYear;
 	
-	[BsonElement("episodes")]
-	private IList<MongoDBRef> episodesIds = new List<MongoDBRef>();
-
 	public TvSeries(string id, BsonDateTime? endYear)
 	{
 		this.Id = id;
