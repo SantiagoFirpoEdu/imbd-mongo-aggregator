@@ -128,8 +128,11 @@ public class Title
 	private IList<MongoDBRef> writers = new List<MongoDBRef>();
 
 	[BsonElement("actors")]
-
-	private readonly HashSet<string> actorsSet = new();
+	private IList<MongoDBRef> Actors => actorsIds
+		.Select(actorId => new MongoDBRef(CollectionNames.ActorsCollectionName, actorId)).ToList();
+	
+	[BsonIgnore]
+	private readonly HashSet<string> actorsIds = new();
 
 	[BsonElement]
 	private IList<MongoDBRef> directors = new List<MongoDBRef>();
@@ -164,6 +167,6 @@ public class Title
 
 	public void AddActor(string actorId)
 	{
-		actorsSet.Add(actorId);
+		actorsIds.Add(actorId);
 	}
 }
