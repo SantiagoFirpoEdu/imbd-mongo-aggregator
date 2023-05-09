@@ -137,13 +137,16 @@ public class Title
 	[BsonElement]
 	private IList<MongoDBRef> directors = new List<MongoDBRef>();
 
-	public void AddCrew(IEnumerable<string>? writersIds, IEnumerable<string>? directorsIds)
+	public void AddCrew(IEnumerable<string>? writersIds, IEnumerable<string>? directorsIds, WriterCollection writerCollection, DirectorCollection directorCollection)
 	{
 		if (writersIds is not null)
 		{
 			foreach (string writerId in writersIds)
 			{
-				writers.Add(new MongoDBRef(CollectionNames.WritersCollectionName, writerId));
+				if (writerCollection.Contains(writerId))
+				{
+					writers.Add(new MongoDBRef(CollectionNames.WritersCollectionName, writerId));
+				}
 			}
 		}
 
@@ -154,7 +157,10 @@ public class Title
 
 		foreach (string directorId in directorsIds)
 		{
-			directors.Add(new MongoDBRef(CollectionNames.DirectorsCollectionName, directorId));
+			if (directorCollection.Contains(directorId))
+			{
+				directors.Add(new MongoDBRef(CollectionNames.DirectorsCollectionName, directorId));
+			}
 		}
 	}
 

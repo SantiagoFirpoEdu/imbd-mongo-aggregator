@@ -51,9 +51,9 @@ public class DbRepository
         LoadTitleBasics(tsvRepository);
         LoadNameBasics(tsvRepository);
         LoadTitleAkas(tsvRepository);
-        LoadTitleCrew(tsvRepository);
         LoadTitleEpisode(tsvRepository);
         LoadTitlePrincipals(tsvRepository);
+        LoadTitleCrew(tsvRepository);
         LoadTitleRatings(tsvRepository);
 
         GenerateFakeUsersAndRatings();
@@ -119,7 +119,7 @@ public class DbRepository
         foreach (var kv in titleCrew)
         {
             TitleCrew crewRecord = kv.Value;
-            Titles.AddCrew(crewRecord);
+            Titles.AddCrew(crewRecord, Writers, Directors);
         }
     }
 

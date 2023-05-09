@@ -25,4 +25,9 @@ public class DirectorCollection : IDbCollection
 	}
 
 	private readonly IDictionary<string, Director> directors = new Dictionary<string, Director>();
+
+	public bool Contains(string directorId)
+	{
+		return directors.ContainsKey(directorId);
+	}
 }

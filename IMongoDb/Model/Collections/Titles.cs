@@ -30,7 +30,7 @@ public class Titles : IDbCollection
 		}
 	}
 
-	public void AddCrew(TitleCrew crewRecord)
+	public void AddCrew(TitleCrew crewRecord, WriterCollection writerCollection, DirectorCollection directorCollection)
 	{
 		string? writersRecord = crewRecord.writers;
 		string[]? writers = writersRecord?.Split(",");
@@ -38,7 +38,7 @@ public class Titles : IDbCollection
 		
 		if (TryGetTitle(crewRecord.tconst, out Title? title))
 		{
-			title?.AddCrew(writers, directors);
+			title?.AddCrew(writers, directors, writerCollection, directorCollection);
 		}
 		else
 		{

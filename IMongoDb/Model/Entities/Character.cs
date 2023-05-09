@@ -1,3 +1,4 @@
+using IMongoDb.Model.Collections;
 using MongoDB.Bson.Serialization.Attributes;
 using MongoDB.Driver;
 
@@ -11,8 +12,26 @@ public record Character
 	)
 {
 	[BsonElement("playedByActors")]
-	private IList<MongoDBRef> playedByActorsIds = new List<MongoDBRef>();
-	
+	private IList<MongoDBRef> PlayedByActorsIds => uniqueActorIds
+		.Select(actorId => new MongoDBRef(CollectionNames.ActorsCollectionName, actorId)).ToList();
+
 	[BsonElement("titles")]
-	private IList<MongoDBRef> titlesIds = new List<MongoDBRef>();
+	private IList<MongoDBRef> TitlesIds => uniqueTitleIds
+		.Select(titleId => new MongoDBRef(CollectionNames.TitlesCollectionName, titleId)).ToList();
+
+	[BsonIgnore]
+	private readonly HashSet<string> uniqueTitleIds = new();
+	
+	[BsonIgnore]
+	private readonly HashSet<string> uniqueActorIds = new();
+
+	public void AddPlayedByActor(string actorId)
+	{
+		uniqueActorIds.Add(actorId);
+	}
+	
+	public void AddTitle(string titleId)
+	{
+		uniqueTitleIds.Add(titleId);
+	}
 }

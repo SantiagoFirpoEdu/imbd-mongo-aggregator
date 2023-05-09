@@ -28,4 +28,9 @@ public class WriterCollection : IDbCollection
 	{
 		return kv.Value.ToBsonDocument();
 	}
+
+	public bool Contains(string writerId)
+	{
+		return writers.ContainsKey(writerId);
+	}
 }

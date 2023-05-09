@@ -27,13 +27,19 @@ public record Actor([property: BsonId] string Id)
 		string principalCharacters = principal.characters.Replace("[", "").Replace("]", "");
 		string[] split = principalCharacters.Split(",");
 
+		string crewMemberId = principal.nconst;
+		string titleId = principal.tconst;
+
 		MongoDBRef CharacterRefCreator(string characterName)
 		{
 			Character character = characters.FindOrAddByName(characterName);
+			character.AddPlayedByActor(crewMemberId);
+			character.AddTitle(titleId);
 			return new MongoDBRef(CollectionNames.CharactersCollectionName, character.Id);
 		}
 
 		var dbRefs = split.Select(character => character.Replace("'", "")).Select(CharacterRefCreator);
+
 		return dbRefs;
 	}
 
