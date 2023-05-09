@@ -1,0 +1,773 @@
+﻿[
+  {
+    "_id": "tt0000247",
+    "Type": "short",
+    "PrimaryTitle": "King John",
+    "OriginalTitle": "King John",
+    "IsAdult": false,
+    "ReleaseYear": {
+      "$date": {
+        "$numberLong": "-2240517600000"
+      }
+    },
+    "rating": {
+      "averageRating": 5,
+      "numVotes": 494
+    },
+    "alternativeTitles": [],
+    "writers": [
+      {
+        "$ref": "writers",
+        "$id": "nm0000636"
+      }
+    ],
+    "directors": [
+      {
+        "_id": "nm0005690",
+        "primaryName": "William K.L. Dickson",
+        "birthYear": {
+          "$date": {
+            "$numberLong": "-3471285600000"
+          }
+        },
+        "deathYear": {
+          "$date": {
+            "$numberLong": "-1104530400000"
+          }
+        },
+        "knownForTitles": [
+          {
+            "$ref": "titles",
+            "$id": "tt0219560"
+          },
+          {
+            "$ref": "titles",
+            "$id": "tt0308254"
+          },
+          {
+            "$ref": "titles",
+            "$id": "tt1428455"
+          },
+          {
+            "$ref": "titles",
+            "$id": "tt1496763"
+          },
+          {
+            "$ref": "titles",
+            "$id": "tt0000001"
+          },
+          {
+            "$ref": "titles",
+            "$id": "tt0000005"
+          },
+          {
+            "$ref": "titles",
+            "$id": "tt0000006"
+          },
+          {
+            "$ref": "titles",
+            "$id": "tt0000007"
+          },
+          {
+            "$ref": "titles",
+            "$id": "tt0000008"
+          },
+          {
+            "$ref": "titles",
+            "$id": "tt0000036"
+          },
+          {
+            "$ref": "titles",
+            "$id": "tt0000060"
+          },
+          {
+            "$ref": "titles",
+            "$id": "tt0000076"
+          },
+          {
+            "$ref": "titles",
+            "$id": "tt0000082"
+          },
+          {
+            "$ref": "titles",
+            "$id": "tt0000108"
+          },
+          {
+            "$ref": "titles",
+            "$id": "tt0000109"
+          },
+          {
+            "$ref": "titles",
+            "$id": "tt0000110"
+          },
+          {
+            "$ref": "titles",
+            "$id": "tt0000111"
+          },
+          {
+            "$ref": "titles",
+            "$id": "tt0000112"
+          },
+          {
+            "$ref": "titles",
+            "$id": "tt0000113"
+          },
+          {
+            "$ref": "titles",
+            "$id": "tt0000135"
+          },
+          {
+            "$ref": "titles",
+            "$id": "tt0000201"
+          },
+          {
+            "$ref": "titles",
+            "$id": "tt0000247"
+          },
+          {
+            "$ref": "titles",
+            "$id": "tt0000464"
+          }
+        ]
+      }
+    ],
+    "genres": [
+      {
+        "$ref": "genres",
+        "$id": {
+          "$oid": "6459c1a24f34d9833e71ef4a"
+        }
+      },
+      {
+        "$ref": "genres",
+        "$id": {
+          "$oid": "6459c1a24f34d9833e71ef44"
+        }
+      }
+    ],
+    "actors": [
+      {
+        "_id": "nm0002504",
+        "charactersPlayed": []
+      }
+    ]
+  },
+  {
+    "_id": "tt0000541",
+    "Type": "short",
+    "PrimaryTitle": "Caros død",
+    "OriginalTitle": "Caros død",
+    "IsAdult": false,
+    "ReleaseYear": {
+      "$date": {
+        "$numberLong": "-2019679200000"
+      }
+    },
+    "rating": {
+      "averageRating": 0,
+      "numVotes": 0
+    },
+    "alternativeTitles": [],
+    "writers": [],
+    "directors": [],
+    "genres": [
+      {
+        "$ref": "genres",
+        "$id": {
+          "$oid": "6459c1a24f34d9833e71ef44"
+        }
+      }
+    ],
+    "actors": [
+      {
+        "_id": "nm0023121",
+        "charactersPlayed": []
+      }
+    ]
+  },
+  {
+    "_id": "tt0000511",
+    "Type": "short",
+    "PrimaryTitle": "Esmeralda",
+    "OriginalTitle": "Esmeralda",
+    "IsAdult": false,
+    "ReleaseYear": {
+      "$date": {
+        "$numberLong": "-2051215200000"
+      }
+    },
+    "rating": {
+      "averageRating": 6.4,
+      "numVotes": 45
+    },
+    "alternativeTitles": [],
+    "writers": [],
+    "directors": [],
+    "genres": [
+      {
+        "$ref": "genres",
+        "$id": {
+          "$oid": "6459c1a24f34d9833e71ef4a"
+        }
+      },
+      {
+        "$ref": "genres",
+        "$id": {
+          "$oid": "6459c1a24f34d9833e71ef44"
+        }
+      }
+    ],
+    "actors": [
+      {
+        "_id": "nm0065393",
+        "charactersPlayed": []
+      }
+    ]
+  },
+  {
+    "_id": "tt0000452",
+    "Type": "short",
+    "PrimaryTitle": "The Messenger Boy's Mistake",
+    "OriginalTitle": "The Messenger Boy's Mistake",
+    "IsAdult": false,
+    "ReleaseYear": {
+      "$date": {
+        "$numberLong": "-2114373600000"
+      }
+    },
+    "rating": {
+      "averageRating": 4.6,
+      "numVotes": 113
+    },
+    "alternativeTitles": [],
+    "writers": [],
+    "directors": [],
+    "genres": [
+      {
+        "$ref": "genres",
+        "$id": {
+          "$oid": "6459c1a24f34d9833e71ef46"
+        }
+      },
+      {
+        "$ref": "genres",
+        "$id": {
+          "$oid": "6459c1a24f34d9833e71ef47"
+        }
+      },
+      {
+        "$ref": "genres",
+        "$id": {
+          "$oid": "6459c1a24f34d9833e71ef44"
+        }
+      }
+    ],
+    "actors": [
+      {
+        "_id": "nm0001908",
+        "charactersPlayed": []
+      }
+    ]
+  },
+  {
+    "_id": "tt0000488",
+    "Type": "short",
+    "PrimaryTitle": "The Land Beyond the Sunset",
+    "OriginalTitle": "The Land Beyond the Sunset",
+    "IsAdult": false,
+    "ReleaseYear": {
+      "$date": {
+        "$numberLong": "-1830376800000"
+      }
+    },
+    "rating": {
+      "averageRating": 6.9,
+      "numVotes": 820
+    },
+    "alternativeTitles": [],
+    "writers": [],
+    "directors": [],
+    "genres": [
+      {
+        "$ref": "genres",
+        "$id": {
+          "$oid": "6459c1a24f34d9833e71ef4a"
+        }
+      },
+      {
+        "$ref": "genres",
+        "$id": {
+          "$oid": "6459c1a24f34d9833e71ef4b"
+        }
+      },
+      {
+        "$ref": "genres",
+        "$id": {
+          "$oid": "6459c1a24f34d9833e71ef44"
+        }
+      }
+    ],
+    "actors": [
+      {
+        "_id": "nm0065035",
+        "charactersPlayed": []
+      }
+    ]
+  },
+  {
+    "_id": "tt0000177",
+    "Type": "short",
+    "PrimaryTitle": "The Burglar on the Roof",
+    "OriginalTitle": "The Burglar on the Roof",
+    "IsAdult": false,
+    "ReleaseYear": {
+      "$date": {
+        "$numberLong": "-2272053600000"
+      }
+    },
+    "rating": {
+      "averageRating": 4.7,
+      "numVotes": 242
+    },
+    "alternativeTitles": [],
+    "writers": [],
+    "directors": [
+      {
+        "_id": "nm0085865",
+        "primaryName": "J. Stuart Blackton",
+        "birthYear": {
+          "$date": {
+            "$numberLong": "-2997900000000"
+          }
+        },
+        "deathYear": {
+          "$date": {
+            "$numberLong": "-915141600000"
+          }
+        },
+        "knownForTitles": [
+          {
+            "$ref": "titles",
+            "$id": "tt0010481"
+          },
+          {
+            "$ref": "titles",
+            "$id": "tt0008153"
+          },
+          {
+            "$ref": "titles",
+            "$id": "tt0010054"
+          },
+          {
+            "$ref": "titles",
+            "$id": "tt0013182"
+          },
+          {
+            "$ref": "titles",
+            "$id": "tt0000173"
+          },
+          {
+            "$ref": "titles",
+            "$id": "tt0000177"
+          },
+          {
+            "$ref": "titles",
+            "$id": "tt0000214"
+          },
+          {
+            "$ref": "titles",
+            "$id": "tt0000287"
+          },
+          {
+            "$ref": "titles",
+            "$id": "tt0000300"
+          },
+          {
+            "$ref": "titles",
+            "$id": "tt0000307"
+          },
+          {
+            "$ref": "titles",
+            "$id": "tt0000486"
+          },
+          {
+            "$ref": "titles",
+            "$id": "tt0000501"
+          },
+          {
+            "$ref": "titles",
+            "$id": "tt0000553"
+          },
+          {
+            "$ref": "titles",
+            "$id": "tt0000554"
+          }
+        ]
+      }
+    ],
+    "genres": [
+      {
+        "$ref": "genres",
+        "$id": {
+          "$oid": "6459c1a24f34d9833e71ef50"
+        }
+      },
+      {
+        "$ref": "genres",
+        "$id": {
+          "$oid": "6459c1a24f34d9833e71ef44"
+        }
+      }
+    ],
+    "actors": [
+      {
+        "_id": "nm0085865",
+        "charactersPlayed": []
+      }
+    ]
+  },
+  {
+    "_id": "tt0000525",
+    "Type": "short",
+    "PrimaryTitle": "Hanging at Jefferson City",
+    "OriginalTitle": "Pendaison à Jefferson City",
+    "IsAdult": false,
+    "ReleaseYear": {
+      "$date": {
+        "$numberLong": "-1893448800000"
+      }
+    },
+    "rating": {
+      "averageRating": 5.4,
+      "numVotes": 52
+    },
+    "alternativeTitles": [],
+    "writers": [],
+    "directors": [],
+    "genres": [
+      {
+        "$ref": "genres",
+        "$id": {
+          "$oid": "6459c1a24f34d9833e71ef44"
+        }
+      },
+      {
+        "$ref": "genres",
+        "$id": {
+          "$oid": "6459c1a24f34d9833e71ef51"
+        }
+      }
+    ],
+    "actors": [
+      {
+        "_id": "nm0014656",
+        "charactersPlayed": []
+      }
+    ]
+  },
+  {
+    "_id": "tt0000486",
+    "Type": "short",
+    "PrimaryTitle": "A Gentleman of France",
+    "OriginalTitle": "A Gentleman of France",
+    "IsAdult": false,
+    "ReleaseYear": {
+      "$date": {
+        "$numberLong": "-2051215200000"
+      }
+    },
+    "rating": {
+      "averageRating": 0,
+      "numVotes": 0
+    },
+    "alternativeTitles": [],
+    "writers": [],
+    "directors": [
+      {
+        "_id": "nm0085865",
+        "primaryName": "J. Stuart Blackton",
+        "birthYear": {
+          "$date": {
+            "$numberLong": "-2997900000000"
+          }
+        },
+        "deathYear": {
+          "$date": {
+            "$numberLong": "-915141600000"
+          }
+        },
+        "knownForTitles": [
+          {
+            "$ref": "titles",
+            "$id": "tt0010481"
+          },
+          {
+            "$ref": "titles",
+            "$id": "tt0008153"
+          },
+          {
+            "$ref": "titles",
+            "$id": "tt0010054"
+          },
+          {
+            "$ref": "titles",
+            "$id": "tt0013182"
+          },
+          {
+            "$ref": "titles",
+            "$id": "tt0000173"
+          },
+          {
+            "$ref": "titles",
+            "$id": "tt0000177"
+          },
+          {
+            "$ref": "titles",
+            "$id": "tt0000214"
+          },
+          {
+            "$ref": "titles",
+            "$id": "tt0000287"
+          },
+          {
+            "$ref": "titles",
+            "$id": "tt0000300"
+          },
+          {
+            "$ref": "titles",
+            "$id": "tt0000307"
+          },
+          {
+            "$ref": "titles",
+            "$id": "tt0000486"
+          },
+          {
+            "$ref": "titles",
+            "$id": "tt0000501"
+          },
+          {
+            "$ref": "titles",
+            "$id": "tt0000553"
+          },
+          {
+            "$ref": "titles",
+            "$id": "tt0000554"
+          }
+        ]
+      }
+    ],
+    "genres": [
+      {
+        "$ref": "genres",
+        "$id": {
+          "$oid": "6459c1a24f34d9833e71ef4a"
+        }
+      },
+      {
+        "$ref": "genres",
+        "$id": {
+          "$oid": "6459c1a24f34d9833e71ef44"
+        }
+      }
+    ],
+    "actors": [
+      {
+        "_id": "nm0069325",
+        "charactersPlayed": []
+      },
+      {
+        "_id": "nm0085865",
+        "charactersPlayed": []
+      },
+      {
+        "_id": "nm0085870",
+        "charactersPlayed": []
+      }
+    ]
+  },
+  {
+    "_id": "tt0000306",
+    "Type": "short",
+    "PrimaryTitle": "Le duel d'Hamlet",
+    "OriginalTitle": "Le duel d'Hamlet",
+    "IsAdult": false,
+    "ReleaseYear": {
+      "$date": {
+        "$numberLong": "-2208981600000"
+      }
+    },
+    "rating": {
+      "averageRating": 5.3,
+      "numVotes": 242
+    },
+    "alternativeTitles": [],
+    "writers": [
+      {
+        "$ref": "writers",
+        "$id": "nm0000636"
+      }
+    ],
+    "directors": [],
+    "genres": [
+      {
+        "$ref": "genres",
+        "$id": {
+          "$oid": "6459c1a24f34d9833e71ef4a"
+        }
+      },
+      {
+        "$ref": "genres",
+        "$id": {
+          "$oid": "6459c1a24f34d9833e71ef44"
+        }
+      }
+    ],
+    "actors": [
+      {
+        "_id": "nm0076800",
+        "charactersPlayed": []
+      }
+    ]
+  },
+
+  {
+    "_id": "tt0000376",
+    "Type": "short",
+    "PrimaryTitle": "A táncz",
+    "OriginalTitle": "A táncz",
+    "IsAdult": false,
+    "ReleaseYear": {
+      "$date": {
+        "$numberLong": "-2177445600000"
+      }
+    },
+    "rating": {
+      "averageRating": 6.1,
+      "numVotes": 20
+    },
+    "alternativeTitles": [],
+    "writers": [],
+    "directors": [],
+    "genres": [
+      {
+        "$ref": "genres",
+        "$id": {
+          "$oid": "6459c1a24f34d9833e71ef43"
+        }
+      },
+      {
+        "$ref": "genres",
+        "$id": {
+          "$oid": "6459c1a24f34d9833e71ef44"
+        }
+      }
+    ],
+    "actors": [
+      {
+        "_id": "nm0051042",
+        "charactersPlayed": []
+      },
+      {
+        "_id": "nm0078562",
+        "charactersPlayed": []
+      },
+      {
+        "_id": "nm0086082",
+        "charactersPlayed": []
+      }
+    ]
+  },
+  {
+    "_id": "tt0000528",
+    "Type": "short",
+    "PrimaryTitle": "Raffles, the Amateur Cracksman",
+    "OriginalTitle": "Raffles, the Amateur Cracksman",
+    "IsAdult": false,
+    "ReleaseYear": {
+      "$date": {
+        "$numberLong": "-2051215200000"
+      }
+    },
+    "rating": {
+      "averageRating": 6.2,
+      "numVotes": 17
+    },
+    "alternativeTitles": [],
+    "writers": [],
+    "directors": [
+      {
+        "_id": "nm0001908",
+        "primaryName": "Gilbert M. 'Broncho Billy' Anderson",
+        "birthYear": {
+          "$date": {
+            "$numberLong": "-2840133600000"
+          }
+        },
+        "deathYear": {
+          "$date": "1971-01-01T02:00:00.000Z"
+        },
+        "knownForTitles": [
+          {
+            "$ref": "titles",
+            "$id": "tt0001706"
+          },
+          {
+            "$ref": "titles",
+            "$id": "tt0183803"
+          },
+          {
+            "$ref": "titles",
+            "$id": "tt0176832"
+          },
+          {
+            "$ref": "titles",
+            "$id": "tt0003719"
+          },
+          {
+            "$ref": "titles",
+            "$id": "tt0000439"
+          },
+          {
+            "$ref": "titles",
+            "$id": "tt0000452"
+          },
+          {
+            "$ref": "titles",
+            "$id": "tt0000501"
+          },
+          {
+            "$ref": "titles",
+            "$id": "tt0000528"
+          }
+        ]
+      }
+    ],
+    "genres": [
+      {
+        "$ref": "genres",
+        "$id": {
+          "$oid": "6459c1a24f34d9833e71ef53"
+        }
+      },
+      {
+        "$ref": "genres",
+        "$id": {
+          "$oid": "6459c1a24f34d9833e71ef47"
+        }
+      },
+      {
+        "$ref": "genres",
+        "$id": {
+          "$oid": "6459c1a24f34d9833e71ef44"
+        }
+      }
+    ],
+    "actors": [
+      {
+        "_id": "nm0085870",
+        "charactersPlayed": []
+      }
+    ]
+  },
+  
+]

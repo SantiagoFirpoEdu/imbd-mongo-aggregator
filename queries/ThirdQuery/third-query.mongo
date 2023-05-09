@@ -1,4 +1,4 @@
-﻿[
+﻿db.directors.aggregate([
   {
     "$match": {
       "_id": "nm0005690"
@@ -59,4 +59,4 @@
         "movie": "$movie"
       }
   }
-]
+])

@@ -1,4 +1,4 @@
-﻿[
+﻿db.directors.aggregate([
   {
     "$lookup": {
       "from": "crewMembers",
@@ -28,4 +28,4 @@
       "name": "$crewMember.primaryName"
     }
   }
-]
+])

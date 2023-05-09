@@ -1,0 +1,91 @@
+﻿db.genres.aggregate([
+  {
+    "$match": {
+      "Name": "Short"
+    }
+  },
+  {
+    "$lookup": {
+      "from": "titles",
+      "localField": "titles.$id",
+      "foreignField": "_id",
+      "as": "titles"
+    }
+  },
+  {
+    "$unwind": "$titles"
+  },
+  {
+    "$lookup": {
+      "from": "crewMembers",
+      "localField": "titles.directors.$id",
+      "foreignField": "_id",
+      "as": "titles.directors"
+    }
+  },
+  {
+    "$lookup": {
+      "from": "actors",
+      "localField": "titles.actors.$id",
+      "foreignField": "_id",
+      "as": "titles.actors"
+    }
+  },
+  {
+    "$unwind":
+      {
+        "path": "$titles.actors",
+        "preserveNullAndEmptyArrays": false
+      }
+  },
+  {
+    "$lookup": {
+      "from": "characters",
+      "let": {
+        "actorIds": "$titles.actors._id",
+        "titleId": "$titles._id"
+      },
+      "pipeline": [
+        {
+          "$match": {
+            "$expr": {
+              "$and": [
+                {
+                  "$in": [
+                    "$actorId",
+                    ["$$actorIds"],
+                  ],
+                },
+                {
+                  "$eq": ["$titleId", "$$titleId"]
+                }
+              ]
+            }
+          }
+        }
+      ],
+      "as": "titles.actors.charactersPlayed"
+    }
+  },
+  {
+    "$group": {
+      "_id": "$titles._id",
+      "title": {
+        "$first": "$titles"
+      },
+      "actors": {
+        "$push": "$titles.actors"
+      }
+    }
+  },
+  {
+    "$addFields": {
+      "title.actors": "$actors",
+    }
+  },
+  {
+    "$replaceRoot": {
+      "newRoot": "$title",
+    }
+  }
+])

@@ -1,4 +1,4 @@
-﻿[
+﻿db.movies.aggregate([
   {
     "$lookup": {
       "from": "titles",
@@ -41,4 +41,4 @@
       "director.knownForTitles"
     ]
   }
-]
+])
