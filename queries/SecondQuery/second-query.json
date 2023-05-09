@@ -1,0 +1,31 @@
+﻿[
+  {
+    "$lookup": {
+      "from": "crewMembers",
+      "localField": "_id",
+      "foreignField": "_id",
+      "as": "crewMember"
+    }
+  },
+  {
+    "$lookup": {
+      "from": "actors",
+      "localField": "_id",
+      "foreignField": "_id",
+      "as": "actor"
+    }
+  },
+  {
+    "$match": {
+      "$expr": {
+        "$eq": ["$crewMember._id", "$actor._id"]
+      }
+    }
+  },
+  {
+    "$project": {
+      "_id": "$crewMember._id",
+      "name": "$crewMember.primaryName"
+    }
+  }
+]

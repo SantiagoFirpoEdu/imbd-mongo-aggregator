@@ -1,0 +1,39 @@
+﻿[
+  {
+    "$match": {
+      "Name": "Short"
+    }
+  },
+  {
+    "$lookup": {
+      "from": "titles",
+      "localField": "titles.$id",
+      "foreignField": "_id",
+      "as": "lookedUpTitles"
+    }
+  },
+  {
+    "$lookup": {
+      "from": "directors",
+      "localField": "lookedUpTitles.directors.$id",
+      "foreignField": "_id",
+      "as": "lookedUpDirectors"
+    }
+  },
+  {
+    "$lookup": {
+      "from": "actors",
+      "localField": "lookedUpTitles.actors.$id",
+      "foreignField": "_id",
+      "as": "lookedUpActors"
+    }
+  },
+  {
+    "$project": {
+      "_id": false,
+      "title": "$lookedUpTitles.PrimaryTitle",
+      "Directors": "$lookeUpDirectors.Name",
+      "Actors": "$lookedUpActors.Name"
+    }
+  }
+]
