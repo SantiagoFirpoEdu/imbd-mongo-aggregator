@@ -1,0 +1,695 @@
+﻿[
+{
+  "directorId": "nm0005690",
+  "name": "William K.L. Dickson",
+  "movie": {
+    "_id": "tt0000001",
+    "Type": "short",
+    "PrimaryTitle": "Carmencita",
+    "OriginalTitle": "Carmencita",
+    "IsAdult": false,
+    "ReleaseYear": {
+      "$date": {
+        "$numberLong": "-2398284000000"
+      }
+    },
+    "rating": {
+      "averageRating": 5.7,
+      "numVotes": 1964
+    },
+    "alternativeTitles": [],
+    "writers": [],
+    "directors": [
+      {
+        "$ref": "directors",
+        "$id": "nm0005690"
+      }
+    ],
+    "genres": [
+      {
+        "$ref": "genres",
+        "$id": {
+          "$oid": "6459c1a24f34d9833e71ef43"
+        }
+      },
+      {
+        "$ref": "genres",
+        "$id": {
+          "$oid": "6459c1a24f34d9833e71ef44"
+        }
+      }
+    ],
+    "actors": []
+  }
+},
+  {
+    "directorId": "nm0005690",
+    "name": "William K.L. Dickson",
+    "movie": {
+      "_id": "tt0000005",
+      "Type": "short",
+      "PrimaryTitle": "Blacksmith Scene",
+      "OriginalTitle": "Blacksmith Scene",
+      "IsAdult": false,
+      "ReleaseYear": {
+        "$date": {
+          "$numberLong": "-2429820000000"
+        }
+      },
+      "rating": {
+        "averageRating": 6.2,
+        "numVotes": 2606
+      },
+      "alternativeTitles": [],
+      "writers": [],
+      "directors": [
+        {
+          "$ref": "directors",
+          "$id": "nm0005690"
+        }
+      ],
+      "genres": [
+        {
+          "$ref": "genres",
+          "$id": {
+            "$oid": "6459c1a24f34d9833e71ef46"
+          }
+        },
+        {
+          "$ref": "genres",
+          "$id": {
+            "$oid": "6459c1a24f34d9833e71ef44"
+          }
+        }
+      ],
+      "actors": []
+    }
+  },
+  {
+    "directorId": "nm0005690",
+    "name": "William K.L. Dickson",
+    "movie": {
+      "_id": "tt0000006",
+      "Type": "short",
+      "PrimaryTitle": "Chinese Opium Den",
+      "OriginalTitle": "Chinese Opium Den",
+      "IsAdult": false,
+      "ReleaseYear": {
+        "$date": {
+          "$numberLong": "-2398284000000"
+        }
+      },
+      "rating": {
+        "averageRating": 5.2,
+        "numVotes": 181
+      },
+      "alternativeTitles": [],
+      "writers": [],
+      "directors": [
+        {
+          "$ref": "directors",
+          "$id": "nm0005690"
+        }
+      ],
+      "genres": [
+        {
+          "$ref": "genres",
+          "$id": {
+            "$oid": "6459c1a24f34d9833e71ef44"
+          }
+        }
+      ],
+      "actors": []
+    }
+  },
+  {
+    "directorId": "nm0005690",
+    "name": "William K.L. Dickson",
+    "movie": {
+      "_id": "tt0000007",
+      "Type": "short",
+      "PrimaryTitle": "Corbett and Courtney Before the Kinetograph",
+      "OriginalTitle": "Corbett and Courtney Before the Kinetograph",
+      "IsAdult": false,
+      "ReleaseYear": {
+        "$date": {
+          "$numberLong": "-2398284000000"
+        }
+      },
+      "rating": {
+        "averageRating": 5.4,
+        "numVotes": 816
+      },
+      "alternativeTitles": [],
+      "writers": [],
+      "directors": [
+        {
+          "$ref": "directors",
+          "$id": "nm0005690"
+        }
+      ],
+      "genres": [
+        {
+          "$ref": "genres",
+          "$id": {
+            "$oid": "6459c1a24f34d9833e71ef44"
+          }
+        },
+        {
+          "$ref": "genres",
+          "$id": {
+            "$oid": "6459c1a24f34d9833e71ef48"
+          }
+        }
+      ],
+      "actors": []
+    }
+  },
+  {
+    "directorId": "nm0005690",
+    "name": "William K.L. Dickson",
+    "movie": {
+      "_id": "tt0000008",
+      "Type": "short",
+      "PrimaryTitle": "Edison Kinetoscopic Record of a Sneeze",
+      "OriginalTitle": "Edison Kinetoscopic Record of a Sneeze",
+      "IsAdult": false,
+      "ReleaseYear": {
+        "$date": {
+          "$numberLong": "-2398284000000"
+        }
+      },
+      "rating": {
+        "averageRating": 5.4,
+        "numVotes": 2104
+      },
+      "alternativeTitles": [],
+      "writers": [],
+      "directors": [
+        {
+          "$ref": "directors",
+          "$id": "nm0005690"
+        }
+      ],
+      "genres": [
+        {
+          "$ref": "genres",
+          "$id": {
+            "$oid": "6459c1a24f34d9833e71ef43"
+          }
+        },
+        {
+          "$ref": "genres",
+          "$id": {
+            "$oid": "6459c1a24f34d9833e71ef44"
+          }
+        }
+      ],
+      "actors": []
+    }
+  },
+  {
+    "directorId": "nm0005690",
+    "name": "William K.L. Dickson",
+    "movie": {
+      "_id": "tt0000036",
+      "Type": "short",
+      "PrimaryTitle": "Awakening of Rip",
+      "OriginalTitle": "Awakening of Rip",
+      "IsAdult": false,
+      "ReleaseYear": {
+        "$date": {
+          "$numberLong": "-2335212000000"
+        }
+      },
+      "rating": {
+        "averageRating": 4.4,
+        "numVotes": 604
+      },
+      "alternativeTitles": [],
+      "writers": [],
+      "directors": [
+        {
+          "$ref": "directors",
+          "$id": "nm0005690"
+        }
+      ],
+      "genres": [
+        {
+          "$ref": "genres",
+          "$id": {
+            "$oid": "6459c1a24f34d9833e71ef4a"
+          }
+        },
+        {
+          "$ref": "genres",
+          "$id": {
+            "$oid": "6459c1a24f34d9833e71ef44"
+          }
+        }
+      ],
+      "actors": []
+    }
+  },
+  {
+    "directorId": "nm0005690",
+    "name": "William K.L. Dickson",
+    "movie": {
+      "_id": "tt0000060",
+      "Type": "short",
+      "PrimaryTitle": "Dancing Darkies",
+      "OriginalTitle": "Dancing Darkies",
+      "IsAdult": false,
+      "ReleaseYear": {
+        "$date": {
+          "$numberLong": "-2335212000000"
+        }
+      },
+      "rating": {
+        "averageRating": 7.4,
+        "numVotes": 89
+      },
+      "alternativeTitles": [],
+      "writers": [],
+      "directors": [
+        {
+          "$ref": "directors",
+          "$id": "nm0005690"
+        }
+      ],
+      "genres": [
+        {
+          "$ref": "genres",
+          "$id": {
+            "$oid": "6459c1a24f34d9833e71ef43"
+          }
+        },
+        {
+          "$ref": "genres",
+          "$id": {
+            "$oid": "6459c1a24f34d9833e71ef44"
+          }
+        }
+      ],
+      "actors": []
+    }
+  },
+  {
+    "directorId": "nm0005690",
+    "name": "William K.L. Dickson",
+    "movie": {
+      "_id": "tt0000076",
+      "Type": "short",
+      "PrimaryTitle": "Exit of Rip and the Dwarf",
+      "OriginalTitle": "Exit of Rip and the Dwarf",
+      "IsAdult": false,
+      "ReleaseYear": {
+        "$date": {
+          "$numberLong": "-2335212000000"
+        }
+      },
+      "rating": {
+        "averageRating": 4.5,
+        "numVotes": 535
+      },
+      "alternativeTitles": [],
+      "writers": [],
+      "directors": [
+        {
+          "$ref": "directors",
+          "$id": "nm0005690"
+        }
+      ],
+      "genres": [
+        {
+          "$ref": "genres",
+          "$id": {
+            "$oid": "6459c1a24f34d9833e71ef4a"
+          }
+        },
+        {
+          "$ref": "genres",
+          "$id": {
+            "$oid": "6459c1a24f34d9833e71ef44"
+          }
+        }
+      ],
+      "actors": []
+    }
+  },
+
+  {
+    "directorId": "nm0005690",
+    "name": "William K.L. Dickson",
+    "movie": {
+      "_id": "tt0000082",
+      "Type": "short",
+      "PrimaryTitle": "A Hard Wash",
+      "OriginalTitle": "A Hard Wash",
+      "IsAdult": false,
+      "ReleaseYear": {
+        "$date": {
+          "$numberLong": "-2335212000000"
+        }
+      },
+      "rating": {
+        "averageRating": 4.6,
+        "numVotes": 51
+      },
+      "alternativeTitles": [],
+      "writers": [],
+      "directors": [
+        {
+          "$ref": "directors",
+          "$id": "nm0005690"
+        }
+      ],
+      "genres": [
+        {
+          "$ref": "genres",
+          "$id": {
+            "$oid": "6459c1a24f34d9833e71ef46"
+          }
+        },
+        {
+          "$ref": "genres",
+          "$id": {
+            "$oid": "6459c1a24f34d9833e71ef44"
+          }
+        }
+      ],
+      "actors": []
+    }
+  },
+  {
+    "directorId": "nm0005690",
+    "name": "William K.L. Dickson",
+    "movie": {
+      "_id": "tt0000108",
+      "Type": "short",
+      "PrimaryTitle": "Rip Leaving Sleepy Hollow",
+      "OriginalTitle": "Rip Leaving Sleepy Hollow",
+      "IsAdult": false,
+      "ReleaseYear": {
+        "$date": {
+          "$numberLong": "-2335212000000"
+        }
+      },
+      "rating": {
+        "averageRating": 4.4,
+        "numVotes": 544
+      },
+      "alternativeTitles": [],
+      "writers": [],
+      "directors": [
+        {
+          "$ref": "directors",
+          "$id": "nm0005690"
+        }
+      ],
+      "genres": [
+        {
+          "$ref": "genres",
+          "$id": {
+            "$oid": "6459c1a24f34d9833e71ef4a"
+          }
+        },
+        {
+          "$ref": "genres",
+          "$id": {
+            "$oid": "6459c1a24f34d9833e71ef44"
+          }
+        }
+      ],
+      "actors": []
+    }
+  },
+  {
+    "directorId": "nm0005690",
+    "name": "William K.L. Dickson",
+    "movie": {
+      "_id": "tt0000109",
+      "Type": "short",
+      "PrimaryTitle": "Rip Meeting the Dwarf",
+      "OriginalTitle": "Rip Meeting the Dwarf",
+      "IsAdult": false,
+      "ReleaseYear": {
+        "$date": {
+          "$numberLong": "-2335212000000"
+        }
+      },
+      "rating": {
+        "averageRating": 4.5,
+        "numVotes": 527
+      },
+      "alternativeTitles": [],
+      "writers": [],
+      "directors": [
+        {
+          "$ref": "directors",
+          "$id": "nm0005690"
+        }
+      ],
+      "genres": [
+        {
+          "$ref": "genres",
+          "$id": {
+            "$oid": "6459c1a24f34d9833e71ef4b"
+          }
+        },
+        {
+          "$ref": "genres",
+          "$id": {
+            "$oid": "6459c1a24f34d9833e71ef44"
+          }
+        }
+      ],
+      "actors": []
+    }
+  },
+  {
+    "directorId": "nm0005690",
+    "name": "William K.L. Dickson",
+    "movie": {
+      "_id": "tt0000110",
+      "Type": "short",
+      "PrimaryTitle": "Rip Passing Over the Mountain",
+      "OriginalTitle": "Rip Passing Over the Mountain",
+      "IsAdult": false,
+      "ReleaseYear": {
+        "$date": {
+          "$numberLong": "-2335212000000"
+        }
+      },
+      "rating": {
+        "averageRating": 4.4,
+        "numVotes": 531
+      },
+      "alternativeTitles": [],
+      "writers": [],
+      "directors": [
+        {
+          "$ref": "directors",
+          "$id": "nm0005690"
+        }
+      ],
+      "genres": [
+        {
+          "$ref": "genres",
+          "$id": {
+            "$oid": "6459c1a24f34d9833e71ef4b"
+          }
+        },
+        {
+          "$ref": "genres",
+          "$id": {
+            "$oid": "6459c1a24f34d9833e71ef44"
+          }
+        }
+      ],
+      "actors": []
+    }
+  },
+  {
+    "directorId": "nm0005690",
+    "name": "William K.L. Dickson",
+    "movie": {
+      "_id": "tt0000112",
+      "Type": "short",
+      "PrimaryTitle": "Rip's Toast to Hudson",
+      "OriginalTitle": "Rip's Toast to Hudson",
+      "IsAdult": false,
+      "ReleaseYear": {
+        "$date": {
+          "$numberLong": "-2335212000000"
+        }
+      },
+      "rating": {
+        "averageRating": 4.5,
+        "numVotes": 525
+      },
+      "alternativeTitles": [],
+      "writers": [],
+      "directors": [
+        {
+          "$ref": "directors",
+          "$id": "nm0005690"
+        }
+      ],
+      "genres": [
+        {
+          "$ref": "genres",
+          "$id": {
+            "$oid": "6459c1a24f34d9833e71ef4b"
+          }
+        },
+        {
+          "$ref": "genres",
+          "$id": {
+            "$oid": "6459c1a24f34d9833e71ef44"
+          }
+        }
+      ],
+      "actors": []
+    }
+  },
+  {
+    "directorId": "nm0005690",
+    "name": "William K.L. Dickson",
+    "movie": {
+      "_id": "tt0000201",
+      "Type": "short",
+      "PrimaryTitle": "Indian War Council",
+      "OriginalTitle": "Indian War Council",
+      "IsAdult": false,
+      "ReleaseYear": {
+        "$date": {
+          "$numberLong": "-2272053600000"
+        }
+      },
+      "rating": {
+        "averageRating": 0,
+        "numVotes": 0
+      },
+      "alternativeTitles": [],
+      "writers": [],
+      "directors": [
+        {
+          "$ref": "directors",
+          "$id": "nm0005690"
+        }
+      ],
+      "genres": [
+        {
+          "$ref": "genres",
+          "$id": {
+            "$oid": "6459c1a24f34d9833e71ef49"
+          }
+        },
+        {
+          "$ref": "genres",
+          "$id": {
+            "$oid": "6459c1a24f34d9833e71ef44"
+          }
+        }
+      ],
+      "actors": []
+    }
+  },
+  {
+    "directorId": "nm0005690",
+    "name": "William K.L. Dickson",
+    "movie": {
+      "_id": "tt0000247",
+      "Type": "short",
+      "PrimaryTitle": "King John",
+      "OriginalTitle": "King John",
+      "IsAdult": false,
+      "ReleaseYear": {
+        "$date": {
+          "$numberLong": "-2240517600000"
+        }
+      },
+      "rating": {
+        "averageRating": 5,
+        "numVotes": 494
+      },
+      "alternativeTitles": [],
+      "writers": [
+        {
+          "$ref": "writers",
+          "$id": "nm0000636"
+        }
+      ],
+      "directors": [
+        {
+          "$ref": "directors",
+          "$id": "nm0005690"
+        }
+      ],
+      "genres": [
+        {
+          "$ref": "genres",
+          "$id": {
+            "$oid": "6459c1a24f34d9833e71ef4a"
+          }
+        },
+        {
+          "$ref": "genres",
+          "$id": {
+            "$oid": "6459c1a24f34d9833e71ef44"
+          }
+        }
+      ],
+      "actors": [
+        {
+          "$ref": "actors",
+          "$id": "nm0002504"
+        }
+      ]
+    }
+  },
+  {
+    "directorId": "nm0005690",
+    "name": "William K.L. Dickson",
+    "movie": {
+      "_id": "tt0000464",
+      "Type": "short",
+      "PrimaryTitle": "Rip Van Winkle",
+      "OriginalTitle": "Rip Van Winkle",
+      "IsAdult": false,
+      "ReleaseYear": {
+        "$date": {
+          "$numberLong": "-2335212000000"
+        }
+      },
+      "rating": {
+        "averageRating": 4.7,
+        "numVotes": 449
+      },
+      "alternativeTitles": [],
+      "writers": [],
+      "directors": [
+        {
+          "$ref": "directors",
+          "$id": "nm0005690"
+        }
+      ],
+      "genres": [
+        {
+          "$ref": "genres",
+          "$id": {
+            "$oid": "6459c1a24f34d9833e71ef46"
+          }
+        },
+        {
+          "$ref": "genres",
+          "$id": {
+            "$oid": "6459c1a24f34d9833e71ef44"
+          }
+        }
+      ],
+      "actors": []
+    }
+  }
+]

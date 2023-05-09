@@ -1,82 +1,62 @@
 ﻿[
   {
     "$match": {
-      "_id": "nm0721526"
+      "_id": "nm0005690"
     }
   },
   {
     "$lookup": {
       "from": "jobs",
       "localField": "_id",
-      "foreignField": "crewMember._id",
+      "foreignField": "crewMember.$id",
       "as": "jobs"
     }
   },
   {
+    "$unwind":
+      {
+        "path": "$jobs",
+        "preserveNullAndEmptyArrays": false
+      }
+  },
+  {
     "$lookup": {
       "from": "titles",
-      "localField": "_id",
+      "localField": "jobs.workedOnTitle.$id",
       "foreignField": "_id",
-      "as": "title_info"
+      "as": "movie"
     }
   },
   {
-    "$unwind": "$directors"
+    "$unwind":
+      {
+        "path": "$movie",
+        "preserveNullAndEmptyArrays": false
+      }
   },
   {
-    "$match": {
-      "directors._id": "nm0000288"
-    }
+    "$lookup":
+      {
+        "from": "crewMembers",
+        "localField": "_id",
+        "foreignField": "_id",
+        "as": "crewMember"
+      }
   },
   {
-    "$lookup": {
-      "from": "crewMembers",
-      "let": {
-        "director_id": "$directors._id"
-      },
-      "pipeline": [
-        {
-          "$match": {
-            "$expr": {
-              "$eq": ["$_id", "$$director_id"]
-            }
-          }
-        },
-        {
-          "$lookup": {
-            "from": "titles",
-            "localField": "knownForTitles.$id",
-            "foreignField": "_id",
-            "as": "knownForTitles"
-          }
-        },
-        {
-          "$lookup": {
-            "from": "genres",
-            "localField":
-              "knownForTitles.genres.$id",
-            "foreignField": "_id",
-            "as": "knownForTitles.genres"
-          }
-        },
-        {
-          "$project": {
-            "_id": 0,
-            "name": "$primaryName",
-            "birth_year": "$birthYear",
-            "death_year": "$deathYear",
-            "known_for": "$knownForTitles"
-          }
-        }
-      ],
-      "as": "director_info"
-    }
+    "$unwind":
+      {
+        "path": "$crewMember",
+        "preserveNullAndEmptyArrays": false
+      }
   },
   {
-    "$project": {
-      "_id": 0,
-      "director_info.known_for.genres._id": 0,
-      "director_info.known_for.genres.__v": 0
-    }
+    "$project":
+      {
+        "_id": false,
+        "directorId": "$_id",
+        "name": "$crewMember.primaryName",
+        "movie": "$movie"
+      }
   }
 ]
