@@ -1,0 +1,44 @@
+﻿[
+  {
+    "$lookup": {
+      "from": "titles",
+      "localField": "_id",
+      "foreignField": "_id",
+      "as": "title"
+    }
+  },
+  {
+    "$unwind": "$title"
+  },
+  {
+    "$unwind": "$title.directors"
+  },
+  {
+    "$lookup": {
+      "from": "crewMembers",
+      "localField": "title.directors.$id",
+      "foreignField": "_id",
+      "as": "director"
+    }
+  },
+  {
+    "$unwind": "$director"
+  },
+  {
+    "$lookup": {
+      "from": "titles",
+      "localField": "director.knownForTitles.$id",
+      "foreignField": "_id",
+      "as": "director.knownForMovies"
+    }
+  },
+  {
+    "$unset": [
+      "_id",
+      "runtimeMinutes",
+      "title",
+      "characters",
+      "director.knownForTitles"
+    ]
+  }
+]

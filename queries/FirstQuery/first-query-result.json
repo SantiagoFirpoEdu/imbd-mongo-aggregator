@@ -1,0 +1,61 @@
+﻿{
+  "director": {
+    "_id": "nm0085156",
+    "primaryName": "Alexander Black",
+    "birthYear": {
+      "$date": {
+        "$numberLong": "-3502821600000"
+      }
+    },
+    "deathYear": {
+      "$date": {
+        "$numberLong": "-946764000000"
+      }
+    },
+    "knownForMovies": [
+      {
+        "_id": "tt0000009",
+        "Type": "movie",
+        "PrimaryTitle": "Miss Jerry",
+        "OriginalTitle": "Miss Jerry",
+        "IsAdult": false,
+        "ReleaseYear": {
+          "$date": {
+            "$numberLong": "-2398284000000"
+          }
+        },
+        "rating": {
+          "averageRating": 5.3,
+          "numVotes": 204
+        },
+        "alternativeTitles": [],
+        "writers": [
+          {
+            "$ref": "writers",
+            "$id": "nm0085156"
+          }
+        ],
+        "actors": [
+          {
+            "$ref": "actors",
+            "$id": "nm0063086"
+          }
+        ],
+        "directors": [
+          {
+            "$ref": "directors",
+            "$id": "nm0085156"
+          }
+        ],
+        "genres": [
+          {
+            "$ref": "genres",
+            "$id": {
+              "$oid": "6458817c006a5a35cfccba7e"
+            }
+          }
+        ]
+      }
+    ]
+  }
+}
