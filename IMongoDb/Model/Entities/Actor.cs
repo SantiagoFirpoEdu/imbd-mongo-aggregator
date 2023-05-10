@@ -9,19 +9,22 @@ namespace IMongoDb.Model.Entities;
 [BsonDiscriminator("Actor")]
 public record Actor([property: BsonId] string Id)
 {
-	public static Result<Actor, EActorConversionError> FromPrincipal(TitlePrincipal principal, CharacterCollection characters)
+	public static Result<Actor, EActorConversionError> FromPrincipal(TitlePrincipal principal,
+		CharacterCollection characters, Titles titles)
 	{
 		if (!principal.IsActor())
 		{
 			return Result<Actor, EActorConversionError>.Error(EActorConversionError.NotAnActor);
 		}
 
+		var characterIds = CharactersCsvToList(principal, characters);
+		titles.AddCharacters(principal.tconst, characterIds);
+
 		Actor result = new(principal.nconst);
-		result.charactersPlayedIds.AddRange(CharactersCsvToList(principal, characters));
 		return Result<Actor, EActorConversionError>.Ok(result);
 	}
 
-	private static IEnumerable<MongoDBRef> CharactersCsvToList(TitlePrincipal principal, CharacterCollection characters)
+	private static IEnumerable<string> CharactersCsvToList(TitlePrincipal principal, CharacterCollection characters)
 	{
 		string principalCharacters = principal.characters.Replace("[", "").Replace("]", "");
 		string[] split = principalCharacters.Split(",");
@@ -29,19 +32,31 @@ public record Actor([property: BsonId] string Id)
 		string crewMemberId = principal.nconst;
 		string titleId = principal.tconst;
 
-		MongoDBRef CharacterRefCreator(string characterName)
+		string CharacterIdMapper(string characterName)
 		{
 			Character character = characters.FindOrAddByName(characterName);
 			character.AddPlayedByActor(crewMemberId);
 			character.AddTitle(titleId);
-			return new MongoDBRef(CollectionNames.CharactersCollectionName, character.Id);
+			return character.Id;
 		}
 
-		var dbRefs = split.Select(character => character.Replace("'", "")).Select(CharacterRefCreator);
+		var characterIds = split.Select(character => character.Replace("'", "")).Select(CharacterIdMapper);
 
-		return dbRefs;
+		return characterIds;
 	}
 
 	[BsonElement("charactersPlayed")]
-	private readonly List<MongoDBRef> charactersPlayedIds = new();
+	private IList<MongoDBRef> CharactersPlayedIds => uniqueCharactersPlayedIds
+		.Select(characterId => new MongoDBRef(CollectionNames.CharactersCollectionName, characterId)).ToList();
+	
+	[BsonIgnore]
+	private readonly HashSet<string> uniqueCharactersPlayedIds = new();
+
+	public void CopyTo(Actor foundActor)
+	{
+		foreach (string characterId in uniqueCharactersPlayedIds)
+		{
+			foundActor.uniqueCharactersPlayedIds.Add(characterId);
+		}
+	}
 }

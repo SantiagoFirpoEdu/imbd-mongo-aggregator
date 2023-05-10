@@ -199,13 +199,13 @@ public class DbRepository
         }
         else if (titlePrincipal.IsActor())
         {
-            LoadPrincipalAsActor(titlePrincipal, Titles);
+            LoadPrincipalAsActor(titlePrincipal);
         }
     }
 
-    private void LoadPrincipalAsActor(TitlePrincipal titlePrincipal, Titles titles)
+    private void LoadPrincipalAsActor(TitlePrincipal titlePrincipal)
     {
-        var conversionResult = Actor.FromPrincipal(titlePrincipal, Characters);
+        var conversionResult = Actor.FromPrincipal(titlePrincipal, Characters, Titles);
         if (!conversionResult.WasSuccessful())
         {
             return;
@@ -213,7 +213,7 @@ public class DbRepository
 
         Actor actor = conversionResult.GetOk().GetValue();
         Actors.Add(actor);
-        titles.AddActor(titlePrincipal.tconst, actor);
+        Titles.AddActor(titlePrincipal.tconst, actor);
     }
 
     private void LoadPrincipalAsWriter(TitlePrincipal titlePrincipal)

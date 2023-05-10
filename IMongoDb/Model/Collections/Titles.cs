@@ -1,6 +1,7 @@
 using IMongoDb.Model.Entities;
 using IMongoDb.Model.TsvRecords;
 using MongoDB.Bson;
+using MongoDB.Driver;
 
 namespace IMongoDb.Model.Collections;
 
@@ -92,9 +93,22 @@ public class Titles : IDbCollection
 
 	public void AddActor(string titleId, Actor actor)
 	{
-		if (titles.TryGetValue(titleId, out Title? title))
+		if (TryGetTitle(titleId, out Title? title))
 		{
-			title.AddActor(actor.Id);
+			title?.AddActor(actor.Id);
+		}
+	}
+
+	public void AddCharacters(string titleId, IEnumerable<string> characterIds)
+	{
+		if (!TryGetTitle(titleId, out Title? title))
+		{
+			return;
+		}
+
+		foreach (string characterId in characterIds)
+		{
+			title?.AddCharacter(characterId);
 		}
 	}
 }

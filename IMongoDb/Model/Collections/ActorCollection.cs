@@ -7,7 +7,10 @@ public class ActorCollection : IDbCollection
 {
 	public void Add(Actor actor)
 	{
-		Actor existingActor = actors.TryGetValue(actor.Id, )
+		if (actors.TryGetValue(actor.Id, out Actor? foundActor))
+		{
+			actor.CopyTo(foundActor);
+		}
 		actors.TryAdd(actor.Id, actor);
 	}
 
