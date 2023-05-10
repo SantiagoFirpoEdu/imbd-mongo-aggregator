@@ -17,7 +17,7 @@ public class Genre
 	[BsonId]
 	public ObjectId Id { get; }
 
-	[BsonElement]
+	[BsonElement("name")]
 	public string Name { get; private set; }
 
 	[BsonElement("titles")]

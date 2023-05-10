@@ -8,7 +8,7 @@ namespace IMongoDb.Model.Entities;
 public record Character
 	(
 		[property: BsonId] string Id,
-		[property: BsonElement] string Name
+		[property: BsonElement("name")] string Name
 	)
 {
 	[BsonElement("playedByActors")]

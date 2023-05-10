@@ -37,23 +37,22 @@ public class Title
 		}
 	}
 
-
 	[BsonId]
 	public string Id { get; private set; }
 
-	[BsonElement]
+	[BsonElement("type")]
 	public string Type { get; private set; }
 	
-	[BsonElement]
+	[BsonElement("primaryTitle")]
 	public string PrimaryTitle { get; private set; }
 	
-	[BsonElement]
+	[BsonElement("originalTitle")]
 	public string OriginalTitle { get; private set; }
 	
-	[BsonElement]
+	[BsonElement("isAdult")]
 	public bool IsAdult { get; private set; }
 	
-	[BsonElement]
+	[BsonElement("releaseYear")]
 	[BsonIgnoreIfNull]
 	public BsonDateTime? ReleaseYear { get; private set; }
 

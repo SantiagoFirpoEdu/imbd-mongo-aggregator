@@ -7,6 +7,7 @@ public class ActorCollection : IDbCollection
 {
 	public void Add(Actor actor)
 	{
+		Actor existingActor = actors.TryGetValue(actor.Id, )
 		actors.TryAdd(actor.Id, actor);
 	}
 

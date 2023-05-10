@@ -10,7 +10,7 @@ namespace IMongoDb.Model.Entities;
 [BsonDiscriminator("CrewMember")]
 public record CrewMember
 {
-	[BsonElement]
+	[BsonId]
 	public string Id { get; private set; }
 
 	[BsonElement]
