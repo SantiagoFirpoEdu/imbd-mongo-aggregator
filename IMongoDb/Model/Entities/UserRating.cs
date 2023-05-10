@@ -6,12 +6,6 @@ namespace IMongoDb.Model.Entities;
 [BsonDiscriminator("UserRating")]
 public class UserRating
 {
-	public UserRating(int score, string titleId, string userEmail)
-	{
-		this.score = score;
-		Id = new UserRatingId(userEmail, titleId);
-	}
-	
 	public static UserRating GetFakeUserRating(string ratedTitleId, string userEmail)
 	{
 		int score = Faker.RandomNumber.Next(1, 5);
@@ -24,4 +18,9 @@ public class UserRating
 	[BsonElement]
 	private int score;
 
+	private UserRating(int score, string titleId, string userEmail)
+	{
+		this.score = score;
+		Id = new UserRatingId(userEmail, titleId);
+	}
 }

@@ -10,11 +10,6 @@ public class WriterCollection : IDbCollection
 		writers.TryAdd(writer.Id, writer);
 	}
 
-	public IList<Writer> ToList()
-	{
-		return writers.Values.ToList();
-	}
-
 	private readonly IDictionary<string, Writer> writers = new Dictionary<string, Writer>();
 	public BsonArray ToBsonArray()
 	{

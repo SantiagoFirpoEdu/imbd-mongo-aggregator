@@ -6,14 +6,6 @@ namespace IMongoDb.Model.Entities;
 [BsonDiscriminator("User")]
 public class User
 {
-	public User(string email, BsonDateTime birthDate, string gender, string country)
-	{
-		this.Email = email;
-		this.birthDate = birthDate;
-		this.gender = gender;
-		this.country = country;
-	}
-
 	public static User GetFakeUser()
 	{
 		string email = Faker.Internet.Email();
@@ -24,7 +16,16 @@ public class User
 		return new User(email, birthDate, gender, country);
 	}
 
-	[field: BsonId] public string Email { get; }
+	[BsonId]
+	public string Email { get; }
+	
+	private User(string email, BsonDateTime birthDate, string gender, string country)
+	{
+		this.Email = email;
+		this.birthDate = birthDate;
+		this.gender = gender;
+		this.country = country;
+	}
 
 	[BsonElement]
 	private BsonDateTime birthDate;
