@@ -18,16 +18,11 @@ public class Director
 		return Result<Director, EDirectorConversionError>.Ok(result);
 	}
 
-	public Director(string id)
+	[BsonId]
+	public string Id { get; }
+	
+	private Director(string id)
 	{
 		Id = id;
 	}
-
-	[BsonId]
-	public string Id { get; }
-}
-
-public enum EDirectorConversionError
-{
-	NotADirector
 }

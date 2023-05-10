@@ -19,7 +19,6 @@ public record Actor([property: BsonId] string Id)
 		Actor result = new(principal.nconst);
 		result.charactersPlayedIds.AddRange(CharactersCsvToList(principal, characters));
 		return Result<Actor, EActorConversionError>.Ok(result);
-
 	}
 
 	private static IEnumerable<MongoDBRef> CharactersCsvToList(TitlePrincipal principal, CharacterCollection characters)
@@ -45,9 +44,4 @@ public record Actor([property: BsonId] string Id)
 
 	[BsonElement("charactersPlayed")]
 	private readonly List<MongoDBRef> charactersPlayedIds = new();
-}
-
-public enum EActorConversionError
-{
-	NotAnActor,
 }

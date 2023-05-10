@@ -27,10 +27,5 @@ namespace IMongoDb.Model.Entities
 		[BsonId]
 		public string Id { get; }
 	}
-
-	public enum EWriterConversionError
-	{
-		NotAWriter
-	}
 }
 

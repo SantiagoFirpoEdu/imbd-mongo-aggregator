@@ -29,25 +29,25 @@ public class Option<TSomeValueType>
 			: noneMapper.Invoke();
 	}
 
-	public OutType MapExpression<OutType>(Func<TSomeValueType, OutType> someMapper, Func<OutType> noneMapper)
+	public TOutType MapExpression<TOutType>(Func<TSomeValueType, TOutType> someMapper, Func<TOutType> noneMapper)
 	{
 		return value is not null ? someMapper.Invoke(value)
 			: noneMapper.Invoke();
 	}
 
-	public Option<OutOptionalType> AndThen<OutOptionalType>(Func<TSomeValueType, Option<OutOptionalType>> optionMapper)
+	public Option<TOutOptionalType> AndThen<TOutOptionalType>(Func<TSomeValueType, Option<TOutOptionalType>> optionMapper)
 	{
 		var nestedOption = Map(optionMapper);
 
-		return nestedOption.IsSet() && (nestedOption.GetValue().IsSet()) ? Option<OutOptionalType>.Some(nestedOption.GetValue().GetValue())
-			: Option<OutOptionalType>.None();
+		return nestedOption.IsSet() && (nestedOption.GetValue().IsSet()) ? Option<TOutOptionalType>.Some(nestedOption.GetValue().GetValue())
+			: Option<TOutOptionalType>.None();
 	}
 
 	public void MatchSome(Action<TSomeValueType> someFunctor)
 	{
 		if (IsSet())
 		{
-			someFunctor.Invoke(value);
+			someFunctor.Invoke(value!);
 		}
 	}
 
@@ -61,9 +61,14 @@ public class Option<TSomeValueType>
 
 	public void Match(Action<TSomeValueType> someFunctor, Action noneFunctor)
 	{
+		if (someFunctor == null)
+		{
+			throw new ArgumentNullException(nameof(someFunctor));
+		}
+
 		if (IsSet())
 		{
-			someFunctor.Invoke(value);
+			someFunctor.Invoke(value!);
 		}
 		else
 		{

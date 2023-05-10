@@ -10,40 +10,9 @@ namespace IMongoDb.Model;
 
 public class DbRepository
 {
-    public WriterCollection Writers { get; } = new();
-    public ActorCollection Actors { get; } = new();
-    public CharacterCollection Characters { get; } = new();
-    public CrewMemberCollection CrewMembers { get; } = new();
-    public DirectorCollection Directors { get; } = new();
-    public EpisodeCollection EpisodeCollection { get; } = new();
-    public Genres Genres { get; } = new();
-    public Jobs Jobs { get; } = new();
-    public Movies Movies { get; } = new();
-    public TvSeriesCollection TvSeriesCollection { get; } = new();
-    public Titles Titles { get; } = new();
-    public UserRatingCollection UserRatingCollection { get; } = new();
-    public Users Users { get; } = new();
-
     public DbRepository()
     {
         InitializeDbCollections();
-    }
-
-    private void InitializeDbCollections()
-    {
-        DbCollections.Add(CollectionNames.WritersCollectionName, Writers);
-        DbCollections.Add(CollectionNames.ActorsCollectionName, Actors);
-        DbCollections.Add(CollectionNames.CharactersCollectionName, Characters);
-        DbCollections.Add(CollectionNames.CrewMembersCollectionName, CrewMembers);
-        DbCollections.Add(CollectionNames.DirectorsCollectionName, Directors);
-        DbCollections.Add(CollectionNames.EpisodesCollectionName, EpisodeCollection);
-        DbCollections.Add(CollectionNames.GenresCollectionName, Genres);
-        DbCollections.Add(CollectionNames.JobsCollectionName, Jobs);
-        DbCollections.Add(CollectionNames.MoviesCollectionName, Movies);
-        DbCollections.Add(CollectionNames.TvSeriesCollectionName, TvSeriesCollection);
-        DbCollections.Add(CollectionNames.TitlesCollectionName, Titles);
-        DbCollections.Add(CollectionNames.UserRatingsCollectionName, UserRatingCollection);
-        DbCollections.Add(CollectionNames.UsersCollectionName, Users);
     }
 
     public void LoadFromTsvs(TsvRepository tsvRepository)
@@ -69,6 +38,25 @@ public class DbRepository
         return DbCollections.TryGetValue(collectionName, out IDbCollection? dbCollection)
             ? Result<string, EGetInsertsError>.Ok(dbCollection.ToBsonArray().ToJson(writerSettings))
             : Result<string, EGetInsertsError>.Error(EGetInsertsError.CollectionNotFound);
+    }
+    
+    public IDictionary<string, IDbCollection> DbCollections { get; } = new Dictionary<string, IDbCollection>();
+
+    private void InitializeDbCollections()
+    {
+        DbCollections.Add(CollectionNames.WritersCollectionName, Writers);
+        DbCollections.Add(CollectionNames.ActorsCollectionName, Actors);
+        DbCollections.Add(CollectionNames.CharactersCollectionName, Characters);
+        DbCollections.Add(CollectionNames.CrewMembersCollectionName, CrewMembers);
+        DbCollections.Add(CollectionNames.DirectorsCollectionName, Directors);
+        DbCollections.Add(CollectionNames.EpisodesCollectionName, EpisodeCollection);
+        DbCollections.Add(CollectionNames.GenresCollectionName, Genres);
+        DbCollections.Add(CollectionNames.JobsCollectionName, Jobs);
+        DbCollections.Add(CollectionNames.MoviesCollectionName, Movies);
+        DbCollections.Add(CollectionNames.TvSeriesCollectionName, TvSeriesCollection);
+        DbCollections.Add(CollectionNames.TitlesCollectionName, Titles);
+        DbCollections.Add(CollectionNames.UserRatingsCollectionName, UserRatingCollection);
+        DbCollections.Add(CollectionNames.UsersCollectionName, Users);
     }
 
     private void GenerateFakeUsersAndRatings()
@@ -331,8 +319,21 @@ public class DbRepository
         Console.Error.WriteLine($"Failed to convert title basics: {conversionResult.GetError().GetValue()}");
         return false;
     }
+    
+    private WriterCollection Writers { get; } = new();
+    private ActorCollection Actors { get; } = new();
+    private CharacterCollection Characters { get; } = new();
+    private CrewMemberCollection CrewMembers { get; } = new();
+    private DirectorCollection Directors { get; } = new();
+    private EpisodeCollection EpisodeCollection { get; } = new();
+    private Genres Genres { get; } = new();
+    private Jobs Jobs { get; } = new();
+    private Movies Movies { get; } = new();
+    private TvSeriesCollection TvSeriesCollection { get; } = new();
+    private Titles Titles { get; } = new();
+    private UserRatingCollection UserRatingCollection { get; } = new();
+    private Users Users { get; } = new();
 
-    public IDictionary<string, IDbCollection> DbCollections { get; } = new Dictionary<string, IDbCollection>();
 }
 
 public enum EGetInsertsError
