@@ -22,7 +22,6 @@ public class DbRepository
         LoadTitleAkas(tsvRepository);
         LoadTitleEpisode(tsvRepository);
         LoadTitlePrincipals(tsvRepository);
-        LoadTitleCrew(tsvRepository);
         LoadTitleRatings(tsvRepository);
 
         GenerateFakeUsersAndRatings();
@@ -44,11 +43,9 @@ public class DbRepository
 
     private void InitializeDbCollections()
     {
-        DbCollections.Add(CollectionNames.WritersCollectionName, Writers);
         DbCollections.Add(CollectionNames.ActorsCollectionName, Actors);
         DbCollections.Add(CollectionNames.CharactersCollectionName, Characters);
         DbCollections.Add(CollectionNames.CrewMembersCollectionName, CrewMembers);
-        DbCollections.Add(CollectionNames.DirectorsCollectionName, Directors);
         DbCollections.Add(CollectionNames.EpisodesCollectionName, EpisodeCollection);
         DbCollections.Add(CollectionNames.GenresCollectionName, Genres);
         DbCollections.Add(CollectionNames.JobsCollectionName, Jobs);
@@ -97,17 +94,6 @@ public class DbRepository
         {
             TitleRatings titleRating = kv.Value;
             Titles.AddRatings(titleRating);
-        }
-    }
-
-    private void LoadTitleCrew(TsvRepository tsvRepository)
-    {
-        var titleCrew = tsvRepository.TitlesCrews;
-
-        foreach (var kv in titleCrew)
-        {
-            TitleCrew crewRecord = kv.Value;
-            Titles.AddCrew(crewRecord, Writers, Directors);
         }
     }
 
@@ -189,15 +175,7 @@ public class DbRepository
 
     private void LoadAsSubclass(TitlePrincipal titlePrincipal)
     {
-        if (titlePrincipal.IsDirector())
-        {
-            LoadPrincipalAsDirector(titlePrincipal);
-        }
-        else if (titlePrincipal.IsWriter())
-        {
-            LoadPrincipalAsWriter(titlePrincipal);
-        }
-        else if (titlePrincipal.IsActor())
+        if (titlePrincipal.IsActor())
         {
             LoadPrincipalAsActor(titlePrincipal);
         }
@@ -214,24 +192,6 @@ public class DbRepository
         Actor actor = conversionResult.GetOk().GetValue();
         Actors.Add(actor);
         Titles.AddActor(titlePrincipal.tconst, actor);
-    }
-
-    private void LoadPrincipalAsWriter(TitlePrincipal titlePrincipal)
-    {
-        var conversionResult = Writer.FromPrincipal(titlePrincipal);
-        if (conversionResult.WasSuccessful())
-        {
-            Writers.Add(conversionResult.GetOk().GetValue());
-        }
-    }
-
-    private void LoadPrincipalAsDirector(TitlePrincipal titlePrincipal)
-    {
-        var conversionResult = Director.FromPrincipal(titlePrincipal);
-        if (conversionResult.WasSuccessful())
-        {
-            Directors.Add(conversionResult.GetOk().GetValue());
-        }
     }
 
     private void LoadNameBasics(TsvRepository tsvRepository)
@@ -320,11 +280,9 @@ public class DbRepository
         return false;
     }
     
-    private WriterCollection Writers { get; } = new();
     private ActorCollection Actors { get; } = new();
     private CharacterCollection Characters { get; } = new();
     private CrewMemberCollection CrewMembers { get; } = new();
-    private DirectorCollection Directors { get; } = new();
     private EpisodeCollection EpisodeCollection { get; } = new();
     private Genres Genres { get; } = new();
     private Jobs Jobs { get; } = new();

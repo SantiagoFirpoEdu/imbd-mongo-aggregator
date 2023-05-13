@@ -56,33 +56,6 @@ public class Title
 	[BsonIgnoreIfNull]
 	public BsonDateTime? ReleaseYear { get; private set; }
 
-	public void AddCrew(IEnumerable<string>? writersIds, IEnumerable<string>? directorsIds, WriterCollection writerCollection, DirectorCollection directorCollection)
-	{
-		if (writersIds is not null)
-		{
-			foreach (string writerId in writersIds)
-			{
-				if (writerCollection.Contains(writerId))
-				{
-					writers.Add(new MongoDBRef(CollectionNames.WritersCollectionName, writerId));
-				}
-			}
-		}
-
-		if (directorsIds is null)
-		{
-			return;
-		}
-
-		foreach (string directorId in directorsIds)
-		{
-			if (directorCollection.Contains(directorId))
-			{
-				directors.Add(new MongoDBRef(CollectionNames.DirectorsCollectionName, directorId));
-			}
-		}
-	}
-
 	public void SetRatings(TitleRatings titleRating)
 	{
 		rating = new TitleRating(titleRating.averageRating, titleRating.numVotes);

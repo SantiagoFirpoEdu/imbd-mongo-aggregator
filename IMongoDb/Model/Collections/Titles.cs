@@ -1,7 +1,6 @@
 using IMongoDb.Model.Entities;
 using IMongoDb.Model.TsvRecords;
 using MongoDB.Bson;
-using MongoDB.Driver;
 
 namespace IMongoDb.Model.Collections;
 
@@ -17,7 +16,6 @@ public class Titles : IDbCollection
 		return titles.TryAdd(title.Id, title);
 	}
 
-
 	public void AddAlternativeTitle(AlternativeTitle alternativeTitle)
 	{
 		string originalTitleId = alternativeTitle.OriginalTitleId;
@@ -28,22 +26,6 @@ public class Titles : IDbCollection
 		else
 		{
 			Console.Error.WriteLine("Alternative title {0} not found", originalTitleId);
-		}
-	}
-
-	public void AddCrew(TitleCrew crewRecord, WriterCollection writerCollection, DirectorCollection directorCollection)
-	{
-		string? writersRecord = crewRecord.writers;
-		string[]? writers = writersRecord?.Split(",");
-		string[]? directors = crewRecord.directors?.Split(",");
-		
-		if (TryGetTitle(crewRecord.tconst, out Title? title))
-		{
-			title?.AddCrew(writers, directors, writerCollection, directorCollection);
-		}
-		else
-		{
-			Console.Error.WriteLine("Title tconst {0} not found when adding its crew", crewRecord.tconst);
 		}
 	}
 
