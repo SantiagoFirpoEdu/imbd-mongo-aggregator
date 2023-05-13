@@ -71,7 +71,7 @@ public class Titles : IDbCollection
 		return kv.Value.ToBsonDocument();
 	}
 
-	private static readonly int? MaxCount = 50000;
+	private readonly static int? MaxCount = 50000;
 
 	public void AddActor(string titleId, Actor actor)
 	{
