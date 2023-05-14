@@ -1,34 +1,14 @@
 ﻿[
   {
-    "_id": [
-      "nm0005717"
-    ],
-    "name": [
-      "Fructuós Gelabert"
-    ]
+    "primaryName": "Gilbert M. 'Broncho Billy' Anderson"
   },
   {
-    "_id": [
-      "nm0085865"
-    ],
-    "name": [
-      "J. Stuart Blackton"
-    ]
+    "primaryName": "Siegmund Lubin"
   },
   {
-    "_id": [
-      "nm0002615"
-    ],
-    "name": [
-      "Siegmund Lubin"
-    ]
+    "primaryName": "Fructuós Gelabert"
   },
   {
-    "_id": [
-      "nm0001908"
-    ],
-    "name": [
-      "Gilbert M. 'Broncho Billy' Anderson"
-    ]
+    "primaryName": "J. Stuart Blackton"
   }
 ]

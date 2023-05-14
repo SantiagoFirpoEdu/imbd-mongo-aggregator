@@ -1,31 +1,24 @@
 ﻿db.directors.aggregate([
   {
     "$lookup": {
-      "from": "crewMembers",
+      "from": "jobs",
       "localField": "_id",
-      "foreignField": "_id",
-      "as": "crewMember"
-    }
-  },
-  {
-    "$lookup": {
-      "from": "actors",
-      "localField": "_id",
-      "foreignField": "_id",
-      "as": "actor"
+      "foreignField": "crewMember.$id",
+      "as": "jobs"
     }
   },
   {
     "$match": {
-      "$expr": {
-        "$eq": ["$crewMember._id", "$actor._id"]
-      }
+      "$and": [
+        { "jobs.jobCategory": "director" },
+        { "jobs.jobCategory": "actor" }
+      ]
     }
   },
   {
     "$project": {
-      "_id": "$crewMember._id",
-      "name": "$crewMember.primaryName"
+      "_id": false,
+      "primaryName": true,
     }
   }
 ])

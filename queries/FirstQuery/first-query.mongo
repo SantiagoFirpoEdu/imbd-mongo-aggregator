@@ -1,8 +1,19 @@
 ﻿db.movies.aggregate([
   {
     "$lookup": {
-      "from": "titles",
+      "from": "jobs",
       "localField": "_id",
+      "foreignField": "crewMember.$id",
+      "as": "jobs"
+    }
+  },
+  {
+    "$unwind": "$jobs"
+  },
+  {
+    "$lookup": {
+      "from": "titles",
+      "localField": "jobs.workedOnTitle.$id",
       "foreignField": "_id",
       "as": "title"
     }
@@ -11,34 +22,21 @@
     "$unwind": "$title"
   },
   {
-    "$unwind": "$title.directors"
-  },
-  {
-    "$lookup": {
-      "from": "crewMembers",
-      "localField": "title.directors.$id",
-      "foreignField": "_id",
-      "as": "director"
+    "$match": {
+      "jobs.jobCategory": "director",
+      "title.type": "movie"
     }
   },
   {
-    "$unwind": "$director"
-  },
-  {
-    "$lookup": {
-      "from": "titles",
-      "localField": "director.knownForTitles.$id",
-      "foreignField": "_id",
-      "as": "director.knownForMovies"
+    "$group": {
+      "_id": "$_id",
+      "primaryName": { "$first": "$primaryName" }
     }
   },
   {
-    "$unset": [
-      "_id",
-      "runtimeMinutes",
-      "title",
-      "characters",
-      "director.knownForTitles"
-    ]
+    "$project": {
+      "_id": false,
+      "primaryName": true
+    }
   }
 ])

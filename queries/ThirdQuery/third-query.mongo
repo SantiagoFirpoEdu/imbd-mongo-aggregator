@@ -1,10 +1,5 @@
 ﻿db.directors.aggregate([
   {
-    "$match": {
-      "_id": "nm0005690"
-    }
-  },
-  {
     "$lookup": {
       "from": "jobs",
       "localField": "_id",
@@ -13,50 +8,58 @@
     }
   },
   {
-    "$unwind":
-      {
-        "path": "$jobs",
-        "preserveNullAndEmptyArrays": false
-      }
+    "$unwind": "$jobs"
   },
   {
     "$lookup": {
       "from": "titles",
       "localField": "jobs.workedOnTitle.$id",
       "foreignField": "_id",
-      "as": "movie"
+      "as": "titles"
     }
   },
   {
-    "$unwind":
-      {
-        "path": "$movie",
-        "preserveNullAndEmptyArrays": false
-      }
+    "$unwind": "$titles"
   },
   {
-    "$lookup":
-      {
-        "from": "crewMembers",
-        "localField": "_id",
-        "foreignField": "_id",
-        "as": "crewMember"
-      }
+    "$match": {
+      "jobs.jobCategory": "director",
+      "titles.type": "movie",
+      "primaryName": "Ricardo de Baños"
+    }
   },
   {
-    "$unwind":
-      {
-        "path": "$crewMember",
-        "preserveNullAndEmptyArrays": false
-      }
+    "$lookup": {
+      "from": "movies",
+      "localField": "titles._id",
+      "foreignField": "_id",
+      "as": "movies"
+    }
   },
   {
-    "$project":
-      {
-        "_id": false,
-        "directorId": "$_id",
-        "name": "$crewMember.primaryName",
-        "movie": "$movie"
-      }
+    "$unwind": "$movies"
+  },
+  {
+    "$lookup": {
+      "from": "genres",
+      "localField": "titles.genres.$id",
+      "foreignField": "_id",
+      "as": "titles.genres"
+    }
+  },
+  {
+    "$project": {
+      "_id": "$movies._id",
+      "primaryTitle": "$titles.primaryTitle",
+      "originalTitle": "$titles.originalTitle",
+      "isAdult": "$titles.isAdult",
+      "releaseYear": "$titles.releaseYear",
+      "rating": "$titles.rating",
+      "alternativeTitles": "$titles.alternativeTitles",
+      "genres": "$titles.genres",
+      "actors": "$titles.actors",
+      "characters": "$titles.characters",
+      "runtimeMinutes": "$movies.runtimeMinutes"
+    }
   }
 ])

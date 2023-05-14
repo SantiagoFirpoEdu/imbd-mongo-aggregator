@@ -1,7 +1,7 @@
 ﻿db.genres.aggregate([
   {
     "$match": {
-      "Name": "Short"
+      "name": "Fantasy"
     }
   },
   {
@@ -16,76 +16,97 @@
     "$unwind": "$titles"
   },
   {
+    "$match": {
+      "titles.type": "movie"
+    }
+  },
+  {
     "$lookup": {
-      "from": "crewMembers",
-      "localField": "titles.directors.$id",
+      "from": "jobs",
+      "let": {
+        "title_id": "$titles._id"
+      },
+      "pipeline": [
+        {
+          "$match": {
+            "$and": [
+              {
+                "$expr": {
+                  "$eq": [
+                    "$workedOnTitle",
+                    "$$title_id"
+                  ]
+                }
+              },
+              {
+                "jobCategory": "director"
+              }
+            ]
+          }
+        },
+        {
+          "$lookup": {
+            "from": "crewMembers",
+            "localField": "crewMember.$id",
+            "foreignField": "_id",
+            "as": "director"
+          }
+        },
+        {
+          "$unwind": "$director"
+        },
+        {
+          "$project": {
+            "_id": false,
+            "name": "$director.name",
+          },
+        },
+      ],
+      "as": "director"
+    }
+  },
+  {
+    "$lookup": {
+      "from": "characters",
+      "localField": "titles.characters.$id",
       "foreignField": "_id",
-      "as": "titles.directors"
+      "as": "characters"
     }
   },
   {
     "$lookup": {
       "from": "actors",
-      "localField": "titles.actors.$id",
+      "localField": "characters.playedByActors.$id",
       "foreignField": "_id",
-      "as": "titles.actors"
+      "as": "actors"
     }
   },
   {
-    "$unwind":
-      {
-        "path": "$titles.actors",
-        "preserveNullAndEmptyArrays": false
-      }
-  },
-  {
-    "$lookup": {
-      "from": "characters",
-      "let": {
-        "actorIds": "$titles.actors._id",
-        "titleId": "$titles._id"
-      },
-      "pipeline": [
-        {
-          "$match": {
-            "$expr": {
-              "$and": [
-                {
+    "$project": {
+      "_id": false,
+      "title": "$titles.primaryTitle",
+      "director": "$director.name",
+      "actors": {
+        "$map": {
+          "input": "$actors",
+          "as": "actor",
+          "in": {
+            "name": "$$actor.name",
+            "characters": {
+              "$filter": {
+                "input": "$$actor.charactersPlayed",
+                "as": "character",
+                "cond": {
                   "$in": [
-                    "$actorId",
-                    ["$$actorIds"],
-                  ],
-                },
-                {
-                  "$eq": ["$titleId", "$$titleId"]
+                    "$$character",
+                    "$titles.characters"
+                  ]
                 }
-              ]
+              }
             }
           }
         }
-      ],
-      "as": "titles.actors.charactersPlayed"
-    }
-  },
-  {
-    "$group": {
-      "_id": "$titles._id",
-      "title": {
-        "$first": "$titles"
-      },
-      "actors": {
-        "$push": "$titles.actors"
       }
-    }
-  },
-  {
-    "$addFields": {
-      "title.actors": "$actors",
-    }
-  },
-  {
-    "$replaceRoot": {
-      "newRoot": "$title",
     }
   }
 ])

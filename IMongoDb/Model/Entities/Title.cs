@@ -95,9 +95,6 @@ public class Title
 	
 	[BsonElement]
 	private readonly IList<AlternativeTitle> alternativeTitles = new List<AlternativeTitle>();
-	
-	[BsonElement]
-	private IList<MongoDBRef> writers = new List<MongoDBRef>();
 
 	[BsonElement("actors")]
 	private IList<MongoDBRef> Actors => actorsIds
@@ -105,9 +102,6 @@ public class Title
 	
 	[BsonIgnore]
 	private readonly HashSet<string> actorsIds = new();
-
-	[BsonElement]
-	private IList<MongoDBRef> directors = new List<MongoDBRef>();
 
 	[BsonElement("characters")]
 	private IList<MongoDBRef> characters => uniqueCharactersIds
