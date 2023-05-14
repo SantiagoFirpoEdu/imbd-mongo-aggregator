@@ -1,7 +1,7 @@
 ﻿db.genres.aggregate([
   {
     "$match": {
-      "name": "Fantasy"
+      "name": "Romance"
     }
   },
   {
@@ -33,7 +33,7 @@
               {
                 "$expr": {
                   "$eq": [
-                    "$workedOnTitle",
+                    "$workedOnTitle.$id",
                     "$$title_id"
                   ]
                 }
@@ -58,9 +58,9 @@
         {
           "$project": {
             "_id": false,
-            "name": "$director.name",
-          },
-        },
+            "name": "$director.primaryName"
+          }
+        }
       ],
       "as": "director"
     }
@@ -82,31 +82,11 @@
     }
   },
   {
-    "$project": {
-      "_id": false,
-      "title": "$titles.primaryTitle",
-      "director": "$director.name",
-      "actors": {
-        "$map": {
-          "input": "$actors",
-          "as": "actor",
-          "in": {
-            "name": "$$actor.name",
-            "characters": {
-              "$filter": {
-                "input": "$$actor.charactersPlayed",
-                "as": "character",
-                "cond": {
-                  "$in": [
-                    "$$character",
-                    "$titles.characters"
-                  ]
-                }
-              }
-            }
-          }
-        }
-      }
+    "$lookup": {
+      "from": "crewMembers",
+      "localField": "actors._id",
+      "foreignField": "_id",
+      "as": "actors"
     }
   }
 ])
