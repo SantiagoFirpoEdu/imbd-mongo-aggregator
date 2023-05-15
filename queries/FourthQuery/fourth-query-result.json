@@ -1,0 +1,906 @@
+﻿[
+  {
+    "_id": {
+      "$oid": "64606974af3276a08ec58600"
+    },
+    "name": "Romance",
+    "titles": {
+      "_id": "tt0000009",
+      "type": "movie",
+      "primaryTitle": "Miss Jerry",
+      "originalTitle": "Miss Jerry",
+      "isAdult": false,
+      "releaseYear": {
+        "$date": {
+          "$numberLong": "-2398284000000"
+        }
+      },
+      "rating": {
+        "averageRating": 5.3,
+        "numVotes": 204
+      },
+      "alternativeTitles": [],
+      "genres": [
+        {
+          "$ref": "genres",
+          "$id": {
+            "$oid": "64606974af3276a08ec58600"
+          }
+        }
+      ],
+      "actors": [
+        {
+          "$ref": "actors",
+          "$id": "nm0063086"
+        }
+      ],
+      "characters": [
+        {
+          "$ref": "characters",
+          "$id": "64606975af3276a08ec5861f"
+        }
+      ]
+    },
+    "director": [
+      {
+        "name": "Alexander Black"
+      }
+    ],
+    "characters": [
+      {
+        "_id": "64606975af3276a08ec5861f",
+        "name": "Miss Geraldine Holbrook (Miss Jerry)",
+        "playedByActors": [
+          {
+            "$ref": "actors",
+            "$id": "nm0063086"
+          }
+        ],
+        "titles": [
+          {
+            "$ref": "titles",
+            "$id": "tt0000009"
+          }
+        ]
+      }
+    ],
+    "actors": [
+      {
+        "_id": "nm0063086",
+        "primaryName": "Blanche Bayliss",
+        "birthYear": {
+          "$date": {
+            "$numberLong": "-2903205600000"
+          }
+        },
+        "deathYear": {
+          "$date": {
+            "$numberLong": "-599608800000"
+          }
+        },
+        "knownForTitles": [
+          {
+            "$ref": "titles",
+            "$id": "tt0000009"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "_id": {
+      "$oid": "64606974af3276a08ec58600"
+    },
+    "name": "Romance",
+    "titles": {
+      "_id": "tt0001175",
+      "type": "movie",
+      "primaryTitle": "Camille",
+      "originalTitle": "La dame aux camélias",
+      "isAdult": false,
+      "releaseYear": {
+        "$date": {
+          "$numberLong": "-1830376800000"
+        }
+      },
+      "rating": {
+        "averageRating": 5.2,
+        "numVotes": 42
+      },
+      "alternativeTitles": [],
+      "genres": [
+        {
+          "$ref": "genres",
+          "$id": {
+            "$oid": "64606974af3276a08ec58603"
+          }
+        },
+        {
+          "$ref": "genres",
+          "$id": {
+            "$oid": "64606974af3276a08ec58600"
+          }
+        }
+      ],
+      "actors": [],
+      "characters": []
+    },
+    "director": [],
+    "characters": [],
+    "actors": []
+  },
+  {
+    "_id": {
+      "$oid": "64606974af3276a08ec58600"
+    },
+    "name": "Romance",
+    "titles": {
+      "_id": "tt0001475",
+      "type": "movie",
+      "primaryTitle": "Amor fatal",
+      "originalTitle": "Amor fatal",
+      "isAdult": false,
+      "releaseYear": {
+        "$date": {
+          "$numberLong": "-1861912800000"
+        }
+      },
+      "rating": {
+        "averageRating": 7.3,
+        "numVotes": 22
+      },
+      "alternativeTitles": [],
+      "genres": [
+        {
+          "$ref": "genres",
+          "$id": {
+            "$oid": "64606974af3276a08ec58603"
+          }
+        },
+        {
+          "$ref": "genres",
+          "$id": {
+            "$oid": "64606974af3276a08ec58600"
+          }
+        }
+      ],
+      "actors": [],
+      "characters": []
+    },
+    "director": [],
+    "characters": [],
+    "actors": []
+  },
+  {
+    "_id": {
+      "$oid": "64606974af3276a08ec58600"
+    },
+    "name": "Romance",
+    "titles": {
+      "_id": "tt0002026",
+      "type": "movie",
+      "primaryTitle": "Anny - Story of a Prostitute",
+      "originalTitle": "Anny - en gatepiges roman",
+      "isAdult": false,
+      "releaseYear": {
+        "$date": {
+          "$numberLong": "-1830376800000"
+        }
+      },
+      "rating": {
+        "averageRating": 4.5,
+        "numVotes": 14
+      },
+      "alternativeTitles": [],
+      "genres": [
+        {
+          "$ref": "genres",
+          "$id": {
+            "$oid": "64606974af3276a08ec58603"
+          }
+        },
+        {
+          "$ref": "genres",
+          "$id": {
+            "$oid": "64606974af3276a08ec58600"
+          }
+        }
+      ],
+      "actors": [],
+      "characters": []
+    },
+    "director": [],
+    "characters": [],
+    "actors": []
+  },
+  {
+    "_id": {
+      "$oid": "64606974af3276a08ec58600"
+    },
+    "name": "Romance",
+    "titles": {
+      "_id": "tt0002211",
+      "type": "movie",
+      "primaryTitle": "Den glade løjtnant",
+      "originalTitle": "Den glade løjtnant",
+      "isAdult": false,
+      "releaseYear": {
+        "$date": {
+          "$numberLong": "-1830376800000"
+        }
+      },
+      "rating": {
+        "averageRating": 0,
+        "numVotes": 0
+      },
+      "alternativeTitles": [],
+      "genres": [
+        {
+          "$ref": "genres",
+          "$id": {
+            "$oid": "64606974af3276a08ec58600"
+          }
+        }
+      ],
+      "actors": [],
+      "characters": []
+    },
+    "director": [],
+    "characters": [],
+    "actors": []
+  },
+    {
+    "_id": {
+      "$oid": "64606974af3276a08ec58600"
+    },
+    "name": "Romance",
+    "titles": {
+      "_id": "tt0002423",
+      "type": "movie",
+      "primaryTitle": "Passion",
+      "originalTitle": "Madame DuBarry",
+      "isAdult": false,
+      "releaseYear": {
+        "$date": {
+          "$numberLong": "-1609452000000"
+        }
+      },
+      "rating": {
+        "averageRating": 0,
+        "numVotes": 0
+      },
+      "alternativeTitles": [],
+      "genres": [
+        {
+          "$ref": "genres",
+          "$id": {
+            "$oid": "64606974af3276a08ec58606"
+          }
+        },
+        {
+          "$ref": "genres",
+          "$id": {
+            "$oid": "64606974af3276a08ec58603"
+          }
+        },
+        {
+          "$ref": "genres",
+          "$id": {
+            "$oid": "64606974af3276a08ec58600"
+          }
+        }
+      ],
+      "actors": [],
+      "characters": []
+    },
+    "director": [],
+    "characters": [],
+    "actors": []
+  },
+  {
+    "_id": {
+      "$oid": "64606974af3276a08ec58600"
+    },
+    "name": "Romance",
+    "titles": {
+      "_id": "tt0002555",
+      "type": "movie",
+      "primaryTitle": "The Last Bohemian",
+      "originalTitle": "Az utolsó bohém",
+      "isAdult": false,
+      "releaseYear": {
+        "$date": {
+          "$numberLong": "-1798754400000"
+        }
+      },
+      "rating": {
+        "averageRating": 0,
+        "numVotes": 0
+      },
+      "alternativeTitles": [],
+      "genres": [
+        {
+          "$ref": "genres",
+          "$id": {
+            "$oid": "64606974af3276a08ec58603"
+          }
+        },
+        {
+          "$ref": "genres",
+          "$id": {
+            "$oid": "64606974af3276a08ec58600"
+          }
+        }
+      ],
+      "actors": [],
+      "characters": []
+    },
+    "director": [],
+    "characters": [],
+    "actors": []
+  },
+  {
+    "_id": {
+      "$oid": "64606974af3276a08ec58600"
+    },
+    "name": "Romance",
+    "titles": {
+      "_id": "tt0002987",
+      "type": "movie",
+      "primaryTitle": "How Fine, How Fresh the Roses Were",
+      "originalTitle": "Kak khoroshi, kak svezhi byli rozy",
+      "isAdult": false,
+      "releaseYear": {
+        "$date": {
+          "$numberLong": "-1798754400000"
+        }
+      },
+      "rating": {
+        "averageRating": 0,
+        "numVotes": 0
+      },
+      "alternativeTitles": [],
+      "genres": [
+        {
+          "$ref": "genres",
+          "$id": {
+            "$oid": "64606974af3276a08ec58600"
+          }
+        }
+      ],
+      "actors": [],
+      "characters": []
+    },
+    "director": [],
+    "characters": [],
+    "actors": []
+  },
+  {
+    "_id": {
+      "$oid": "64606974af3276a08ec58600"
+    },
+    "name": "Romance",
+    "titles": {
+      "_id": "tt0003022",
+      "type": "movie",
+      "primaryTitle": "Ivanhoe",
+      "originalTitle": "Ivanhoe",
+      "isAdult": false,
+      "releaseYear": {
+        "$date": {
+          "$numberLong": "-1798754400000"
+        }
+      },
+      "rating": {
+        "averageRating": 0,
+        "numVotes": 0
+      },
+      "alternativeTitles": [],
+      "genres": [
+        {
+          "$ref": "genres",
+          "$id": {
+            "$oid": "64606974af3276a08ec5860c"
+          }
+        },
+        {
+          "$ref": "genres",
+          "$id": {
+            "$oid": "64606974af3276a08ec58603"
+          }
+        },
+        {
+          "$ref": "genres",
+          "$id": {
+            "$oid": "64606974af3276a08ec58600"
+          }
+        }
+      ],
+      "actors": [],
+      "characters": []
+    },
+    "director": [],
+    "characters": [],
+    "actors": []
+  },
+  {
+    "_id": {
+      "$oid": "64606974af3276a08ec58600"
+    },
+    "name": "Romance",
+    "titles": {
+      "_id": "tt0003442",
+      "type": "movie",
+      "primaryTitle": "Tess of the D'Urbervilles",
+      "originalTitle": "Tess of the D'Urbervilles",
+      "isAdult": false,
+      "releaseYear": {
+        "$date": {
+          "$numberLong": "-1798754400000"
+        }
+      },
+      "rating": {
+        "averageRating": 0,
+        "numVotes": 0
+      },
+      "alternativeTitles": [],
+      "genres": [
+        {
+          "$ref": "genres",
+          "$id": {
+            "$oid": "64606974af3276a08ec58603"
+          }
+        },
+        {
+          "$ref": "genres",
+          "$id": {
+            "$oid": "64606974af3276a08ec58600"
+          }
+        }
+      ],
+      "actors": [],
+      "characters": []
+    },
+    "director": [],
+    "characters": [],
+    "actors": []
+  },
+  {
+    "_id": {
+      "$oid": "64606974af3276a08ec58600"
+    },
+    "name": "Romance",
+    "titles": {
+      "_id": "tt0003595",
+      "type": "movie",
+      "primaryTitle": "Across the Pacific",
+      "originalTitle": "Across the Pacific",
+      "isAdult": false,
+      "releaseYear": {
+        "$date": {
+          "$numberLong": "-1767218400000"
+        }
+      },
+      "rating": {
+        "averageRating": 0,
+        "numVotes": 0
+      },
+      "alternativeTitles": [],
+      "genres": [
+        {
+          "$ref": "genres",
+          "$id": {
+            "$oid": "64606974af3276a08ec5860c"
+          }
+        },
+        {
+          "$ref": "genres",
+          "$id": {
+            "$oid": "64606974af3276a08ec58603"
+          }
+        },
+        {
+          "$ref": "genres",
+          "$id": {
+            "$oid": "64606974af3276a08ec58600"
+          }
+        }
+      ],
+      "actors": [],
+      "characters": []
+    },
+    "director": [],
+    "characters": [],
+    "actors": []
+  },
+  {
+    "_id": {
+      "$oid": "64606974af3276a08ec58600"
+    },
+    "name": "Romance",
+    "titles": {
+      "_id": "tt0003609",
+      "type": "movie",
+      "primaryTitle": "Alexandra",
+      "originalTitle": "Alexandra",
+      "isAdult": false,
+      "releaseYear": {
+        "$date": {
+          "$numberLong": "-1767218400000"
+        }
+      },
+      "rating": {
+        "averageRating": 0,
+        "numVotes": 0
+      },
+      "alternativeTitles": [],
+      "genres": [
+        {
+          "$ref": "genres",
+          "$id": {
+            "$oid": "64606974af3276a08ec58603"
+          }
+        },
+        {
+          "$ref": "genres",
+          "$id": {
+            "$oid": "64606974af3276a08ec58600"
+          }
+        }
+      ],
+      "actors": [],
+      "characters": []
+    },
+    "director": [],
+    "characters": [],
+    "actors": []
+  },
+  {
+    "_id": {
+      "$oid": "64606974af3276a08ec58600"
+    },
+    "name": "Romance",
+    "titles": {
+      "_id": "tt0003747",
+      "type": "movie",
+      "primaryTitle": "Cameo Kirby",
+      "originalTitle": "Cameo Kirby",
+      "isAdult": false,
+      "releaseYear": {
+        "$date": {
+          "$numberLong": "-1767218400000"
+        }
+      },
+      "rating": {
+        "averageRating": 0,
+        "numVotes": 0
+      },
+      "alternativeTitles": [],
+      "genres": [
+        {
+          "$ref": "genres",
+          "$id": {
+            "$oid": "64606974af3276a08ec5860d"
+          }
+        },
+        {
+          "$ref": "genres",
+          "$id": {
+            "$oid": "64606974af3276a08ec58603"
+          }
+        },
+        {
+          "$ref": "genres",
+          "$id": {
+            "$oid": "64606974af3276a08ec58600"
+          }
+        }
+      ],
+      "actors": [],
+      "characters": []
+    },
+    "director": [],
+    "characters": [],
+    "actors": []
+  },
+  {
+    "_id": {
+      "$oid": "64606974af3276a08ec58600"
+    },
+    "name": "Romance",
+    "titles": {
+      "_id": "tt0003804",
+      "type": "movie",
+      "primaryTitle": "The Crucible",
+      "originalTitle": "The Crucible",
+      "isAdult": false,
+      "releaseYear": {
+        "$date": {
+          "$numberLong": "-1767218400000"
+        }
+      },
+      "rating": {
+        "averageRating": 0,
+        "numVotes": 0
+      },
+      "alternativeTitles": [],
+      "genres": [
+        {
+          "$ref": "genres",
+          "$id": {
+            "$oid": "64606974af3276a08ec58603"
+          }
+        },
+        {
+          "$ref": "genres",
+          "$id": {
+            "$oid": "64606974af3276a08ec58600"
+          }
+        }
+      ],
+      "actors": [],
+      "characters": []
+    },
+    "director": [],
+    "characters": [],
+    "actors": []
+  },
+  {
+    "_id": {
+      "$oid": "64606974af3276a08ec58600"
+    },
+    "name": "Romance",
+    "titles": {
+      "_id": "tt0004038",
+      "type": "movie",
+      "primaryTitle": "The Great Leap: Until Death Do Us Part",
+      "originalTitle": "The Great Leap: Until Death Do Us Part",
+      "isAdult": false,
+      "releaseYear": {
+        "$date": {
+          "$numberLong": "-1767218400000"
+        }
+      },
+      "rating": {
+        "averageRating": 0,
+        "numVotes": 0
+      },
+      "alternativeTitles": [],
+      "genres": [
+        {
+          "$ref": "genres",
+          "$id": {
+            "$oid": "64606974af3276a08ec58603"
+          }
+        },
+        {
+          "$ref": "genres",
+          "$id": {
+            "$oid": "64606974af3276a08ec58600"
+          }
+        }
+      ],
+      "actors": [],
+      "characters": []
+    },
+    "director": [],
+    "characters": [],
+    "actors": []
+  },
+  {
+  "_id": {
+    "$oid": "64606974af3276a08ec58600"
+  },
+  "name": "Romance",
+  "titles": {
+    "_id": "tt0004207",
+    "type": "movie",
+    "primaryTitle": "The Last Egyptian",
+    "originalTitle": "The Last Egyptian",
+    "isAdult": false,
+    "releaseYear": {
+      "$date": {
+        "$numberLong": "-1767218400000"
+      }
+    },
+    "rating": {
+      "averageRating": 0,
+      "numVotes": 0
+    },
+    "alternativeTitles": [],
+    "genres": [
+      {
+        "$ref": "genres",
+        "$id": {
+          "$oid": "64606974af3276a08ec5860c"
+        }
+      },
+      {
+        "$ref": "genres",
+        "$id": {
+          "$oid": "64606974af3276a08ec58603"
+        }
+      },
+      {
+        "$ref": "genres",
+        "$id": {
+          "$oid": "64606974af3276a08ec58600"
+        }
+      }
+    ],
+    "actors": [],
+    "characters": []
+  },
+  "director": [],
+  "characters": [],
+  "actors": []
+  },
+  {
+    "_id": {
+      "$oid": "64606974af3276a08ec58600"
+    },
+    "name": "Romance",
+    "titles": {
+      "_id": "tt0004303",
+      "type": "movie",
+      "primaryTitle": "Manon Lescaut",
+      "originalTitle": "Manon Lescaut",
+      "isAdult": false,
+      "releaseYear": {
+        "$date": {
+          "$numberLong": "-1767218400000"
+        }
+      },
+      "rating": {
+        "averageRating": 0,
+        "numVotes": 0
+      },
+      "alternativeTitles": [],
+      "genres": [
+        {
+          "$ref": "genres",
+          "$id": {
+            "$oid": "64606974af3276a08ec58603"
+          }
+        },
+        {
+          "$ref": "genres",
+          "$id": {
+            "$oid": "64606974af3276a08ec58600"
+          }
+        }
+      ],
+      "actors": [],
+      "characters": []
+    },
+    "director": [],
+    "characters": [],
+    "actors": []
+  },
+  {
+    "_id": {
+      "$oid": "64606974af3276a08ec58600"
+    },
+    "name": "Romance",
+    "titles": {
+      "_id": "tt0004321",
+      "type": "movie",
+      "primaryTitle": "Memories",
+      "originalTitle": "Memories",
+      "isAdult": false,
+      "releaseYear": {
+        "$date": {
+          "$numberLong": "-1767218400000"
+        }
+      },
+      "rating": {
+        "averageRating": 0,
+        "numVotes": 0
+      },
+      "alternativeTitles": [],
+      "genres": [
+        {
+          "$ref": "genres",
+          "$id": {
+            "$oid": "64606974af3276a08ec58603"
+          }
+        },
+        {
+          "$ref": "genres",
+          "$id": {
+            "$oid": "64606974af3276a08ec58600"
+          }
+        }
+      ],
+      "actors": [],
+      "characters": []
+    },
+    "director": [],
+    "characters": [],
+    "actors": []
+  },
+  {
+    "_id": {
+      "$oid": "64606974af3276a08ec58600"
+    },
+    "name": "Romance",
+    "titles": {
+      "_id": "tt0004335",
+      "type": "movie",
+      "primaryTitle": "A Million Bid",
+      "originalTitle": "A Million Bid",
+      "isAdult": false,
+      "releaseYear": {
+        "$date": {
+          "$numberLong": "-1767218400000"
+        }
+      },
+      "rating": {
+        "averageRating": 0,
+        "numVotes": 0
+      },
+      "alternativeTitles": [],
+      "genres": [
+        {
+          "$ref": "genres",
+          "$id": {
+            "$oid": "64606974af3276a08ec58603"
+          }
+        },
+        {
+          "$ref": "genres",
+          "$id": {
+            "$oid": "64606974af3276a08ec58600"
+          }
+        }
+      ],
+      "actors": [],
+      "characters": []
+    },
+    "director": [],
+    "characters": [],
+    "actors": []
+  },
+  {
+    "_id": {
+      "$oid": "64606974af3276a08ec58600"
+    },
+    "name": "Romance",
+    "titles": {
+      "_id": "tt0004438",
+      "type": "movie",
+      "primaryTitle": "Othello",
+      "originalTitle": "Otello",
+      "isAdult": false,
+      "releaseYear": {
+        "$date": {
+          "$numberLong": "-1767218400000"
+        }
+      },
+      "rating": {
+        "averageRating": 0,
+        "numVotes": 0
+      },
+      "alternativeTitles": [],
+      "genres": [
+        {
+          "$ref": "genres",
+          "$id": {
+            "$oid": "64606974af3276a08ec58603"
+          }
+        },
+        {
+          "$ref": "genres",
+          "$id": {
+            "$oid": "64606974af3276a08ec58600"
+          }
+        }
+      ],
+      "actors": [],
+      "characters": []
+    },
+    "director": [],
+    "characters": [],
+    "actors": []
+  }
+]
